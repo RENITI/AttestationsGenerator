@@ -1,0 +1,51 @@
+<RelativeLayout android:id="@+id/fragment_attestations_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dip">
+    <TextView
+        android:id="@+id/fragment_attestations_default_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor"
+        android:textAlignment="center"
+
+        android:text="@string/fragment_attestations_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_attestations_container"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_attestations_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:theme="@style/Widget.App.FloatingActionButton"
+        app:srcCompat="@android:drawable/ic_input_add"
+       />-->
+
+</RelativeLayout>

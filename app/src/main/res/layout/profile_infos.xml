@@ -1,0 +1,70 @@
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:id="@+id/profile_infos_layout"
+    android:theme="@style/Theme.AttestationsGenerator.ProfileLayout"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_gravity="fill_vertical"
+    >
+
+
+    <TextView
+        android:id="@+id/profile_infos_name"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="firstname lastname"
+        android:textStyle="bold"
+
+
+    android:textSize="18sp"
+    android:textColor="@color/black"
+    android:layout_marginBottom="1dp"
+         />
+
+    <TextView
+        android:layout_below="@id/profile_infos_name"
+        android:id="@+id/profile_infos_birth"
+
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Né(e) birstdate à birstplace"
+
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_below="@id/profile_infos_birth"
+        android:id="@+id/profile_infos_location"
+
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="address zipcode city"
+
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        />
+
+
+
+    <ImageButton
+        android:id="@+id/profile_infos_delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_baseline_delete_36"
+        android:text="@string/delete_profile" />
+</RelativeLayout>

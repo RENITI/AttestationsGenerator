@@ -1,0 +1,51 @@
+
+<RelativeLayout android:id="@+id/fragment_profiles_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="16dip"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/fragment_profiles_default_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor"
+        android:textAlignment="center"
+
+        android:text="@string/fragment_profiles_empty"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_profiles_container"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+        </RelativeLayout>
+</ScrollView>
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_profiles_add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:theme="@style/Widget.App.FloatingActionButton"
+        app:srcCompat="@android:drawable/ic_input_add" />-->
+</RelativeLayout>

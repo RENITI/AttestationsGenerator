@@ -1,0 +1,117 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AttestationsGenerator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/mainColor</item>
+        <item name="colorPrimaryVariant">@color/mainColor</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:statusBarColor" tools:targetApi="l">@color/mainColor</item>
+
+
+        <item name="android:textSize">15sp</item>
+        <item name="radioButtonStyle">@style/Theme.AttestationsGenerator.RadioButton</item>
+        <item name="android:radioButtonStyle">@style/Theme.AttestationsGenerator.RadioButton</item>
+
+
+        <!-- menu -->
+        <item name="popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="android:contextPopupMenuStyle">@style/Widget.MaterialComponents.PopupMenu.ContextMenu</item>
+        <item name="actionOverflowMenuStyle">@style/Widget.MaterialComponents.PopupMenu.Overflow</item>
+
+        <item name="android:textColorLink">@color/mainColor</item>
+
+    </style>
+
+
+    <style name="Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="backgroundColor">@color/mainColor</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+
+    <!-- This configures the styles for the title within the Toolbar  -->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+
+        <item name="android:textSize">21sp</item>
+    </style>
+
+
+    <style name="Theme.AttestationsGenerator.CommonText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+
+    <style name="Theme.AttestationsGenerator.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
+
+    <style name="Theme.AttestationsGenerator.AppBarOverlay" parent="Theme.MaterialComponents" >
+        <item name="android:background">@color/mainColor</item>
+
+    </style>
+
+
+
+
+
+
+    <!-- Radio style -->
+    <style name="Theme.AttestationsGenerator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+
+        <item name="android:buttonTint">@color/secondColor</item>
+
+    </style>
+
+    <!-- Tab layout -->
+    <style name="Theme.AttestationsGenerator.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+
+        <item name="android:background">@color/mainColor</item>
+
+
+        <item name="tabTextColor">@color/gray</item>
+
+
+        <item name="tabSelectedTextColor">@color/white</item>
+
+
+
+
+    </style>
+
+    <!-- Progress bar -->
+    <style name="Theme.AttestationsGenerator.ProgressBar">
+
+        <item name="colorAccent">@color/mainColor</item>
+
+    </style>
+
+    <!-- Profile infos view -->
+    <style name="Theme.AttestationsGenerator.ProfileLayout">
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="backgroundColor">@color/background</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="Theme.AttestationsGenerator.ProfileEditInput">
+
+        <item name="colorControlNormal">@color/mainColor</item>
+        <item name="colorControlActivated">@color/secondColor</item>
+        <item name="colorControlHighlight">@color/secondColor</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- Bouton + : Widget.App.FloatingActionButton -->
+    <style name="Widget.App.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="colorSecondary">@color/mainColor</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSurface">@color/mainColor</item>
+    </style>
+
+</resources>
