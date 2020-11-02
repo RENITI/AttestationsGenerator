@@ -22,9 +22,8 @@
         android:text="firstname lastname"
         android:textStyle="bold"
 
-
-    android:textSize="18sp"
-    android:textColor="@color/black"
+        android:paddingRight="@dimen/fragment_text_right_margin"
+        android:theme="@style/Theme.AttestationsGenerator.CommonText"
     android:layout_marginBottom="1dp"
          />
 
@@ -32,28 +31,26 @@
         android:layout_below="@id/profile_infos_name"
         android:id="@+id/profile_infos_birth"
 
-
+        android:paddingRight="@dimen/fragment_text_right_margin"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Né(e) birstdate à birstplace"
 
-        android:textSize="18sp"
-        android:textColor="@color/black"
+        android:theme="@style/Theme.AttestationsGenerator.CommonText"
         />
 
     <TextView
         android:layout_below="@id/profile_infos_birth"
         android:id="@+id/profile_infos_location"
 
-
+        android:paddingRight="@dimen/fragment_text_right_margin"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="address zipcode city"
 
-        android:textSize="18sp"
-        android:textColor="@color/black"
+        android:theme="@style/Theme.AttestationsGenerator.CommonText"
         />
 
 

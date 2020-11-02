@@ -22,6 +22,8 @@
         android:text="Attestation de firstname lastname"
         android:textStyle="bold"
 
+        android:paddingRight="@dimen/fragment_text_right_margin"
+
 
         android:theme="@style/Theme.AttestationsGenerator.CommonText"
 
@@ -32,7 +34,7 @@
         android:layout_below="@id/attestation_infos_name"
         android:id="@+id/attestation_infos_common"
 
-
+        android:paddingRight="@dimen/fragment_text_right_margin"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +47,7 @@
         android:layout_below="@id/attestation_infos_common"
         android:id="@+id/attestation_infos_motifs"
 
-
+        android:paddingRight="@dimen/fragment_text_right_margin"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,72 +68,4 @@
 
         android:background="@drawable/ic_baseline_delete_36"
         android:text="@string/delete_profile" />
-
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/attestation_infos_common"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="4dp">
-
-
-
-
-
-
-            <ImageButton
-                android:id="@+id/attestation_infos_pdf_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-
-                android:layout_below="@id/attestation_infos_delete_btn"
-                android:background="@drawable/ic_baseline_picture_as_pdf_24"
-                android:text="Voir pdf" />-->
-
-       <!-- </RelativeLayout>-->
-   <!-- <ImageButton
-        android:id="@+id/attestation_infos_delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="6dip"
-        android:background="@drawable/ic_baseline_remove_red_eye_48"
-        android:text="@string/delete_profile" />-->
-
-    <!--<ImageButton
-        android:id="@+id/attestation_infos_delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_toLeftOf="@id/attestation_infos_qrcode_btn"
-
-        android:background="@drawable/ic_baseline_delete_36"
-        android:text="@string/delete_profile"
-        android:layout_marginRight="6dip"/>
-
-
-
-    <ImageButton
-        android:id="@+id/attestation_infos_qrcode_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/attestation_infos_pdf_btn"
-
-        android:layout_centerInParent="true"
-        android:background="@drawable/ic_baseline_delete_36"
-        android:text="@string/delete_profile"/>-->
-
-   <!-- <ImageButton
-        android:id="@+id/attestation_infos_pdf_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:background="@drawable/ic_baseline_delete_36"
-        android:text="@string/delete_profile"
-        android:layout_marginRight="6dip"/>-->
 </RelativeLayout>

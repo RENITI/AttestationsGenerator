@@ -38,7 +38,7 @@
 
 
     <style name="Theme.AttestationsGenerator.CommonText">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
@@ -65,7 +65,7 @@
     <!-- Radio style -->
     <style name="Theme.AttestationsGenerator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
 
-        <item name="android:buttonTint">@color/secondColor</item>
+        <item name="android:buttonTint">@color/mainColor</item>
 
     </style>
 
@@ -102,8 +102,8 @@
     <style name="Theme.AttestationsGenerator.ProfileEditInput">
 
         <item name="colorControlNormal">@color/mainColor</item>
-        <item name="colorControlActivated">@color/secondColor</item>
-        <item name="colorControlHighlight">@color/secondColor</item>
+        <item name="colorControlActivated">@color/mainColor</item>
+        <item name="colorControlHighlight">@color/mainColor</item>
         <item name="android:minHeight">48dp</item>
     </style>
 

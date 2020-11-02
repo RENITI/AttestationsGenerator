@@ -54,8 +54,10 @@
     <!-- About Activity -->
     <string name="activity_about_title">A propos</string>
     <string name="activity_about_credits_title">Librairies utilisés :</string>
-    <string name="activity_about_credits">Genson: <a href="https://mvnrepository.com/artifact/com.owlike/genson">https://mvnrepository.com/artifact/com.owlike/genson</a>\n\nPdfBox-Android: <a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer: <a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator: <a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation: <a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
-    <string name="activity_about_github">Code source: <a href="https://"</string>
+    <string name="activity_about_credits">Genson:\n<a href="https://mvnrepository.com/artifact/com.owlike/genson">https://mvnrepository.com/artifact/com.owlike/genson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
+    <string name="activity_about_github">Code source:</string>
+    <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
+    <string name="activity_about_contact">contact@reniti.fr</string>
     <!-- Attestations fragment -->
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.</string>
 
