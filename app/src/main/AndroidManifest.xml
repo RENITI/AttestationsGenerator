@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.reniti.generator">
+    package="fr.reniti.generator"
+    android:compileSdkVersion="19">
 
     <application
         android:allowBackup="true"
@@ -45,7 +46,26 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+            <intent-filter
+                android:autoVerify="true">
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="attestations-generator.reniti.fr"
+                    android:scheme="https" />
+            </intent-filter>
+
         </activity>
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/actions"/>
     </application>
 
 </manifest>

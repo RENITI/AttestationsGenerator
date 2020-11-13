@@ -44,6 +44,8 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         ((TextView) findViewById(R.id.activity_about_credits)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) findViewById(R.id.activity_about_github_link)).setMovementMethod(LinkMovementMethod.getInstance());
+
         findViewById(R.id.activity_about_logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

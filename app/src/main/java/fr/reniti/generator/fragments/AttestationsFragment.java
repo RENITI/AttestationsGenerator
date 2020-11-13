@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class AttestationsFragment extends Fragment {
 
                 TextView motifsInfos = attestationInfosView.findViewById(R.id.attestation_infos_motifs);
                 motifsInfos.setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true));
+                //motifsInfos.setText("Maintenir pour voir les détails");
 
                 attestationInfosView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,6 +73,8 @@ public class AttestationsFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+
 
                 attestationInfosView.findViewById(R.id.attestation_infos_delete_btn).setOnClickListener(new View.OnClickListener() {
                     @Override

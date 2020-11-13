@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ProfileEditActivity"
-    android:orientation="vertical"
-
-    >
-
+    android:orientation="vertical">
 
 
     <ScrollView
@@ -19,204 +16,175 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_profile_edit_appbar"
-        android:theme="@style/Theme.AttestationsGenerator.AppBarOverlay">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/activity_profile_edit_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:textAlignment="center"
-        android:elevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_profile_edit_appbar"
+                android:theme="@style/Theme.AttestationsGenerator.AppBarOverlay">
 
-        />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/activity_profile_edit_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:textAlignment="center"
+                    android:elevation="4dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_firstname"
+                android:layout_below="@id/activity_profile_edit_appbar"
+
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <EditText
+                android:id="@+id/activity_profile_edit_input_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_profile_edit_firstname"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_firstname_input"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"/>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_lastname"
+                android:layout_below="@id/activity_profile_edit_input_firstname"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <EditText
+                android:id="@+id/activity_profile_edit_input_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_profile_edit_lastname"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_lastname_input"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_birthdate"
+                android:layout_below="@id/activity_profile_edit_input_lastname"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <EditText
+                android:id="@+id/activity_profile_edit_input_birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_profile_edit_birthdate"
+                android:inputType="date"
+                android:contentDescription="@string/activity_profile_edit_birthdate_input"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_placeofbirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_placeofbirth"
+                android:layout_below="@id/activity_profile_edit_input_birthdate"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <EditText
+                android:id="@+id/activity_profile_edit_input_placeofbirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_profile_edit_placeofbirth"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_placeofbirth_input"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_address"
+                android:layout_below="@id/activity_profile_edit_input_placeofbirth"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <EditText
+                android:id="@+id/activity_profile_edit_input_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_profile_edit_address"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_address_input"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:id="@+id/activity_profile_edit_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_profile_edit_city"
+                android:layout_below="@id/activity_profile_edit_input_address"
+
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
 
+            <EditText
+                android:id="@+id/activity_profile_edit_input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_profile_edit_city"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_city_input"
 
-    </com.google.android.material.appbar.AppBarLayout>
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-    <!--<TextView
-        android:id="@+id/activity_profile_edit_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/activity_profile_edit_zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_profile_edit_input_city"
+                android:text="@string/activity_profile_edit_zipcode"
 
-        android:layout_below="@id/activity_profile_edit_appbar"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/color3"
-        android:textAlignment="center"
+            <EditText
+                android:id="@+id/activity_profile_edit_input_zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_profile_edit_zipcode"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:inputType="textCapSentences"
+                android:contentDescription="@string/activity_profile_edit_zipcode_input"
 
-        android:layout_margin="16dip"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-        android:text="@string/activity_profile_edit_title"/>-->
+            <Button
+                android:id="@+id/activity_profile_edit_confirm_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm"
+                android:layout_below="@id/activity_profile_edit_input_zipcode"
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_firstname"
-        android:id="@+id/activity_profile_edit_firstname"
-
-        android:layout_below="@id/activity_profile_edit_appbar"
-        android:layout_marginTop="16dip"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_firstname"
-        android:layout_below="@id/activity_profile_edit_firstname"
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_firstname_input">
-    </EditText>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_lastname"
-        android:id="@+id/activity_profile_edit_lastname"
-        android:layout_below="@id/activity_profile_edit_input_firstname"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_lastname"
-        android:layout_below="@id/activity_profile_edit_lastname"
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_lastname_input">
-    </EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_birthdate"
-        android:id="@+id/activity_profile_edit_birthdate"
-        android:layout_below="@id/activity_profile_edit_input_lastname"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_birthdate"
-        android:layout_below="@id/activity_profile_edit_birthdate"
-        android:inputType="date"
-        android:contentDescription="@string/activity_profile_edit_birthdate_input">
-    </EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_placeofbirth"
-        android:id="@+id/activity_profile_edit_placeofbirth"
-        android:layout_below="@id/activity_profile_edit_input_birthdate"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_placeofbirth"
-        android:layout_below="@id/activity_profile_edit_placeofbirth"
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_placeofbirth_input"
-        >
-    </EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_address"
-        android:id="@+id/activity_profile_edit_address"
-        android:layout_below="@id/activity_profile_edit_input_placeofbirth"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_address"
-        android:layout_below="@id/activity_profile_edit_address"
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_address_input">
-    </EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_profile_edit_city"
-
-        android:id="@+id/activity_profile_edit_city"
-        android:layout_below="@id/activity_profile_edit_input_address"
-
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_city"
-        android:layout_below="@id/activity_profile_edit_city"
-
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_city_input">
-    </EditText>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/activity_profile_edit_zipcode"
-        android:layout_below="@id/activity_profile_edit_input_city"
-
-        android:text="@string/activity_profile_edit_zipcode"
-
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-
-        android:layout_below="@id/activity_profile_edit_zipcode"
-
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_profile_edit_input_zipcode"
-        android:inputType="textCapSentences"
-        android:contentDescription="@string/activity_profile_edit_zipcode_input">
-    </EditText>
-
-    <Button
-        android:id="@+id/activity_profile_edit_confirm_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/confirm"
-
-        android:layout_marginHorizontal="16dip"
-
-        android:layout_below="@id/activity_profile_edit_input_zipcode">
-
-    </Button>
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
         </RelativeLayout>
-
-
     </ScrollView>
 </RelativeLayout>

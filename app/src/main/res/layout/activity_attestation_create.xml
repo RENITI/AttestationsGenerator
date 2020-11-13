@@ -6,10 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.AttestationCreateActivity"
-    android:orientation="vertical"
-
-
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,29 +16,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_attestation_create_appbar"
-        android:theme="@style/Theme.AttestationsGenerator.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_attestation_create_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:textAlignment="center"
-            android:elevation="4dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_attestation_create_appbar"
+                android:theme="@style/Theme.AttestationsGenerator.AppBarOverlay">
 
-            />
-
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/activity_attestation_create_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:textAlignment="center"
+                    android:elevation="4dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+            </com.google.android.material.appbar.AppBarLayout>
 
 
             <TextView
@@ -49,177 +41,155 @@
                 android:layout_height="wrap_content"
                 android:text="@string/activity_attestation_create_profil"
                 android:id="@+id/activity_attestation_create_profil"
-
                 android:layout_below="@id/activity_attestation_create_appbar"
                 android:layout_marginTop="16dip"
-                android:layout_marginHorizontal="16dip">
-            </TextView>
-
-
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
             <RadioGroup
                 android:id="@+id/activity_attestation_create_profil_select"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/activity_attestation_create_profil"
-                android:layout_marginHorizontal="16dip"
-                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput">
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_attestation_create_datesortie"
+                android:id="@+id/activity_attestation_create_datesortie"
+                android:layout_marginTop="6dip"
+                android:layout_below="@id/activity_attestation_create_profil_select"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-            </RadioGroup>
+            <EditText
+                android:id="@+id/activity_attestation_create_input_datesortie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_datesortie"
+                android:inputType="textNoSuggestions"
+                android:contentDescription="@string/activity_attestation_create_input_datesortie"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_attestation_create_datesortie"
-        android:id="@+id/activity_attestation_create_datesortie"
-        android:layout_marginTop="6dip"
-        android:layout_below="@id/activity_attestation_create_profil_select"
+            <TextView
+                android:id="@+id/activity_attestation_create_heuresortie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_attestation_create_heuresortie"
+                android:layout_marginTop="6dip"
+                android:layout_below="@id/activity_attestation_create_input_datesortie"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-        android:layout_marginHorizontal="16dip">
-    </TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:id="@+id/activity_attestation_create_input_heuresortie"
+                android:layout_below="@id/activity_attestation_create_heuresortie"
+                android:inputType="textNoSuggestions"
+                android:contentDescription="@string/activity_attestation_create_input_heuresortie"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_attestation_create_reason"
+                android:id="@+id/activity_attestation_create_reason"
+                android:layout_marginTop="6dip"
+                android:layout_below="@id/activity_attestation_create_input_heuresortie"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_attestation_create_input_datesortie"
-        android:layout_below="@id/activity_attestation_create_datesortie"
-        android:inputType="textNoSuggestions"
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_travail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_travail"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason"/>
 
-        android:contentDescription="@string/activity_attestation_create_input_datesortie">
-    </EditText>
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_achats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_achats"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_travail"/>
 
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_sante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_sante"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_achats"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_attestation_create_heuresortie"
-        android:id="@+id/activity_attestation_create_heuresortie"
-        android:layout_marginTop="6dip"
-        android:layout_below="@id/activity_attestation_create_input_datesortie"
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_famille"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_famille"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_sante"/>
 
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_handicap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_handicap"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_famille"/>
 
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:id="@+id/activity_attestation_create_input_heuresortie"
-        android:layout_below="@id/activity_attestation_create_heuresortie"
-        android:inputType="textNoSuggestions"
-        android:contentDescription="@string/activity_attestation_create_input_heuresortie"
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_sport_animaux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_sport_animaux"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_handicap"/>
 
-        >
-    </EditText>
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_convocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_convocation"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_sport_animaux"/>
 
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_missions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:text="@string/activity_attestation_create_reason_missions"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:layout_below="@id/activity_attestation_create_reason_convocation"/>
 
+            <CheckBox
+                android:id="@+id/activity_attestation_create_reason_enfants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="6dip"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
+                android:text="@string/activity_attestation_create_reason_enfants"
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_attestation_create_reason"
-        android:id="@+id/activity_attestation_create_reason"
-        android:layout_marginTop="6dip"
-        android:layout_below="@id/activity_attestation_create_input_heuresortie"
-        android:layout_marginHorizontal="16dip">
-    </TextView>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_travail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_travail"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_achats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_achats"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_travail"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_sante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_sante"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_achats"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_famille"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_famille"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_sante"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_handicap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_handicap"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_famille"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_sport_animaux"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_sport_animaux"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_handicap"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_convocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_convocation"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_sport_animaux"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_missions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:text="@string/activity_attestation_create_reason_missions"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:layout_below="@id/activity_attestation_create_reason_convocation"/>
-
-    <CheckBox
-        android:id="@+id/activity_attestation_create_reason_enfants"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dip"
-        android:layout_marginTop="6dip"
-        android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
-        android:text="@string/activity_attestation_create_reason_enfants"
-
-        android:layout_below="@id/activity_attestation_create_reason_missions"/>
+                android:layout_below="@id/activity_attestation_create_reason_missions"/>
 
 
             <Button
@@ -229,18 +199,13 @@
                 android:text="@string/confirm"
                 android:layout_marginTop="10dip"
                 android:layout_marginBottom="10dip"
-                android:layout_marginHorizontal="16dip"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
 
                 android:layout_below="@id/activity_attestation_create_reason_enfants"
                 android:layout_height="wrap_content">
 
             </Button>
-
-
-
         </RelativeLayout>
-
-
     </ScrollView>
 
     <RelativeLayout

@@ -6,15 +6,26 @@ import fr.reniti.generator.R;
 
 public enum Reason {
 
-    TRAVAIL("Travail", 578, "travail", R.id.activity_attestation_create_reason_travail),
-    ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats),
-    SANTE("Santé", 477, "sante", R.id.activity_attestation_create_reason_sante),
-    FAMILLE("Famille", 435, "famille", R.id.activity_attestation_create_reason_famille),
-    HANDICAP("Handicap", 396, "handicap", R.id.activity_attestation_create_reason_handicap),
-    SPORT_ANIMAUX("Sport et animaux", 358, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux),
-    CONVOCATION("Convocation", 295, "convocation", R.id.activity_attestation_create_reason_convocation),
-    MISSIONS("Missions", 255, "missions", R.id.activity_attestation_create_reason_missions),
-    ENFANTS("Enfants",211, "enfants", R.id.activity_attestation_create_reason_enfants);
+
+    TRAVAIL("Travail", 578, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
+    ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
+    SANTE("Santé", 477, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
+    FAMILLE("Famille", 435, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
+    HANDICAP("Handicap", 396, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
+    SPORT_ANIMAUX("Sports et Animaux", 358, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
+    CONVOCATION("Convocation", 295, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
+    MISSIONS("Missions", 255, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
+    ENFANTS("Enfants",211, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);
+
+    /*TRAVAIL("Activité professionnelle, enseignement et formation", 578, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
+    ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
+    SANTE("Consultations et soins", 477, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
+    FAMILLE("Motif familial impérieux, personnes vulnérables ou précaires ou garde d'enfant", 435, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
+    HANDICAP("Situation de handicap", 396, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
+    SPORT_ANIMAUX("Activité individuelle ou animaux de compagnie", 358, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
+    CONVOCATION("Convocation judiciaire ou administrative", 295, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
+    MISSIONS("Missions d'intérêt général", 255, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
+    ENFANTS("Enfants à l'école",211, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);*/
 
 
     @JsonProperty(serialize = false, deserialize = false)
@@ -29,18 +40,24 @@ public enum Reason {
     @JsonProperty(serialize = false, deserialize = false)
     private int fieldId;
 
+    @JsonProperty(serialize = false, deserialize = false)
+    private int textId;
+
     /**
      * Constructor
      * @param displayName
      * @param pdfPosY
      * @param id
+     * @param fieldId
+     * @param textId
      */
-    Reason(String displayName, int pdfPosY, String id, int fieldId)
+    Reason(String displayName, int pdfPosY, String id, int fieldId, int textId)
     {
         this.displayName = displayName;
         this.pdfPosY = pdfPosY;
         this.id = id;
         this.fieldId = fieldId;
+        this.textId = textId;
     }
 
     /**
@@ -68,6 +85,14 @@ public enum Reason {
     @JsonProperty(serialize = false, deserialize = false)
     public String getId() {
         return id;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getTextId() {
+        return textId;
     }
 
     /**

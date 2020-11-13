@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
+
         Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
+
+
+
+        if (intent.getAction() == Intent.ACTION_VIEW ) {
+
+        }
 
         if(intent.hasExtra("snackbar_message"))
         {
