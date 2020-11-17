@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AttestationsGenerator" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/mainColor</item>
+        <item name="colorPrimaryVariant">@color/mainColor</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:statusBarColor">@color/mainColor</item>
+
+
+        <item name="android:textSize">15sp</item>
+        <item name="radioButtonStyle">@style/Theme.AttestationsGenerator.RadioButton</item>
+        <item name="android:radioButtonStyle">@style/Theme.AttestationsGenerator.RadioButton</item>
+
+        <item name="android:textColorLink">@color/mainColor</item>
+    </style>
+</resources>

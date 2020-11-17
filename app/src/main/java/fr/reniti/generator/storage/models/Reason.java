@@ -7,15 +7,15 @@ import fr.reniti.generator.R;
 public enum Reason {
 
 
-    TRAVAIL("Travail", 578, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
-    ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
-    SANTE("Santé", 477, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
-    FAMILLE("Famille", 435, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
-    HANDICAP("Handicap", 396, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
-    SPORT_ANIMAUX("Sports et Animaux", 358, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
-    CONVOCATION("Convocation", 295, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
-    MISSIONS("Missions", 255, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
-    ENFANTS("Enfants",211, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);
+    TRAVAIL("Travail", 488, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
+    ACHATS("Achats", 417, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
+    SANTE("Santé", 347, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
+    FAMILLE("Famille", 325, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
+    HANDICAP("Handicap", 291, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
+    SPORT_ANIMAUX("Sports et Animaux", 269, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
+    CONVOCATION("Convocation", 199, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
+    MISSIONS("Missions", 178, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
+    ENFANTS("Enfants",157, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);
 
     /*TRAVAIL("Activité professionnelle, enseignement et formation", 578, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
     ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),

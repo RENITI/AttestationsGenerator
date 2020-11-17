@@ -9,14 +9,16 @@
 
 
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
-    <string name="activity_attestation_view_title">Mon attestation</string>
 
+    <!--- Attestation View -->
+
+    <string name="activity_attestation_view_title">Mon attestation</string>
+    <string name="activity_attestation_view_qr">QR Code</string>
 
     <!--- Profile Edit Activity -->
 
     <string name="activity_profile_edit_title">Créer un nouveau profil</string>
-    <string name="activity_profile_edit_success">Le profil a été crée avec succès.</string>
-
+    <string name="activity_profile_create_success">Le profil a été créé avec succès.</string>
     <string name="activity_profile_edit_firstname">Prénom</string>
     <string name="activity_profile_edit_lastname">Nom</string>
     <string name="activity_profile_edit_birthdate">Date de naissance</string>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -28,6 +29,20 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/activity_attestation_viewer_pdf"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/activity_attestation_viewer_appbar"/>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_attestation_viewer_qr_image"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_below="@id/activity_attestation_viewer_appbar"
+        />
+
+    </RelativeLayout>
 

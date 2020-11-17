@@ -11,8 +11,8 @@ android {
         applicationId "fr.reniti.generator"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 21
-        versionName "2.1"
+        versionCode 22
+        versionName "2.2"
 
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,22 +42,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // https://mvnrepository.com/artifact/com.owlike/genson
     implementation group: 'com.owlike', name: 'genson', version: '1.6'
-
-    //implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
-    //implementation 'io.nayuki:qrcodegen:1.6.0'
-
     implementation 'com.tom_roush:pdfbox-android:1.8.10.1'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
-    /**
-     * implementation group: 'com.owlike', name: 'genson', version: '1.6'
-     * implementation 'com.tom_roush:pdfbox-android:1.8.10.1'
-     *     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-     * https://github.com/nayuki/QR-Code-generator
-     */
-
-
-
 }

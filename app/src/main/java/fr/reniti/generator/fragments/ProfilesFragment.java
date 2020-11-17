@@ -1,7 +1,9 @@
 package fr.reniti.generator.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,9 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
+import fr.reniti.generator.activities.ProfileEditActivity;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.StorageManager;
 
@@ -61,7 +65,15 @@ public class ProfilesFragment extends Fragment {
                     }
                 });
 
+                profileInfosView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.getInstance(), ProfileEditActivity.class);
+                        i.putExtra("profile_uuid", profile.getUuid());
 
+                        MainActivity.getInstance().startActivity(i);
+                    }
+                });
                 profilesContainer.addView(profileInfosView);
                 Logger.getGlobal().log(Level.INFO, "Profile : " + profile.getFirstname() + " " + profile.getLastname() + " / " + profiles.size());
             }

@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance;
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
@@ -42,11 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
-
         Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
-
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager());
@@ -91,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-
-
 
         if (intent.getAction() == Intent.ACTION_VIEW ) {
 

@@ -69,7 +69,7 @@
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                 android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
                 android:layout_below="@id/activity_attestation_create_datesortie"
-                android:inputType="textNoSuggestions"
+                android:inputType="date"
                 android:contentDescription="@string/activity_attestation_create_input_datesortie"/>
 
             <TextView
@@ -88,7 +88,7 @@
                 android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"
                 android:id="@+id/activity_attestation_create_input_heuresortie"
                 android:layout_below="@id/activity_attestation_create_heuresortie"
-                android:inputType="textNoSuggestions"
+                android:inputType="time"
                 android:contentDescription="@string/activity_attestation_create_input_heuresortie"/>
 
             <TextView
@@ -211,14 +211,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparentWhite"
+        android:background="@color/transparentBackground"
         android:id="@+id/attestation_create_loader"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        >
             <ProgressBar
         android:id="@+id/progressBar"
         android:theme="@style/Theme.AttestationsGenerator.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+                android:background="@color/transparentBackground"/>
     </RelativeLayout>
 </RelativeLayout>

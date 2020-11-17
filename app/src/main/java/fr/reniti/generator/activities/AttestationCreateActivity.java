@@ -1,5 +1,6 @@
 package fr.reniti.generator.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
@@ -20,14 +21,15 @@ import android.widget.Toast;
 
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
-import fr.reniti.generator.listeners.DateKeyListener;
-import fr.reniti.generator.listeners.TimeKeyListener;
+import fr.reniti.generator.listeners.DateFieldWatcher;
+import fr.reniti.generator.listeners.TimeFieldWatcher;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.StorageManager;
@@ -51,23 +53,25 @@ public class AttestationCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attestation_create);
 
         Toolbar toolbar = findViewById(R.id.activity_attestation_create_toolbar);
+
+
+        toolbar.setTitle(R.string.activity_attestation_create_title);
+
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.activity_attestation_create_title);
+
+        if(getSupportActionBar() != null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Date d = new Date();
 
-        EditText time = ((EditText) findViewById(R.id.activity_attestation_create_input_heuresortie));
-        time.setText(Utils.HOUR_FORMAT.format(d));
+        EditText time = findViewById(R.id.activity_attestation_create_input_heuresortie);
+        time.addTextChangedListener(new TimeFieldWatcher(time, Utils.HOUR_FORMAT.format(d)));
 
-        /*
-        TODO
-         */
-        //time.setOnKeyListener(new TimeKeyListener());
 
         EditText date = ((EditText) findViewById(R.id.activity_attestation_create_input_datesortie));
-        date.setText(Utils.DATE_FORMAT.format(d));
-
+        date.addTextChangedListener(new DateFieldWatcher(date, true, Utils.DATE_FORMAT.format(d)));
         /*
         TODO
          */
@@ -90,12 +94,9 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     selectedProfile = profile;
                     radio.setChecked(true);
                 } else {
-                    radio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked) {
-                                selectedProfile = profile;
-                            }
+                    radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                        if (isChecked) {
+                            selectedProfile = profile;
                         }
                     });
                 }
@@ -105,26 +106,23 @@ public class AttestationCreateActivity extends AppCompatActivity {
             profileSelect.setVisibility(View.INVISIBLE);
         }
 
-        ((Button) findViewById(R.id.activity_attestation_create_confirm_btn)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveAttestation();
-            }
-        });
+        findViewById(R.id.activity_attestation_create_confirm_btn).setOnClickListener(v -> saveAttestation());
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            case R.id.activity_editor_confirm_m:
-                saveAttestation();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+
+        if(item.getItemId() == android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
         }
+
+        if(item.getItemId() == R.id.activity_editor_confirm_m) {
+            saveAttestation();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void setWorking(boolean a)
@@ -162,7 +160,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
             return;
         }
 
-        ArrayList<Reason> reasons = new ArrayList();
+        ArrayList<Reason> reasons = new ArrayList<>();
         for (Reason reason : Reason.values()) {
             if (((CheckBox) findViewById(reason.getFieldId())).isChecked()) {
                 reasons.add(reason);
@@ -175,20 +173,17 @@ public class AttestationCreateActivity extends AppCompatActivity {
             return;
         }
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Attestation attestation = new Attestation(selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[reasons.size()]));
-                StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
+        Thread thread = new Thread(() -> {
+            Attestation attestation = new Attestation(selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]));
+            StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
 
-                PDFBoxResourceLoader.init(getApplicationContext());
-                Utils.savePDF(attestation, AttestationCreateActivity.this);
+            PDFBoxResourceLoader.init(getApplicationContext());
+            Utils.savePDF(attestation, AttestationCreateActivity.this);
 
-                Intent intent = new Intent(AttestationCreateActivity.this, MainActivity.class);
-                intent.putExtra("snackbar_message", R.string.attestation_create_success);
+            Intent intent = new Intent(AttestationCreateActivity.this, MainActivity.class);
+            intent.putExtra("snackbar_message", R.string.attestation_create_success);
 
-                AttestationCreateActivity.this.startActivity(intent);
-            }
+            AttestationCreateActivity.this.startActivity(intent);
         });
         thread.start();
     }

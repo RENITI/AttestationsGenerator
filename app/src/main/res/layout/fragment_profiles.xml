@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background"
+
     android:padding="16dip"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -24,7 +24,7 @@
 
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/mainColor"
+
         android:textAlignment="center"
 
         android:text="@string/fragment_profiles_empty"/>

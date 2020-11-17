@@ -1,5 +1,6 @@
 package fr.reniti.generator.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
@@ -18,14 +20,12 @@ import java.util.UUID;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
-import fr.reniti.generator.listeners.DateKeyListener;
+import fr.reniti.generator.listeners.DateFieldWatcher;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.utils.Utils;
 
 public class ProfileEditActivity extends AppCompatActivity {
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,14 +46,8 @@ public class ProfileEditActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.activity_profile_edit_title);
 
-
         EditText birthdate = findViewById(R.id.activity_profile_edit_input_birthdate);
-
-        /*
-        TODO : Debug l'autocompletion
-         */
-        //((EditText) findViewById(R.id.activity_profile_edit_input_birthdate)).setOnKeyListener(new DateKeyListener());
-
+        birthdate.addTextChangedListener(new DateFieldWatcher(birthdate, false));
 
         ((Button) findViewById(R.id.activity_profile_edit_confirm_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +127,7 @@ public class ProfileEditActivity extends AppCompatActivity {
         StorageManager.getInstance().getProfilesManager().addProfileAndSave(profile);
 
         Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
-        intent.putExtra("snackbar_message", R.string.activity_profile_edit_success);
+        intent.putExtra("snackbar_message", R.string.activity_profile_create_success);
 
         ProfileEditActivity.this.startActivity(intent);
 

@@ -5,11 +5,16 @@ import android.graphics.Bitmap;
 
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
+import com.tom_roush.pdfbox.pdmodel.PDDocumentCatalog;
+import com.tom_roush.pdfbox.pdmodel.PDDocumentInformation;
 import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDCheckbox;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDField;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,6 +22,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
+
+import javax.xml.parsers.FactoryConfigurationError;
 
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.Profile;
@@ -57,7 +65,6 @@ public class Utils {
      */
     public static int getIdealFontSize(String test) throws IOException {
         int currentSize = 11;
-
         float textWidth  = PDType1Font.HELVETICA.getStringWidth(test) / 1000 * currentSize;
 
         while (textWidth  > 83 && currentSize > 7) {
@@ -98,26 +105,52 @@ public class Utils {
             InputStream stream = activity.getResources().getAssets().open("certificate.pdf");
             PDDocument document = PDDocument.load(stream);
 
+            PDDocumentInformation information = document.getDocumentInformation();
+            information.setAuthor("Ministère de l'intérieur");
+            information.setCreator("");
+            information.setProducer("DNUM/SDIT");
+            information.setTitle("COVID-19 - Déclaration de déplacement");
+            information.setSubject("Attestation de déplacement dérogatoire");
+            information.setKeywords("covid19,covid-19,attestation,déclaration,déplacement,officielle,gouvernement");
+
             PDPage page = document.getPage(0);
+
+
+            PDDocumentCatalog docCatalog = document.getDocumentCatalog();
+            docCatalog.setAcroForm(null);
 
             PDPageContentStream content = new PDPageContentStream(document, page, true, true);
 
             Profile profile = attestation.getProfile();
 
             content.setNonStrokingColor(0, 0, 0); //black text
-            content = Utils.drawText(content, 119, 696, profile.getFirstname() + " " + profile.getLastname(), 11);
-            content = Utils.drawText(content, 119, 674, profile.getBirthday(), 11);
-            content = Utils.drawText(content, 297, 674, profile.getPlaceofbirth(), 11);
-            content = Utils.drawText(content, 133, 652, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11);
+
+            for(Reason r : Reason.values())
+            {
+                content.setNonStrokingColor(0, 0, 0);
+                content.addRect(56, r.getPdfPosY()-2, 14, 14);
+                content.fill();
+
+                content.setNonStrokingColor(255, 255, 255);
+                content.addRect(57, r.getPdfPosY()-1, 12, 12);
+                content.fill();
+            }
+
+            content.setNonStrokingColor(0, 0, 0);
+
+            content = Utils.drawText(content, 107, 657, profile.getFirstname() + " " + profile.getLastname(), 11);
+            content = Utils.drawText(content, 107, 627, profile.getBirthday(), 11);
+            content = Utils.drawText(content, 240, 627, profile.getPlaceofbirth(), 11);
+            content = Utils.drawText(content, 124, 596, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11);
 
             for(Reason reason : attestation.getReasons())
             {
-                content =Utils.drawText(content, 78, reason.getPdfPosY(), "x", 18);
+                content =Utils.drawText(content, 59, reason.getPdfPosY(), "x", 17);
             }
 
-            content = Utils.drawText(content, 105, 177, profile.getCity(), Utils.getIdealFontSize(profile.getCity()));
-            content = Utils.drawText(content, 91, 153, attestation.getDatesortie(), 11);
-            content = Utils.drawText(content, 264, 153, attestation.getHeuresortie(), 11);
+            content = Utils.drawText(content, 93, 122, profile.getCity(), Utils.getIdealFontSize(profile.getCity()));
+            content = Utils.drawText(content, 76, 92, attestation.getDatesortie(), 11);
+            content = Utils.drawText(content, 246, 92, attestation.getHeuresortie(), 11);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -126,7 +159,7 @@ public class Utils {
             PDImageXObject pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
             outputStream.close();
 
-            content.drawImage(pdImage,page.getMediaBox().getWidth() - 156, 100, 92, 92);
+            content.drawImage(pdImage,page.getMediaBox().getWidth() - 156, 25, 92, 92);
 
             content.close();
 
@@ -140,11 +173,10 @@ public class Utils {
             qr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, qr.getWidth(), qr.getHeight(), 8, PDDeviceRGB.INSTANCE);
             outputStream.close();
-            content2.drawImage(pdImage,50, page2.getMediaBox().getHeight() - 350, 300, 300);
+            content2.drawImage(pdImage,50, page2.getMediaBox().getHeight() - 390, 300, 300);
 
             content2.close();
             document.addPage(page2);
-            //document.close();
 
             document.save(activity.getFilesDir() + "/" + attestation.getUuid() + ".pdf");
             document.close();

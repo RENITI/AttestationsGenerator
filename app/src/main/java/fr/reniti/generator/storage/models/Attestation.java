@@ -103,25 +103,13 @@ public class Attestation {
         builder.append("Naissance: " + profile.getBirthday() + " a " + profile.getPlaceofbirth() + ";\n ");
         builder.append("Adresse: " + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity() + ";\n ");
         builder.append("Sortie: " + datesortie + " a " + heuresortie + ";\n ");
-
         builder.append("Motifs: " + getReasonsString(false));
 
-        Logger.getGlobal().info("Generating QR Code : " + builder.toString());
         Bitmap bitmap = null;
 
-
-
         try {
-            /*BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Map<EncodeHintType, ErrorCorrectionLevel> hints = new Hashtable<>();
-            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
-            bitmap = barcodeEncoder.encodeBitmap(builder.toString(), BarcodeFormat.QR_CODE, size, size, hints);*/
-
             QrCode qr0 = QrCode.encodeText(builder.toString(), QrCode.Ecc.HIGH);
-
             bitmap = qr0.toImage(4, 10);
-
-
        } catch (Exception e) {e.printStackTrace();}
        return bitmap;
     }

@@ -30,12 +30,8 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.activity_about_title);
 
-
-
-
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(this.getPackageName(), 0);
-
 
             ((TextView) findViewById(R.id.activity_about_version)).setText("Version: " + pInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {

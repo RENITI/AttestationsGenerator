@@ -103,8 +103,6 @@ public class StorageManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-
-
         }
 
     }

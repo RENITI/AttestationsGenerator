@@ -53,7 +53,6 @@ public class AttestationsManager {
         }
     }
 
-
     @JsonProperty(serialize = false, deserialize = false)
     public void addAttestationAndSave(Attestation attestation)
     {

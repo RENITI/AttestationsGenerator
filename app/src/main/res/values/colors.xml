@@ -3,11 +3,11 @@
 
     <color name="mainColor">#224C36</color>
 
-    <color name="black">#FF000000</color>
     <color name="gray">#e0e0e0</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">#F4FAFF</color>
-    <color name="transparentWhite">#daffffff</color>
+   <!-- <color name="background">#F4FAFF</color>-->
 
-    <!--     <color name="color3">#c0392b</color> -->
+
+    <color name="textColor">#FF000000</color>
+    <color name="transparentBackground">#F0FFFFFF</color>
 </resources>
