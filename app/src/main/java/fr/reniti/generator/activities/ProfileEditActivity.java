@@ -128,8 +128,10 @@ public class ProfileEditActivity extends AppCompatActivity {
 
         Intent intent = new Intent(ProfileEditActivity.this, MainActivity.class);
         intent.putExtra("snackbar_message", R.string.activity_profile_create_success);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         ProfileEditActivity.this.startActivity(intent);
+        finish();
 
 
     }

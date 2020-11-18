@@ -52,6 +52,8 @@ public class AttestationCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attestation_create);
 
+        new StorageManager(this);
+
         Toolbar toolbar = findViewById(R.id.activity_attestation_create_toolbar);
 
 
@@ -79,7 +81,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
         RadioGroup profileSelect = findViewById(R.id.activity_attestation_create_profil_select);
         Collection<Profile> profiles = StorageManager.getInstance().getProfilesManager().getProfilesList().values();
-
+        String defaultProfileUUID = StorageManager.getInstance().getProfilesManager().getDefaultProfileUUID();
         if(profiles.size() > 0)
         {
             for(Profile profile : profiles)
@@ -89,7 +91,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
                 radio.setText(profile.getFirstname() + " " + profile.getLastname() + "\n" + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity());
                 radio.setPadding(30, 30, 0, 30);
 
-                if(profiles.size() == 1)
+                if(profile.getUuid().equals(defaultProfileUUID))
                 {
                     selectedProfile = profile;
                     radio.setChecked(true);
@@ -182,8 +184,10 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
             Intent intent = new Intent(AttestationCreateActivity.this, MainActivity.class);
             intent.putExtra("snackbar_message", R.string.attestation_create_success);
-
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             AttestationCreateActivity.this.startActivity(intent);
+
+            finish();
         });
         thread.start();
     }

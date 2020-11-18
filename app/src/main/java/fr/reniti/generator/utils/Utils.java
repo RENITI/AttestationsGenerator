@@ -20,7 +20,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -34,6 +37,7 @@ public class Utils {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat HOUR_FORMAT = new SimpleDateFormat("HH:mm");
+    public static final Reason[] DEFAULT_REASONS = new Reason[] {Reason.ACHATS, Reason.TRAVAIL, Reason.SPORT_ANIMAUX};
 
     public static boolean isValidDate(String rawDate, boolean allowFuture)
     {
