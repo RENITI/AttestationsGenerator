@@ -6,7 +6,6 @@ import fr.reniti.generator.R;
 
 public enum Reason {
 
-
     TRAVAIL("Travail", 488, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
     ACHATS("Achats", 417, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
     SANTE("Santé", 347, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
@@ -16,17 +15,6 @@ public enum Reason {
     CONVOCATION("Convocation", 199, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
     MISSIONS("Missions", 178, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
     ENFANTS("Enfants",157, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);
-
-    /*TRAVAIL("Activité professionnelle, enseignement et formation", 578, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
-    ACHATS("Achats", 533, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
-    SANTE("Consultations et soins", 477, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
-    FAMILLE("Motif familial impérieux, personnes vulnérables ou précaires ou garde d'enfant", 435, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
-    HANDICAP("Situation de handicap", 396, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
-    SPORT_ANIMAUX("Activité individuelle ou animaux de compagnie", 358, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
-    CONVOCATION("Convocation judiciaire ou administrative", 295, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
-    MISSIONS("Missions d'intérêt général", 255, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
-    ENFANTS("Enfants à l'école",211, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);*/
-
 
     @JsonProperty(serialize = false, deserialize = false)
     private String displayName;

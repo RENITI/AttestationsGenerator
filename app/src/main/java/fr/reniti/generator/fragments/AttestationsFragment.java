@@ -61,7 +61,6 @@ public class AttestationsFragment extends Fragment {
 
                 TextView motifsInfos = attestationInfosView.findViewById(R.id.attestation_infos_motifs);
                 motifsInfos.setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true));
-                //motifsInfos.setText("Maintenir pour voir les détails");
 
                 attestationInfosView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -73,8 +72,6 @@ public class AttestationsFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-
-
 
                 attestationInfosView.findViewById(R.id.attestation_infos_delete_btn).setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -3,6 +3,8 @@
     package="fr.reniti.generator"
     android:compileSdkVersion="19">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AttestationsGenerator">
+
+
         <activity android:name=".activities.AboutActivity"
             android:parentActivityName=".MainActivity">
             <meta-data

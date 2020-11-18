@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -33,6 +34,7 @@ public class ProfilesFragment extends Fragment {
 
         View fragmentView = getView();
         Collection<Profile> profiles = StorageManager.getInstance().getProfilesManager().getProfilesList().values();
+        String defaultProfileUuid = StorageManager.getInstance().getProfilesManager().getDefaultProfileUUID();
 
         LinearLayout profilesContainer = (LinearLayout) fragmentView.findViewById(R.id.fragment_profiles_container);
         profilesContainer.removeAllViews();
@@ -47,7 +49,7 @@ public class ProfilesFragment extends Fragment {
             {
                 View profileInfosView = getLayoutInflater().inflate(R.layout.profile_infos, (ViewGroup) fragmentView, false);
                 TextView nameInfos = profileInfosView.findViewById(R.id.profile_infos_name);
-                nameInfos.setText(profile.getFirstname() + " " + profile.getLastname());
+                nameInfos.setText(profile.getFirstname() + " " + profile.getLastname() + " " + (defaultProfileUuid.equals(profile.getUuid()) ? "(Par défaut)" : ""));
 
                 TextView birthInfos = profileInfosView.findViewById(R.id.profile_infos_birth);
                 birthInfos.setText("Né(e) le " + profile.getBirthday() + " à " + profile.getPlaceofbirth());
@@ -65,17 +67,19 @@ public class ProfilesFragment extends Fragment {
                     }
                 });
 
-                profileInfosView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(MainActivity.getInstance(), ProfileEditActivity.class);
-                        i.putExtra("profile_uuid", profile.getUuid());
+                if(!defaultProfileUuid.equals(profile.getUuid()))
+                {
+                    profileInfosView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            StorageManager.getInstance().getProfilesManager().setDefaultProfile(profile.getUuid());
+                            Toast.makeText(MainActivity.getInstance(), R.string.fragment_profiles_default, Toast.LENGTH_SHORT).show();
+                            onResume();
+                        }
+                    });
+                }
 
-                        MainActivity.getInstance().startActivity(i);
-                    }
-                });
                 profilesContainer.addView(profileInfosView);
-                Logger.getGlobal().log(Level.INFO, "Profile : " + profile.getFirstname() + " " + profile.getLastname() + " / " + profiles.size());
             }
         } else {
             fragmentView.findViewById(R.id.fragment_profiles_default_title).setVisibility(View.VISIBLE);
