@@ -45,14 +45,32 @@
 
                 android:theme="@style/Theme.AttestationsGenerator.CommonText"
 
+                android:id="@+id/activity_about_infos_r"
+                android:text="@string/activity_about_credits_infos"
+                android:layout_below="@id/activity_about_toolbar_appbar"
+                android:layout_marginTop="16dip"
+                android:layout_marginHorizontal="16dip"
+                android:textStyle="normal"
+                >
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:theme="@style/Theme.AttestationsGenerator.CommonText"
+
                 android:id="@+id/activity_about_version"
 
-                android:layout_below="@id/activity_about_toolbar_appbar"
+                android:layout_below="@id/activity_about_infos_r"
                 android:layout_marginTop="16dip"
                 android:layout_marginHorizontal="16dip"
                 android:textStyle="bold"
                 >
             </TextView>
+
+
+
 
             <TextView
                 android:layout_width="match_parent"

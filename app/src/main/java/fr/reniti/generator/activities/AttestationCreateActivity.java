@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -50,9 +52,27 @@ public class AttestationCreateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attestation_create);
+
 
         new StorageManager(this);
+        Date d = new Date();
+
+        Intent intent = getIntent();
+
+        if(intent.hasExtra("reason"))
+        {
+            this.selectedProfile = StorageManager.getInstance().getProfilesManager().getDefaultProfile();
+            finish();
+
+            Reason reason = Reason.getById(intent.getStringExtra("reason"));
+            buildAttestation(this, selectedProfile, Utils.DATE_FORMAT.format(d), Utils.HOUR_FORMAT.format(d), new Reason[] {reason}, true);
+            Toast.makeText(AttestationCreateActivity.this, "Une attestation a été créé pour " + selectedProfile.getFirstname() + " " + selectedProfile.getLastname() + " pour le motif " + reason.getDisplayName() + ".", Toast.LENGTH_SHORT).show();
+
+            return;
+
+        }
+        setContentView(R.layout.activity_attestation_create);
+
 
         Toolbar toolbar = findViewById(R.id.activity_attestation_create_toolbar);
 
@@ -66,11 +86,10 @@ public class AttestationCreateActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        Date d = new Date();
+
 
         EditText time = findViewById(R.id.activity_attestation_create_input_heuresortie);
         time.addTextChangedListener(new TimeFieldWatcher(time, Utils.HOUR_FORMAT.format(d)));
-
 
         EditText date = ((EditText) findViewById(R.id.activity_attestation_create_input_datesortie));
         date.addTextChangedListener(new DateFieldWatcher(date, true, Utils.DATE_FORMAT.format(d)));
@@ -82,6 +101,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
         RadioGroup profileSelect = findViewById(R.id.activity_attestation_create_profil_select);
         Collection<Profile> profiles = StorageManager.getInstance().getProfilesManager().getProfilesList().values();
         String defaultProfileUUID = StorageManager.getInstance().getProfilesManager().getDefaultProfileUUID();
+
         if(profiles.size() > 0)
         {
             for(Profile profile : profiles)
@@ -175,19 +195,26 @@ public class AttestationCreateActivity extends AppCompatActivity {
             return;
         }
 
+        buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
+    }
+
+    public static void buildAttestation(Activity activity, Profile profile, String dateSortie, String heureSortie, Reason[] reasons, boolean shortcut)
+    {
         Thread thread = new Thread(() -> {
-            Attestation attestation = new Attestation(selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]));
+            Attestation attestation = new Attestation(profile, dateSortie,  heureSortie, reasons);
             StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
 
-            PDFBoxResourceLoader.init(getApplicationContext());
-            Utils.savePDF(attestation, AttestationCreateActivity.this);
+            PDFBoxResourceLoader.init(activity);
+            Utils.savePDF(attestation, activity);
 
-            Intent intent = new Intent(AttestationCreateActivity.this, MainActivity.class);
-            intent.putExtra("snackbar_message", R.string.attestation_create_success);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            AttestationCreateActivity.this.startActivity(intent);
+            if(!shortcut) {
+                Intent intent = new Intent(activity, MainActivity.class);
+                intent.putExtra("snackbar_message", R.string.attestation_create_success);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                activity.startActivity(intent);
 
-            finish();
+                activity.finish();
+            }
         });
         thread.start();
     }

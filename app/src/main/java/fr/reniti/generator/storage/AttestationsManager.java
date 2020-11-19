@@ -1,6 +1,6 @@
 package fr.reniti.generator.storage;
 
-import com.owlike.genson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,10 +14,10 @@ import fr.reniti.generator.utils.Utils;
 
 public class AttestationsManager {
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private HashMap<String, Attestation> attestationsList;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private ArrayList<Reason> lastReasons;
 
     public AttestationsManager()
@@ -25,14 +25,12 @@ public class AttestationsManager {
         this(new HashMap<>(), new ArrayList<>());
     }
 
-    public AttestationsManager(@JsonProperty(value = "attestationsList") HashMap<String, Attestation> attestationsList, @JsonProperty(value= "lastReasons") ArrayList<Reason> lastReasons)
+    public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons)
     {
         this.attestationsList = attestationsList;
         this.lastReasons = lastReasons;
-
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public boolean checkData()
     {
         if(lastReasons == null) {
@@ -58,17 +56,14 @@ public class AttestationsManager {
         return true;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public ArrayList<Reason> getLastReasons() {
         return lastReasons;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public HashMap<String, Attestation> getAttestationsList() {
         return attestationsList;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public Attestation getAttestation(String uuid)
     {
         return attestationsList.get(uuid);
@@ -81,7 +76,6 @@ public class AttestationsManager {
         return collection;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public void removeAttestation(String uuid)
     {
         if(attestationsList.containsKey(uuid)) {
@@ -92,7 +86,6 @@ public class AttestationsManager {
         }
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public void addAttestationAndSave(Attestation attestation)
     {
         this.attestationsList.put(attestation.getUuid(), attestation);
@@ -112,7 +105,6 @@ public class AttestationsManager {
 
             lastReasons.add(reason);
         }
-
         StorageManager.getInstance().saveAttestations();
     }
 }

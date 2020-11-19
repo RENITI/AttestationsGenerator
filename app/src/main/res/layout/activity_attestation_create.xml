@@ -216,8 +216,7 @@
         android:visibility="invisible"
         >
             <ProgressBar
-        android:id="@+id/progressBar"
-        android:theme="@style/Theme.AttestationsGenerator.ProgressBar"
+                android:theme="@style/Theme.AttestationsGenerator.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

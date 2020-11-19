@@ -2,35 +2,32 @@ package fr.reniti.generator.storage.models;
 
 import android.graphics.Bitmap;
 
-import com.owlike.genson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
 
 import java.util.Date;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.utils.Utils;
 import io.nayuki.qrcodegen.QrCode;
 
 public class Attestation {
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String uuid;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private long createdAt;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private Profile profile;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String datesortie;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String heuresortie;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private Reason[] reasons;
 
     /**
@@ -59,12 +56,12 @@ public class Attestation {
      * @param heuresortie
      * @param reasons
      */
-    public Attestation(@JsonProperty(value = "uuid") String uuid,
-                       @JsonProperty(value = "createdAt") long createdAt,
-                       @JsonProperty(value = "profile") Profile profile,
-                       @JsonProperty(value = "datesortie") String datesortie,
-                       @JsonProperty(value = "heuresortie") String heuresortie,
-                       @JsonProperty(value = "reasons") Reason[] reasons)
+    public Attestation(String uuid,
+                        long createdAt,
+                       Profile profile,
+                       String datesortie,
+                       String heuresortie,
+                       Reason[] reasons)
     {
         this.uuid = uuid;
         this.createdAt = createdAt;
@@ -74,7 +71,6 @@ public class Attestation {
         this.reasons = reasons;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public String getReasonsString(boolean human)
     {
         String rawReasons = "";
@@ -91,7 +87,6 @@ public class Attestation {
         return rawReasons.substring(2);
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public Bitmap getQRCode(int size)
     {
         StringBuilder builder = new StringBuilder();
@@ -114,32 +109,26 @@ public class Attestation {
        return bitmap;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public long getCreatedAt() {
         return createdAt;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public Profile getProfile() {
         return profile;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public String getDatesortie() {
         return datesortie;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public String getHeuresortie() {
         return heuresortie;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public String getUuid() {
         return uuid;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public Reason[] getReasons() {
         return reasons;
     }

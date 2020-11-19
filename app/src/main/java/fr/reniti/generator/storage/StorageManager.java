@@ -1,29 +1,14 @@
 package fr.reniti.generator.storage;
 
-import android.app.Activity;
-import android.os.FileUtils;
-import android.util.Log;
-import android.widget.Toast;
+import android.content.Context;
 
-import com.owlike.genson.GensonBuilder;
-import com.owlike.genson.reflect.VisibilityFilter;
+import com.google.gson.GsonBuilder;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import fr.reniti.generator.MainActivity;
+import java.io.OutputStreamWriter;
 
 public class StorageManager {
 
@@ -41,7 +26,7 @@ public class StorageManager {
     private ProfilesManager profilesManager;
     private AttestationsManager attestationsManager;
 
-    public StorageManager(Activity activity)
+    public StorageManager(Context activity)
     {
         if(instance != null)
         {
@@ -56,28 +41,6 @@ public class StorageManager {
         reloadProfiles();
         reloadAttestations();
 
-        Logger.getGlobal().info("PATH : " + profilesFile.getAbsolutePath());
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            try {
-                FileInputStream s = new FileInputStream(profilesFile);
-
-                try( BufferedReader br =
-                             new BufferedReader( new InputStreamReader(fis, encoding )))
-                {
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while(( line = br.readLine()) != null ) {
-                        sb.append( line );
-                        sb.append( '\n' );
-                    }
-                    return sb.toString();
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
         if(!profilesManager.checkData())
         {
             saveProfiles();
@@ -87,7 +50,6 @@ public class StorageManager {
         {
             saveAttestations();
         }
-
     }
 
     public void removeFile(String name)
@@ -109,18 +71,17 @@ public class StorageManager {
         }
 
         try {
-            this.profilesManager = new GensonBuilder().setThrowExceptionIfNoDebugInfo(true).useRuntimeType(true).useClassMetadata(true).useFields(true, VisibilityFilter.ALL).useIndentation(true).create().deserialize(new FileInputStream(profilesFile), ProfilesManager.class);
-
-           /* if(profilesManager == null)
-            {
-                profilesManager = new ProfilesManager();
-            }*/
-
+            this.profilesManager = new GsonBuilder().create().fromJson(new FileReader(profilesFile), ProfilesManager.class);
         } catch (Exception e) {
             e.printStackTrace();
 
             profilesFile.delete();
             profilesManager = new ProfilesManager();
+        }
+
+        if(this.profilesManager == null)
+        {
+            this.profilesManager = new ProfilesManager();
         }
     }
 
@@ -133,12 +94,17 @@ public class StorageManager {
         }
 
         try {
-            this.attestationsManager = new GensonBuilder().useRuntimeType(true).useClassMetadata(true).useFields(true, VisibilityFilter.ALL).useIndentation(true).create().deserialize(new FileInputStream(attestationsFile), AttestationsManager.class);
+           this.attestationsManager = new GsonBuilder().create().fromJson(new FileReader(attestationsFile), AttestationsManager.class);
         } catch (Exception e) {
             e.printStackTrace();
 
             attestationsFile.delete();
             attestationsManager = new AttestationsManager();
+        }
+
+        if(this.attestationsManager == null)
+        {
+            this.attestationsManager = new AttestationsManager();
         }
     }
     public void saveAttestations()
@@ -149,25 +115,26 @@ public class StorageManager {
         }
 
         try {
-            FileOutputStream stream = new FileOutputStream(attestationsFile);
-
-            stream.write(new GensonBuilder().useRuntimeType(true).useClassMetadata(true).useFields(true, VisibilityFilter.ALL).setMethodFilter(VisibilityFilter.NONE).setFieldFilter(VisibilityFilter.ALL).useIndentation(false).create().serializeBytes(attestationsManager));
-
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(attestationsFile));
+            outputStreamWriter.write(new GsonBuilder().create().toJson(attestationsManager));
+            outputStreamWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void saveProfiles()
     {
-        if(profilesFile.exists()) {
+        if(profilesFile.exists())
+        {
             profilesFile.delete();
         }
+
         try {
-            FileOutputStream stream = new FileOutputStream(profilesFile);
-            stream.write(new GensonBuilder().useRuntimeType(true).useClassMetadata(true).useFields(true, VisibilityFilter.ALL).setMethodFilter(VisibilityFilter.NONE).setFieldFilter(VisibilityFilter.ALL).useIndentation(false).create().serializeBytes(profilesManager));
-        } catch (IOException e) {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(profilesFile));
+            outputStreamWriter.write(new GsonBuilder().create().toJson(profilesManager));
+            outputStreamWriter.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -181,6 +148,4 @@ public class StorageManager {
     public AttestationsManager getAttestationsManager() {
         return attestationsManager;
     }
-
-
 }

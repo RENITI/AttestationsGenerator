@@ -3,8 +3,6 @@
     package="fr.reniti.generator"
     android:compileSdkVersion="19">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +12,18 @@
         android:theme="@style/Theme.AttestationsGenerator">
 
 
-        <activity android:name=".activities.AboutActivity"
+        <activity android:name=".activities.ShortcutActivity">
+
+            <intent-filter>
+                <data android:scheme="reniti_attestations_generator" android:host="shortcut" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".activities.AboutActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -33,6 +42,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
+            <!-- - for shotcuts -->
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.ProfileEditActivity"
@@ -45,6 +61,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AttestationsGenerator.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,17 +1,9 @@
 <resources>
     <string name="app_name">Générateur d\'attestations</string>
-    <string name="tab_text_1">Attestations</string>
-    <string name="tab_text_2">Profils</string>
     <string name="confirm">Valider</string>
-
-
     <string name="delete_profile">Supprimer ce profil</string>
-
-
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
     <!--- Notifications -->
-    <string name="channel_name">Notification de sortie</string>
-    <string name="channel_description">Lors de la détéction d\'une sortie</string>
 
     <!--- Attestation View -->
 
@@ -38,7 +30,6 @@
     <string name="activity_profile_edit_city_input">Champ Ville</string>
     <string name="activity_profile_edit_zipcode_input">Champ code postal</string>
 
-
     <string name="activity_profile_edit_error_firstname">Le champ prénom n\'est pas valide !</string>
     <string name="activity_profile_edit_error_lastname">Le champ nom n\'est pas valide !</string>
     <string name="activity_profile_edit_error_birthday">La date de naissance n\'est pas valide !</string>
@@ -46,7 +37,6 @@
     <string name="activity_profile_edit_error_address">L\'adresse n\'est pas valide !</string>
     <string name="activity_profile_edit_error_city">La ville n\'est pas valide !</string>
     <string name="activity_profile_edit_error_zipcode">Le code postal n\'est pas valide !</string>
-
 
     <string name="activity_attestation_create_datesortie">Date de sortie</string>
     <string name="activity_attestation_create_heuresortie">Heure de sortie</string>
@@ -58,11 +48,13 @@
 
     <!-- About Activity -->
     <string name="activity_about_title">A propos</string>
+    <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.</string>
     <string name="activity_about_credits_title">Librairies utilisés :</string>
-    <string name="activity_about_credits">Genson:\n<a href="https://mvnrepository.com/artifact/com.owlike/genson">https://mvnrepository.com/artifact/com.owlike/genson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
+    <string name="activity_about_credits">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
     <string name="activity_about_github">Code source:</string>
     <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact">contact@reniti.fr</string>
+
     <!-- Attestations fragment -->
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.</string>
 

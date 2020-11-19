@@ -29,8 +29,6 @@ public class AttestationViewActivity extends AppCompatActivity {
         return true;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,6 @@ public class AttestationViewActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.activity_attestation_viewer_toolbar);
         setSupportActionBar(toolbar);
-
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.activity_attestation_view_title);
@@ -57,10 +54,6 @@ public class AttestationViewActivity extends AppCompatActivity {
             return;
         }
         view.fromFile(file).load();
-
-
-
-
     }
 
     public void toggleQRCode()
