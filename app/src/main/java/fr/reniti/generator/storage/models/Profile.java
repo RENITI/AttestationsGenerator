@@ -1,31 +1,31 @@
 package fr.reniti.generator.storage.models;
 
-import com.owlike.genson.annotation.JsonProperty;
+import com.google.gson.annotations.Expose;
 
 public class Profile {
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String uuid;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String firstname;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String lastname;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String birthday;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String placeofbirth;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String address;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String city;
 
-    @JsonProperty(serialize = true, deserialize = true)
+    @Expose
     private String zipcode;
 
     /**
@@ -39,14 +39,14 @@ public class Profile {
      * @param city
      * @param zipcode
      */
-    public Profile(@JsonProperty(value="uuid") String uuid,
-                   @JsonProperty(value="firstname") String firstname,
-                   @JsonProperty(value="lastname") String lastname,
-                   @JsonProperty(value="birthday") String birthday,
-                   @JsonProperty(value="placeofbirth") String placeofbirth,
-                   @JsonProperty(value="address") String address,
-                   @JsonProperty(value="city") String city,
-                   @JsonProperty(value="zipcode") String zipcode)
+    public Profile(String uuid,
+                   String firstname,
+                   String lastname,
+                   String birthday,
+                   String placeofbirth,
+                   String address,
+                   String city,
+                   String zipcode)
     {
         this.uuid = uuid;
         this.firstname = firstname;

@@ -1,7 +1,13 @@
 package fr.reniti.generator.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -12,23 +18,18 @@ import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
-import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import com.tom_roush.pdfbox.pdmodel.interactive.form.PDCheckbox;
-import com.tom_roush.pdfbox.pdmodel.interactive.form.PDField;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.logging.Logger;
+import java.util.List;
 
-import javax.xml.parsers.FactoryConfigurationError;
-
+import fr.reniti.generator.R;
+import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
@@ -100,8 +101,8 @@ public class Utils {
 
     /**
      * Save PDF related to a attestation
-     * @param attestation
-     * @param activity
+     * @param attestation Attestation to convert
+     * @param activity Instance
      */
     public static void savePDF(Attestation attestation, Activity activity)
     {
@@ -187,6 +188,40 @@ public class Utils {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Update app shortcuts
+     * @param context Instance
+     * @param force Force the update
+     */
+    public static void updateShortcuts(Context context, boolean force) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N_MR1) {
+
+            ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+
+            if(shortcutManager.getDynamicShortcuts().size() < 4 || force)
+            {
+                shortcutManager.removeAllDynamicShortcuts();
+
+                List<ShortcutInfo> shortcutInfoList = new ArrayList<>();
+
+                int rank = 4;ShortcutInfo.Builder builder = new ShortcutInfo.Builder(context, "other").setShortLabel(context.getResources().getString(R.string.activity_attestation_create_title)).setIcon(Icon.createWithResource(context, R.drawable.ic_baseline_create_24)).setRank(rank);
+                builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("reniti_attestations_generator").authority("shortcut").appendQueryParameter("reason", "other").build()));
+
+                shortcutInfoList.add(builder.build());
+
+                for (Reason reason : StorageManager.getInstance().getAttestationsManager().getLastReasons()) {
+                    rank--;
+                    builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(reason.getDisplayName()).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(reason.getDisplayName());
+                    builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("reniti_attestations_generator").authority("shortcut").appendQueryParameter("reason", reason.getId()).build()));
+
+                    shortcutInfoList.add(builder.build());
+                }
+
+                shortcutManager.addDynamicShortcuts(shortcutInfoList);
+            }
         }
     }
 }

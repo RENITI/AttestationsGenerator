@@ -1,36 +1,39 @@
 package fr.reniti.generator.storage.models;
 
-import com.owlike.genson.annotation.JsonProperty;
+
+import com.google.gson.annotations.Expose;
 
 import fr.reniti.generator.R;
 
 public enum Reason {
 
-    TRAVAIL("Travail", 488, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail),
-    ACHATS("Achats", 417, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats),
-    SANTE("Santé", 347, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante),
-    FAMILLE("Famille", 325, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille),
-    HANDICAP("Handicap", 291, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap),
-    SPORT_ANIMAUX("Sports et Animaux", 269, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux),
-    CONVOCATION("Convocation", 199, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation),
-    MISSIONS("Missions", 178, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions),
-    ENFANTS("Enfants",157, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants);
+    TRAVAIL("Travail", 488, "travail", R.id.activity_attestation_create_reason_travail, R.string.activity_attestation_create_reason_travail, R.drawable.ic_baseline_work_16),
+    ACHATS("Achats", 417, "achats", R.id.activity_attestation_create_reason_achats, R.string.activity_attestation_create_reason_achats, R.drawable.ic_baseline_shopping_cart_16),
+    SANTE("Santé", 347, "sante", R.id.activity_attestation_create_reason_sante, R.string.activity_attestation_create_reason_sante,R.drawable.ic_baseline_local_hospital_16),
+    FAMILLE("Famille", 325, "famille", R.id.activity_attestation_create_reason_famille, R.string.activity_attestation_create_reason_famille, R.drawable.ic_baseline_family_restroom_16),
+    HANDICAP("Handicap", 291, "handicap", R.id.activity_attestation_create_reason_handicap, R.string.activity_attestation_create_reason_handicap, R.drawable.ic_baseline_accessible_16),
+    SPORT_ANIMAUX("Sports et Animaux", 269, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.string.activity_attestation_create_reason_sport_animaux, R.drawable.ic_baseline_directions_bike_16),
+    CONVOCATION("Convocation", 199, "convocation", R.id.activity_attestation_create_reason_convocation, R.string.activity_attestation_create_reason_convocation, R.drawable.ic_baseline_assignment_16),
+    MISSIONS("Missions", 178, "missions", R.id.activity_attestation_create_reason_missions, R.string.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
+    ENFANTS("Enfants",157, "enfants", R.id.activity_attestation_create_reason_enfants, R.string.activity_attestation_create_reason_enfants, R.drawable.ic_baseline_escalator_warning_16);
 
-    @JsonProperty(serialize = false, deserialize = false)
+    @Expose(serialize = false, deserialize = false)
     private String displayName;
 
-    @JsonProperty(serialize = false, deserialize = false)
+    @Expose(serialize = false, deserialize = false)
     private int pdfPosY;
 
-    @JsonProperty(serialize = false, deserialize = false)
+    @Expose(serialize = false, deserialize = false)
     private String id;
 
-    @JsonProperty(serialize = false, deserialize = false)
+    @Expose(serialize = false, deserialize = false)
     private int fieldId;
 
-    @JsonProperty(serialize = false, deserialize = false)
+    @Expose(serialize = false, deserialize = false)
     private int textId;
 
+    @Expose(serialize = false, deserialize = false)
+    private int iconId;
     /**
      * Constructor
      * @param displayName
@@ -38,21 +41,26 @@ public enum Reason {
      * @param id
      * @param fieldId
      * @param textId
+     * @param iconId
      */
-    Reason(String displayName, int pdfPosY, String id, int fieldId, int textId)
+    Reason(String displayName, int pdfPosY, String id, int fieldId, int textId, int iconId)
     {
         this.displayName = displayName;
         this.pdfPosY = pdfPosY;
         this.id = id;
         this.fieldId = fieldId;
         this.textId = textId;
+        this.iconId = iconId;
+    }
+
+    public int getIconId() {
+        return iconId;
     }
 
     /**
      * Getter
      * @return
      */
-    @JsonProperty(serialize = false, deserialize = false)
     public int getPdfPosY() {
         return pdfPosY;
     }
@@ -61,7 +69,6 @@ public enum Reason {
      * Getter
      * @return
      */
-    @JsonProperty(serialize = false, deserialize = false)
     public String getDisplayName() {
         return displayName;
     }
@@ -70,7 +77,6 @@ public enum Reason {
      * Getter
      * @return
      */
-    @JsonProperty(serialize = false, deserialize = false)
     public String getId() {
         return id;
     }
@@ -87,12 +93,10 @@ public enum Reason {
      * Getter
      * @return
      */
-    @JsonProperty(serialize = false, deserialize = false)
     public int getFieldId() {
         return fieldId;
     }
 
-    @JsonProperty(serialize = false, deserialize = false)
     public static Reason getById(String id)
     {
         for(Reason reason : values())

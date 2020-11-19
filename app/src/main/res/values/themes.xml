@@ -17,17 +17,6 @@
     </style>
 
 
-    <style name="Toolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="backgroundColor">@color/mainColor</item>
-        <item name="android:textColorPrimary">@color/white</item>
-
-    </style>
-
-    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">21sp</item>
-    </style>
-
-
     <style name="Theme.AttestationsGenerator.CommonText">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColor</item>
