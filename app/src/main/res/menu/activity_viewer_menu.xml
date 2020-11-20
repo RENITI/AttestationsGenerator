@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/activity_attestation_view_pdf"
+        android:icon="@drawable/ic_baseline_picture_as_pdf_24"
+        android:title="@string/activity_attestation_view_pdf"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/activity_attestation_view_qr"
         android:icon="@drawable/ic_baseline_qr_code_24"
         android:title="@string/activity_attestation_view_qr"

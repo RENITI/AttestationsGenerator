@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -44,13 +45,6 @@ public class AttestationsFragment extends Fragment {
 
             for(Attestation attestation : attestations)
             {
-                if(attestation.getProfile() == null)
-                {
-                    StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
-                    MainActivity.getInstance().finish();
-                    break;
-                }
-
                 View attestationInfosView = getLayoutInflater().inflate(R.layout.attestation_infos, (ViewGroup) fragmentView, false);
 
                 TextView nameInfos = attestationInfosView.findViewById(R.id.attestation_infos_name);

@@ -8,6 +8,8 @@ import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.Environment;
+import android.widget.Toast;
 
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -18,15 +20,20 @@ import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDCheckbox;
+import com.tom_roush.pdfbox.pdmodel.interactive.form.PDField;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
@@ -120,9 +127,17 @@ public class Utils {
 
             PDPage page = document.getPage(0);
 
-
             PDDocumentCatalog docCatalog = document.getDocumentCatalog();
-            docCatalog.setAcroForm(null);
+
+            PDAcroForm acroForm = docCatalog.getAcroForm();
+
+            for(PDField field : acroForm.getFields())
+            {
+                field.setReadOnly(true);
+                field.setNoExport(true);
+            }
+            acroForm.setNeedAppearances(true);
+            docCatalog.setAcroForm(acroForm);
 
             PDPageContentStream content = new PDPageContentStream(document, page, true, true);
 
@@ -208,14 +223,15 @@ public class Utils {
                 List<ShortcutInfo> shortcutInfoList = new ArrayList<>();
 
                 int rank = 4;ShortcutInfo.Builder builder = new ShortcutInfo.Builder(context, "other").setShortLabel(context.getResources().getString(R.string.activity_attestation_create_title)).setIcon(Icon.createWithResource(context, R.drawable.ic_baseline_create_24)).setRank(rank);
-                builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("reniti_attestations_generator").authority("shortcut").appendQueryParameter("reason", "other").build()));
+                builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("renitiattgen").authority("shortcut").appendQueryParameter("reason", "other").build()));
 
                 shortcutInfoList.add(builder.build());
 
                 for (Reason reason : StorageManager.getInstance().getAttestationsManager().getLastReasons()) {
                     rank--;
+
                     builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(reason.getDisplayName()).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(reason.getDisplayName());
-                    builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("reniti_attestations_generator").authority("shortcut").appendQueryParameter("reason", reason.getId()).build()));
+                    builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("renitiattgen").authority("shortcut").appendQueryParameter("reason", reason.getId()).build()));
 
                     shortcutInfoList.add(builder.build());
                 }

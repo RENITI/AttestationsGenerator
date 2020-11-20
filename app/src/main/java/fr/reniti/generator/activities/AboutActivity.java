@@ -12,11 +12,14 @@ import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import fr.reniti.generator.R;
+import fr.reniti.generator.storage.StorageManager;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -47,6 +50,19 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.reniti.fr"));
                 startActivity(intent);
+            }
+        });
+
+        Switch switchInput = (Switch) findViewById(R.id.activity_about_layout_settings_autodelete);
+
+        switchInput.setChecked(StorageManager.getInstance().getAttestationsManager().isAutoDelete());
+
+        switchInput.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                StorageManager instance = StorageManager.getInstance();
+                instance.getAttestationsManager().setAutoDelete(isChecked);
+                instance.saveAttestations();
             }
         });
     }

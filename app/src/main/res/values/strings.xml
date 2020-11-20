@@ -3,12 +3,14 @@
     <string name="confirm">Valider</string>
     <string name="delete_profile">Supprimer ce profil</string>
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
+    <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
     <!--- Notifications -->
 
     <!--- Attestation View -->
 
     <string name="activity_attestation_view_title">Mon attestation</string>
     <string name="activity_attestation_view_qr">QR Code</string>
+    <string name="activity_attestation_view_pdf">Exporter le PDF</string>
 
     <!--- Profile Edit Activity -->
 
@@ -47,13 +49,14 @@
     <string name="activity_attestation_create_error_heuresortie">L\'heure de sortie doit être de la forme: hh:mm</string>
 
     <!-- About Activity -->
-    <string name="activity_about_title">A propos</string>
+    <string name="activity_about_title">Paramètres</string>
     <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.</string>
     <string name="activity_about_credits_title">Librairies utilisés :</string>
     <string name="activity_about_credits">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
     <string name="activity_about_github">Code source:</string>
     <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact">contact@reniti.fr</string>
+    <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créés il y a plus de 24h</string>
 
     <!-- Attestations fragment -->
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.</string>
@@ -61,7 +64,6 @@
     <!-- Profiles fragment -->
     <string name="fragment_profiles_empty">Vous n\'avez aucun profil !</string>
     <string name="fragment_profiles_default">Ce profil a été défini par défaut !</string>
-
 
     <!-- Attestation Create Activity -->
     <string name="attestation_create_success">Attestation créée avec succès ! Cliquez dessus pour l\'afficher.</string>

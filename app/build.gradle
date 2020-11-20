@@ -11,16 +11,15 @@ android {
         applicationId "fr.reniti.generator"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 24
-        versionName "2.4"
-
+        versionCode 28
+        versionName "2.8"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

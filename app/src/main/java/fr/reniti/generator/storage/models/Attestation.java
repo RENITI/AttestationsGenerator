@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.utils.Utils;
 import io.nayuki.qrcodegen.QrCode;
@@ -71,10 +72,14 @@ public class Attestation {
         this.reasons = reasons;
     }
 
+    public String getFileName()
+    {
+        return uuid + ".pdf";
+    }
+
     public String getReasonsString(boolean human)
     {
         String rawReasons = "";
-
         for(Reason reason : reasons)
         {
             if(!human)
@@ -131,5 +136,25 @@ public class Attestation {
 
     public Reason[] getReasons() {
         return reasons;
+    }
+
+    /**
+     * Check if attestation content is valid
+     * @return
+     */
+    public boolean isValid() {
+        if(profile == null || reasons == null || reasons.length <= 0 || heuresortie == null || datesortie == null || uuid == null)
+        {
+            return false;
+        }
+
+        for(int i = 0; i < reasons.length; i++)
+        {
+            if(reasons[i] == null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

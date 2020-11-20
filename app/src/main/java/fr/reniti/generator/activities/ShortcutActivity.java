@@ -26,24 +26,20 @@ public class ShortcutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.getAction() == Intent.ACTION_VIEW && intent.getData() != null)
         {
-
             String reasonId = intent.getData().getQueryParameter("reason");
+            Reason reason = Reason.getById(reasonId);
 
-            if(reasonId.equalsIgnoreCase("other"))
+            if(reasonId.equalsIgnoreCase("other") ||reason == null)
             {
                 Intent i = new Intent(this, AttestationCreateActivity.class);
                 startActivity(i);
                 return;
             }
 
-
-            Reason reason = Reason.getById(reasonId);
-
             if(StorageManager.getInstance() == null)
             {
                 new StorageManager(this);
             }
-
 
             Date d = new Date();
 

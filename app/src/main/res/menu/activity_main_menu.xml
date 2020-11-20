@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/activity_menu_action_about"
-        android:icon="@drawable/ic_baseline_info_24"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:title="A propos"
         app:showAsAction="ifRoom" />
 

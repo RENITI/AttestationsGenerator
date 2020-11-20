@@ -55,22 +55,9 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
 
         new StorageManager(this);
+
         Date d = new Date();
 
-        Intent intent = getIntent();
-
-        if(intent.hasExtra("reason"))
-        {
-            this.selectedProfile = StorageManager.getInstance().getProfilesManager().getDefaultProfile();
-            finish();
-
-            Reason reason = Reason.getById(intent.getStringExtra("reason"));
-            buildAttestation(this, selectedProfile, Utils.DATE_FORMAT.format(d), Utils.HOUR_FORMAT.format(d), new Reason[] {reason}, true);
-            Toast.makeText(AttestationCreateActivity.this, "Une attestation a été créé pour " + selectedProfile.getFirstname() + " " + selectedProfile.getLastname() + " pour le motif " + reason.getDisplayName() + ".", Toast.LENGTH_SHORT).show();
-
-            return;
-
-        }
         setContentView(R.layout.activity_attestation_create);
 
 
@@ -93,10 +80,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
         EditText date = ((EditText) findViewById(R.id.activity_attestation_create_input_datesortie));
         date.addTextChangedListener(new DateFieldWatcher(date, true, Utils.DATE_FORMAT.format(d)));
-        /*
-        TODO
-         */
-        //date.setOnKeyListener(new DateKeyListener());
 
         RadioGroup profileSelect = findViewById(R.id.activity_attestation_create_profil_select);
         Collection<Profile> profiles = StorageManager.getInstance().getProfilesManager().getProfilesList().values();
@@ -125,7 +108,8 @@ public class AttestationCreateActivity extends AppCompatActivity {
                 profileSelect.addView(radio);
             }
         } else {
-            profileSelect.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, R.string.error_no_profile, Toast.LENGTH_SHORT).show();
+            finishAffinity();
         }
 
         findViewById(R.id.activity_attestation_create_confirm_btn).setOnClickListener(v -> saveAttestation());
@@ -206,6 +190,8 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
             PDFBoxResourceLoader.init(activity);
             Utils.savePDF(attestation, activity);
+
+            Utils.updateShortcuts(activity, true);
 
             if(!shortcut) {
                 Intent intent = new Intent(activity, MainActivity.class);

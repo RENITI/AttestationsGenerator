@@ -1,23 +1,30 @@
 package fr.reniti.generator.activities;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.core.content.FileProvider;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
+import java.util.List;
 
 import fr.reniti.generator.R;
-import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.Attestation;
 
 public class AttestationViewActivity extends AppCompatActivity {
 
@@ -56,6 +63,7 @@ public class AttestationViewActivity extends AppCompatActivity {
         view.fromFile(file).load();
     }
 
+
     public void toggleQRCode()
     {
         ImageView qr = findViewById(R.id.activity_attestation_viewer_qr_image);
@@ -91,7 +99,40 @@ public class AttestationViewActivity extends AppCompatActivity {
             toggleQRCode();
             return true;
         }
+        if(item.getItemId() == R.id.activity_attestation_view_pdf)
+        {
+
+            exportPDF();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void exportPDF() {
+
+        File sourceFile = new File(getFilesDir() + "/" + attestation.getFileName());
+        Uri uri = FileProvider.getUriForFile(this, this.getPackageName() + ".provider", sourceFile);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, "application/pdf");
+
+        List<ResolveInfo> resInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        if (resInfoList.size() > 0) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+                for (ResolveInfo resolveInfo : resInfoList) {
+                    String packageName = resolveInfo.activityInfo.packageName;
+                    grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                }
+            }
+            intent = Intent.createChooser(intent, "Ouvrir le PDF");
+            startActivity(intent);
+
+        } else {
+            Toast.makeText(this, R.string.error_no_pdf_reader, Toast.LENGTH_SHORT).show();
+        }
     }
 }

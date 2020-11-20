@@ -1,6 +1,9 @@
 package fr.reniti.generator.storage;
 
 import android.content.Context;
+import android.os.Build;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
 
@@ -9,6 +12,12 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Logger;
+
+import fr.reniti.generator.MainActivity;
 
 public class StorageManager {
 
@@ -38,17 +47,31 @@ public class StorageManager {
         this.profilesFile = new File(baseDirectory + "/profiles.json");
         this.attestationsFile = new File(baseDirectory + "/attestations.json");
 
-        reloadProfiles();
-        reloadAttestations();
-
-        if(!profilesManager.checkData())
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Logger.getGlobal().info("attestations.json => " + new String(Files.readAllBytes(Paths.get(attestationsFile.toURI())), StandardCharsets.UTF_8));
+                Logger.getGlobal().info("profiles.json => " + new String(Files.readAllBytes(Paths.get(profilesFile.toURI())), StandardCharsets.UTF_8));
+            }
+        }catch (Exception E)
         {
-            saveProfiles();
+
         }
 
-        if(!attestationsManager.checkData())
+        try {
+            reloadProfiles();
+            reloadAttestations();
+
+            if (!profilesManager.checkData()) {
+                saveProfiles();
+            }
+
+            if (!attestationsManager.checkData()) {
+                saveAttestations();
+            }
+        } catch (Exception e)
         {
-            saveAttestations();
+            e.printStackTrace();
+
         }
     }
 
@@ -75,6 +98,8 @@ public class StorageManager {
         } catch (Exception e) {
             e.printStackTrace();
 
+            Toast.makeText(MainActivity.getInstance(), "Error = " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
             profilesFile.delete();
             profilesManager = new ProfilesManager();
         }
@@ -96,6 +121,9 @@ public class StorageManager {
         try {
            this.attestationsManager = new GsonBuilder().create().fromJson(new FileReader(attestationsFile), AttestationsManager.class);
         } catch (Exception e) {
+
+            Toast.makeText(MainActivity.getInstance(), "Error = " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
             e.printStackTrace();
 
             attestationsFile.delete();

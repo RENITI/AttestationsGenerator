@@ -39,6 +39,19 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
+
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_about_layout_settings_autodelete"
+                android:layout_below="@id/activity_about_toolbar_appbar"
+                android:text="@string/activity_about_switch_autodelete"
+                android:layout_marginTop="16dip"
+                android:layout_marginHorizontal="16dip"
+                android:textStyle="bold"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +60,8 @@
 
                 android:id="@+id/activity_about_infos_r"
                 android:text="@string/activity_about_credits_infos"
-                android:layout_below="@id/activity_about_toolbar_appbar"
+
+                android:layout_below="@id/activity_about_layout_settings_autodelete"
                 android:layout_marginTop="16dip"
                 android:layout_marginHorizontal="16dip"
                 android:textStyle="normal"

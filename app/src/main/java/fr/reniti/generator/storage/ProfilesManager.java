@@ -36,6 +36,7 @@ public class ProfilesManager {
             }
             return false;
         }
+
         return true;
     }
 

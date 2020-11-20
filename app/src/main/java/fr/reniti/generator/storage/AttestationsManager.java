@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.Profile;
@@ -20,24 +21,68 @@ public class AttestationsManager {
     @Expose
     private ArrayList<Reason> lastReasons;
 
+    @Expose
+    private boolean autoDelete;
+
     public AttestationsManager()
     {
-        this(new HashMap<>(), new ArrayList<>());
+        this(new HashMap<>(), new ArrayList<>(), false);
     }
 
-    public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons)
+    public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons, boolean autoDelete)
     {
         this.attestationsList = attestationsList;
         this.lastReasons = lastReasons;
+        this.autoDelete = autoDelete;
     }
 
+    public boolean isAutoDelete() {
+        return autoDelete;
+    }
+
+    public void setAutoDelete(boolean autoDelete) {
+        this.autoDelete = autoDelete;
+    }
+
+    /**
+     *
+     * @return false if update required
+     */
     public boolean checkData()
     {
+        boolean isValid = true;
+
         if(lastReasons == null) {
             lastReasons = new ArrayList<>();
         }
 
-        if(lastReasons.size() < 3)
+        for(Attestation attestation : new ArrayList<>(attestationsList.values()))
+        {
+            if(!attestation.isValid() || (autoDelete && (System.currentTimeMillis() - attestation.getCreatedAt()) >= 86400000))
+            {
+                attestationsList.remove(attestation.getUuid());
+                isValid = false;
+            }
+        }
+
+        boolean needCheck = lastReasons.size() < 3;
+
+        if(!needCheck)
+        {
+            for(Reason r : lastReasons)
+            {
+                if(r == null)
+                {
+                    needCheck = true;
+                    break;
+                }
+
+            }
+        }
+
+
+
+        if(needCheck)
         {
             for(Reason reason : Utils.DEFAULT_REASONS)
             {
@@ -51,9 +96,10 @@ public class AttestationsManager {
                     lastReasons.add(reason);
                 }
             }
-            return false;
+
+            isValid = false;
         }
-        return true;
+        return isValid;
     }
 
     public ArrayList<Reason> getLastReasons() {

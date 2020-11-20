@@ -9,13 +9,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AttestationsGenerator">
+        android:theme="@style/Theme.AttestationsGenerator"
+        android:requestLegacyExternalStorage="true" >
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
         <activity android:name=".activities.ShortcutActivity">
 
             <intent-filter>
-                <data android:scheme="reniti_attestations_generator" android:host="shortcut" />
+                <data android:scheme="renitiattgen" android:host="shortcut" />
+
+
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -43,7 +55,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
 
-            <!-- - for shotcuts -->
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS" />
 
@@ -68,6 +79,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/actions" />
     </application>
 
 </manifest>
