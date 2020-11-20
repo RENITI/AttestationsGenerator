@@ -47,6 +47,8 @@ public class StorageManager {
         this.profilesFile = new File(baseDirectory + "/profiles.json");
         this.attestationsFile = new File(baseDirectory + "/attestations.json");
 
+        /*
+        DEBUG ONLY
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 Logger.getGlobal().info("attestations.json => " + new String(Files.readAllBytes(Paths.get(attestationsFile.toURI())), StandardCharsets.UTF_8));
@@ -55,7 +57,7 @@ public class StorageManager {
         }catch (Exception E)
         {
 
-        }
+        }*/
 
         try {
             reloadProfiles();
