@@ -1,4 +1,7 @@
 <resources>
+
+    <!--- Common -->
+
     <string name="app_name">Générateur d\'attestations</string>
     <string name="confirm">Valider</string>
     <string name="delete_profile">Supprimer ce profil</string>
@@ -6,6 +9,7 @@
     <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
     <string name="ok">OK</string>
     <string name="shortcut_working">Création de l\'attestation ...</string>
+
     <!--- Attestation View -->
 
     <string name="activity_attestation_view_title">Mon attestation</string>
@@ -23,7 +27,6 @@
     <string name="activity_profile_edit_address">Adresse</string>
     <string name="activity_profile_edit_city">Ville</string>
     <string name="activity_profile_edit_zipcode">Code Postal</string>
-
     <string name="activity_profile_edit_firstname_input">Champ Prénom</string>
     <string name="activity_profile_edit_lastname_input">Champ Nom</string>
     <string name="activity_profile_edit_birthdate_input">Champ date de naissance</string>
@@ -31,7 +34,6 @@
     <string name="activity_profile_edit_address_input">Champ Adresse</string>
     <string name="activity_profile_edit_city_input">Champ Ville</string>
     <string name="activity_profile_edit_zipcode_input">Champ code postal</string>
-
     <string name="activity_profile_edit_error_firstname">Le champ prénom n\'est pas valide !</string>
     <string name="activity_profile_edit_error_lastname">Le champ nom n\'est pas valide !</string>
     <string name="activity_profile_edit_error_birthday">La date de naissance n\'est pas valide !</string>
@@ -39,7 +41,6 @@
     <string name="activity_profile_edit_error_address">L\'adresse n\'est pas valide !</string>
     <string name="activity_profile_edit_error_city">La ville n\'est pas valide !</string>
     <string name="activity_profile_edit_error_zipcode">Le code postal n\'est pas valide !</string>
-
     <string name="activity_attestation_create_datesortie">Date de sortie</string>
     <string name="activity_attestation_create_heuresortie">Heure de sortie</string>
     <string name="activity_attestation_create_reason">Motif de déplacement</string>
@@ -49,6 +50,7 @@
     <string name="activity_attestation_create_error_heuresortie">L\'heure de sortie doit être de la forme: hh:mm</string>
 
     <!-- About Activity -->
+
     <string name="activity_about_title">Paramètres</string>
     <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.</string>
     <string name="activity_about_credits_title">Librairies utilisés :</string>
@@ -59,20 +61,21 @@
     <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créés il y a plus de 24h</string>
 
     <!-- Attestations fragment -->
+
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.</string>
 
     <!-- Profiles fragment -->
+
     <string name="fragment_profiles_empty">Vous n\'avez aucun profil !</string>
     <string name="fragment_profiles_default">Ce profil a été défini par défaut !</string>
 
     <!-- Attestation Create Activity -->
+
     <string name="attestation_create_success">Attestation créée avec succès ! Cliquez dessus pour l\'afficher.</string>
     <string name="attestation_create_failed">Une erreur est survenue lors de la création de l\'attestation. Cela est probablement dû à la présence de caractères invalides dans le profil.</string>
     <string name="activity_attestation_create_title">Nouvelle attestation</string>
-
     <string name="activity_attestation_create_input_datesortie">Champ date de sortie</string>
     <string name="activity_attestation_create_input_heuresortie">Champ heure de sortie</string>
-
     <string name="activity_attestation_create_profil">Selectionner un profil</string>
     <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation, déplacements professionnels ne pouvant être différés, déplacements pour un concours ou un examen.</string>
     <string name="activity_attestation_create_reason_achats">Déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, des achats de première nécessité dans des établissements dont les activités demeurent autorisées, le retrait de commande et les livraisons à domicile.</string>

@@ -1,29 +1,24 @@
 package fr.reniti.generator.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
+
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -32,9 +27,9 @@ import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.listeners.DateFieldWatcher;
 import fr.reniti.generator.listeners.TimeFieldWatcher;
+import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.Profile;
-import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Reason;
 import fr.reniti.generator.utils.Utils;
 
@@ -53,16 +48,12 @@ public class AttestationCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         new StorageManager(this);
-
         Date d = new Date();
 
         setContentView(R.layout.activity_attestation_create);
 
-
         Toolbar toolbar = findViewById(R.id.activity_attestation_create_toolbar);
-
 
         toolbar.setTitle(R.string.activity_attestation_create_title);
 
@@ -72,8 +63,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-
 
         EditText time = findViewById(R.id.activity_attestation_create_input_heuresortie);
         time.addTextChangedListener(new TimeFieldWatcher(time, Utils.HOUR_FORMAT.format(d)));
@@ -195,7 +184,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
             boolean success = Utils.savePDF(attestation, activity);
 
             if(success) {
-
                 StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
                 Utils.updateShortcuts(activity, true);
 
@@ -208,11 +196,8 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     activity.finish();
                 } else {
                     Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName(), Toast.LENGTH_SHORT).show();
-
                 }
             } else {
-
-
                 if (!shortcut) {
                     Intent intent = new Intent(activity, MainActivity.class);
                     intent.putExtra("error_message", R.string.attestation_create_failed);
@@ -222,11 +207,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     activity.finish();
                 } else {
                     Toast.makeText(activity, R.string.attestation_create_failed, Toast.LENGTH_LONG).show();
-
-
-
                 }
             }
-
     }
 }

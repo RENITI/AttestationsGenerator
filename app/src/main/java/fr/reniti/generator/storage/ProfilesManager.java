@@ -28,7 +28,6 @@ public class ProfilesManager {
     {
         if(defaultProfile == null)
         {
-
             for(String d : profilesList.keySet())
             {
                 defaultProfile = d;

@@ -30,6 +30,7 @@ public class AttestationViewActivity extends AppCompatActivity {
 
     private Attestation attestation;
     private int state;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_viewer_menu, menu);
@@ -56,14 +57,19 @@ public class AttestationViewActivity extends AppCompatActivity {
         File file = new File(getFilesDir() + "/" + attestation.getUuid() + ".pdf");
 
         state = 0;
+
         if(!file.exists())
         {
             return;
         }
+
         view.fromFile(file).load();
     }
 
 
+    /**
+     * Toggle between PDF View and QR Code View
+     */
     public void toggleQRCode()
     {
         ImageView qr = findViewById(R.id.activity_attestation_viewer_qr_image);
@@ -71,7 +77,6 @@ public class AttestationViewActivity extends AppCompatActivity {
         if(state == 0)
         {
             qr.setImageBitmap(attestation.getQRCode(256));
-
         }
 
         state = state == 2 ? 1 : 2;
@@ -94,14 +99,15 @@ public class AttestationViewActivity extends AppCompatActivity {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
+
         if(item.getItemId() == R.id.activity_attestation_view_qr)
         {
             toggleQRCode();
             return true;
         }
+
         if(item.getItemId() == R.id.activity_attestation_view_pdf)
         {
-
             exportPDF();
             return true;
         }
@@ -109,8 +115,10 @@ public class AttestationViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Used to export PDF
+     */
     public void exportPDF() {
-
         File sourceFile = new File(getFilesDir() + "/" + attestation.getFileName());
         Uri uri = FileProvider.getUriForFile(this, this.getPackageName() + ".provider", sourceFile);
 
@@ -128,6 +136,7 @@ public class AttestationViewActivity extends AppCompatActivity {
                     grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 }
             }
+
             intent = Intent.createChooser(intent, "Ouvrir le PDF");
             startActivity(intent);
 

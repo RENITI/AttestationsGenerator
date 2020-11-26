@@ -16,8 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 

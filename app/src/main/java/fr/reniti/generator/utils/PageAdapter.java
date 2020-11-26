@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 import fr.reniti.generator.fragments.AttestationsFragment;
 import fr.reniti.generator.fragments.ProfilesFragment;
 
@@ -18,6 +20,7 @@ public class PageAdapter extends FragmentPagerAdapter {
             return(2);
         }
 
+        @NotNull
         @Override
         public Fragment getItem(int position) {
             switch (position){

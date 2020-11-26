@@ -45,7 +45,7 @@ public class AttestationsManager {
     }
 
     /**
-     *
+     * Check data
      * @return false if update required
      */
     public boolean checkData()
@@ -76,11 +76,8 @@ public class AttestationsManager {
                     needCheck = true;
                     break;
                 }
-
             }
         }
-
-
 
         if(needCheck)
         {
@@ -125,7 +122,6 @@ public class AttestationsManager {
     public void removeAttestation(String uuid)
     {
         if(attestationsList.containsKey(uuid)) {
-
             StorageManager.getInstance().removeFile(uuid + ".pdf");
             attestationsList.remove(uuid);
             StorageManager.getInstance().saveAttestations();
@@ -136,18 +132,19 @@ public class AttestationsManager {
     {
         this.attestationsList.put(attestation.getUuid(), attestation);
 
-        if(lastReasons == null)
+        if(lastReasons == null) {
             lastReasons = new ArrayList<>();
+        }
 
         for(Reason reason : attestation.getReasons())
         {
-
             if(lastReasons.contains(reason)) {
                 lastReasons.remove(reason);
             }
 
-            if(lastReasons.size() >= 3)
+            if(lastReasons.size() >= 3) {
                 lastReasons.remove(0);
+            }
 
             lastReasons.add(reason);
         }

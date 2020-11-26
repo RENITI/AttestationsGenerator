@@ -47,24 +47,18 @@ public class AttestationsFragment extends Fragment {
             {
                 View attestationInfosView = getLayoutInflater().inflate(R.layout.attestation_infos, (ViewGroup) fragmentView, false);
 
-                TextView nameInfos = attestationInfosView.findViewById(R.id.attestation_infos_name);
-                nameInfos.setText("Attestation de " + attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname());
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText("Attestation de " + attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname());
 
-                TextView commonInfos = attestationInfosView.findViewById(R.id.attestation_infos_common);
-                commonInfos.setText("Valable à partir du " + attestation.getDatesortie() + " à " + attestation.getHeuresortie());
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_common)).setText("Valable à partir du " + attestation.getDatesortie() + " à " + attestation.getHeuresortie());
 
-                TextView motifsInfos = attestationInfosView.findViewById(R.id.attestation_infos_motifs);
-                motifsInfos.setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true));
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true));
 
-                attestationInfosView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                attestationInfosView.setOnClickListener(v -> {
 
-                        Intent intent = new Intent(MainActivity.getInstance(), AttestationViewActivity.class);
-                        intent.putExtra("attestation_uuid", attestation.getUuid());
+                    Intent intent = new Intent(MainActivity.getInstance(), AttestationViewActivity.class);
+                    intent.putExtra("attestation_uuid", attestation.getUuid());
 
-                        startActivity(intent);
-                    }
+                    startActivity(intent);
                 });
 
                 attestationInfosView.findViewById(R.id.attestation_infos_delete_btn).setOnClickListener(new View.OnClickListener() {

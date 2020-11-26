@@ -5,39 +5,39 @@ import com.google.gson.annotations.Expose;
 public class Profile {
 
     @Expose
-    private String uuid;
+    private final String uuid;
 
     @Expose
-    private String firstname;
+    private final String firstname;
 
     @Expose
-    private String lastname;
+    private final String lastname;
 
     @Expose
-    private String birthday;
+    private final String birthday;
 
     @Expose
-    private String placeofbirth;
+    private final String placeofbirth;
 
     @Expose
-    private String address;
+    private final String address;
 
     @Expose
-    private String city;
+    private final String city;
 
     @Expose
-    private String zipcode;
+    private final String zipcode;
 
     /**
      * Constructor
-     * @param uuid
-     * @param firstname
-     * @param lastname
-     * @param birthday
-     * @param placeofbirth
-     * @param address
-     * @param city
-     * @param zipcode
+     * @param uuid Uuid
+     * @param firstname Firstname
+     * @param lastname Lastname
+     * @param birthday Birthday
+     * @param placeofbirth Place of birth
+     * @param address Address
+     * @param city City
+     * @param zipcode Zipcode
      */
     public Profile(String uuid,
                    String firstname,
@@ -89,33 +89,5 @@ public class Profile {
 
     public String getZipcode() {
         return zipcode;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setPlaceofbirth(String placeofbirth) {
-        this.placeofbirth = placeofbirth;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
     }
 }

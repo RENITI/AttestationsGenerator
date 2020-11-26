@@ -18,13 +18,13 @@ public class AttestationGenerationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        finishAffinity();
-
         Intent intent = getIntent();
 
         Reason reason = Reason.getById(intent.getStringExtra("reason_id"));
         Date d = new Date();
 
         AttestationCreateActivity.buildAttestation(this, StorageManager.getInstance().getProfilesManager().getDefaultProfile(), Utils.DATE_FORMAT.format(d), Utils.HOUR_FORMAT.format(d), new Reason[] {reason}, true);
+
+        finishAffinity();
     }
 }

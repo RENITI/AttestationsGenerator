@@ -1,29 +1,23 @@
 package fr.reniti.generator.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
-import fr.reniti.generator.activities.ProfileEditActivity;
-import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.Profile;
 
 public class ProfilesFragment extends Fragment {
 
@@ -41,8 +35,6 @@ public class ProfilesFragment extends Fragment {
 
         if(profiles.size() > 0)
         {
-
-            RelativeLayout profilesRoot = (RelativeLayout) fragmentView.findViewById(R.id.fragment_profiles_rootview);
             fragmentView.findViewById(R.id.fragment_profiles_default_title).setVisibility(View.INVISIBLE);
 
             for(Profile profile : profiles)

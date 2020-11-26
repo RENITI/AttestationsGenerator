@@ -6,13 +6,8 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.widget.Toast;
 
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
@@ -21,25 +16,21 @@ import com.tom_roush.pdfbox.pdmodel.PDDocumentInformation;
 import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
 import com.tom_roush.pdfbox.pdmodel.font.PDFont;
-import com.tom_roush.pdfbox.pdmodel.font.PDTrueTypeFont;
 import com.tom_roush.pdfbox.pdmodel.font.PDType0Font;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import com.tom_roush.pdfbox.pdmodel.interactive.form.PDCheckbox;
 import com.tom_roush.pdfbox.pdmodel.interactive.form.PDField;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
@@ -77,9 +68,9 @@ public class Utils {
 
     /**
      * @from https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/main/src/js/pdf-util.js
-     * @param test
-     * @return
-     * @throws IOException
+     * @param test String which we need to calc ideal font size
+     * @return Ideal font size
+     * @throws IOException If text contains invalid chars
      */
     public static int getIdealFontSize(String test) throws IOException {
         int currentSize = 11;
@@ -95,18 +86,17 @@ public class Utils {
 
     /**
      * Draw text
-     * @param content
-     * @param tx
-     * @param ty
-     * @param text
-     * @param size
-     * @return
-     * @throws IOException
+     * @param content PDPageContentStream instance
+     * @param tx Position x
+     * @param ty Position y
+     * @param text Text to draw
+     * @param size Text size
+     * @return Updated PDPageContentStream
+     * @throws IOException If text contains invalid chars
      */
     public static PDPageContentStream drawText(PDPageContentStream content, int tx, int ty, String text, int size, PDFont pdFont) throws Exception {
         content.beginText();
         content.setFont(pdFont, size);
-        //content.setFont(PDType1Font.HELVETICA, size);
         content.newLineAtOffset(tx, ty);
         content.showText(text);
         content.endText();
@@ -213,14 +203,7 @@ public class Utils {
             document.close();
 
         } catch (Exception e) {
-
-            if(e instanceof IllegalArgumentException)
-            {
-
-
-
-            }
-
+            e.printStackTrace();
             return false;
         }
         return true;

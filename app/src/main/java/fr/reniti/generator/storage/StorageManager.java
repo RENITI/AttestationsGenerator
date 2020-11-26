@@ -100,7 +100,7 @@ public class StorageManager {
         } catch (Exception e) {
             e.printStackTrace();
 
-            Toast.makeText(MainActivity.getInstance(), "Error = " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.getInstance(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             profilesFile.delete();
             profilesManager = new ProfilesManager();
@@ -123,10 +123,9 @@ public class StorageManager {
         try {
            this.attestationsManager = new GsonBuilder().create().fromJson(new FileReader(attestationsFile), AttestationsManager.class);
         } catch (Exception e) {
-
-            Toast.makeText(MainActivity.getInstance(), "Error = " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
             e.printStackTrace();
+
+            Toast.makeText(MainActivity.getInstance(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             attestationsFile.delete();
             attestationsManager = new AttestationsManager();
@@ -171,9 +170,7 @@ public class StorageManager {
 
     }
 
-    public ProfilesManager getProfilesManager() {
-        return profilesManager;
-    }
+    public ProfilesManager getProfilesManager() { return profilesManager; }
 
     public AttestationsManager getAttestationsManager() {
         return attestationsManager;
