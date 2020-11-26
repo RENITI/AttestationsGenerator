@@ -94,18 +94,19 @@ public class AttestationCreateActivity extends AppCompatActivity {
                 radio.setText(profile.getFirstname() + " " + profile.getLastname() + "\n" + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity());
                 radio.setPadding(30, 30, 0, 30);
 
+                radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        selectedProfile = profile;
+                    }
+                 });
+                profileSelect.addView(radio);
+
+
                 if(profile.getUuid().equals(defaultProfileUUID))
                 {
                     selectedProfile = profile;
-                    radio.setChecked(true);
-                } else {
-                    radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                        if (isChecked) {
-                            selectedProfile = profile;
-                        }
-                    });
+                    profileSelect.check(radio.getId());
                 }
-                profileSelect.addView(radio);
             }
         } else {
             Toast.makeText(this, R.string.error_no_profile, Toast.LENGTH_SHORT).show();
@@ -179,29 +180,53 @@ public class AttestationCreateActivity extends AppCompatActivity {
             return;
         }
 
-        buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
+        Thread thread = new Thread(() -> {
+            buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
+        });
+        thread.start();
     }
 
     public static void buildAttestation(Activity activity, Profile profile, String dateSortie, String heureSortie, Reason[] reasons, boolean shortcut)
     {
-        Thread thread = new Thread(() -> {
+
             Attestation attestation = new Attestation(profile, dateSortie,  heureSortie, reasons);
-            StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
 
             PDFBoxResourceLoader.init(activity);
-            Utils.savePDF(attestation, activity);
+            boolean success = Utils.savePDF(attestation, activity);
 
-            Utils.updateShortcuts(activity, true);
+            if(success) {
 
-            if(!shortcut) {
-                Intent intent = new Intent(activity, MainActivity.class);
-                intent.putExtra("snackbar_message", R.string.attestation_create_success);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                activity.startActivity(intent);
+                StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
+                Utils.updateShortcuts(activity, true);
 
-                activity.finish();
+                if (!shortcut) {
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.putExtra("snackbar_message", R.string.attestation_create_success);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    activity.startActivity(intent);
+
+                    activity.finish();
+                } else {
+                    Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName(), Toast.LENGTH_SHORT).show();
+
+                }
+            } else {
+
+
+                if (!shortcut) {
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.putExtra("error_message", R.string.attestation_create_failed);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    activity.startActivity(intent);
+
+                    activity.finish();
+                } else {
+                    Toast.makeText(activity, R.string.attestation_create_failed, Toast.LENGTH_LONG).show();
+
+
+
+                }
             }
-        });
-        thread.start();
+
     }
 }

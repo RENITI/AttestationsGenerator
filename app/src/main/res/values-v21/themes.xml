@@ -3,4 +3,5 @@
     <style name="Theme.AttestationsGenerator.RadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:buttonTint">@color/mainColor</item>
     </style>
+
 </resources>

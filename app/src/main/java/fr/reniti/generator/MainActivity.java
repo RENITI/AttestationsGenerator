@@ -8,10 +8,14 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
@@ -26,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
@@ -45,7 +50,6 @@ import fr.reniti.generator.utils.Utils;
 public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance;
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,6 +115,28 @@ public class MainActivity extends AppCompatActivity {
             Snackbar.make(viewPager, getResources().getString(intent.getIntExtra("snackbar_message", 0)), Snackbar.LENGTH_LONG)
                     .setAction("Action", null)
                     .show();
+        }
+
+        if (intent.hasExtra("error_message")) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("ERREUR");
+            builder.setMessage(getResources().getString(intent.getIntExtra("error_message", 0)));
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+
+            });
+
+            AlertDialog dialog = builder.create();
+
+
+
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface a) {
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(instance.getResources().getColor(R.color.textColor));
+                }
+            });
+            dialog.show();
         }
 
         Utils.updateShortcuts(this, false);

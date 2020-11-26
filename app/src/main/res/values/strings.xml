@@ -4,8 +4,8 @@
     <string name="delete_profile">Supprimer ce profil</string>
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
     <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
-    <!--- Notifications -->
-
+    <string name="ok">OK</string>
+    <string name="shortcut_working">Création de l\'attestation ...</string>
     <!--- Attestation View -->
 
     <string name="activity_attestation_view_title">Mon attestation</string>
@@ -67,6 +67,7 @@
 
     <!-- Attestation Create Activity -->
     <string name="attestation_create_success">Attestation créée avec succès ! Cliquez dessus pour l\'afficher.</string>
+    <string name="attestation_create_failed">Une erreur est survenue lors de la création de l\'attestation. Cela est probablement dû à la présence de caractères invalides dans le profil.</string>
     <string name="activity_attestation_create_title">Nouvelle attestation</string>
 
     <string name="activity_attestation_create_input_datesortie">Champ date de sortie</string>

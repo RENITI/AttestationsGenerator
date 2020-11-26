@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -17,6 +20,9 @@ import com.tom_roush.pdfbox.pdmodel.PDDocumentCatalog;
 import com.tom_roush.pdfbox.pdmodel.PDDocumentInformation;
 import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
+import com.tom_roush.pdfbox.pdmodel.font.PDFont;
+import com.tom_roush.pdfbox.pdmodel.font.PDTrueTypeFont;
+import com.tom_roush.pdfbox.pdmodel.font.PDType0Font;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
@@ -97,9 +103,10 @@ public class Utils {
      * @return
      * @throws IOException
      */
-    public static PDPageContentStream drawText(PDPageContentStream content, int tx, int ty, String text, int size) throws IOException {
+    public static PDPageContentStream drawText(PDPageContentStream content, int tx, int ty, String text, int size, PDFont pdFont) throws Exception {
         content.beginText();
-        content.setFont(PDType1Font.HELVETICA, size);
+        content.setFont(pdFont, size);
+        //content.setFont(PDType1Font.HELVETICA, size);
         content.newLineAtOffset(tx, ty);
         content.showText(text);
         content.endText();
@@ -111,11 +118,13 @@ public class Utils {
      * @param attestation Attestation to convert
      * @param activity Instance
      */
-    public static void savePDF(Attestation attestation, Activity activity)
+    public static boolean savePDF(Attestation attestation, Activity activity)
     {
         try {
             InputStream stream = activity.getResources().getAssets().open("certificate.pdf");
             PDDocument document = PDDocument.load(stream);
+
+            PDFont pdFont = PDType0Font.load(document, activity.getResources().getAssets().open("Roboto-Regular.ttf"));
 
             PDDocumentInformation information = document.getDocumentInformation();
             information.setAuthor("Ministère de l'intérieur");
@@ -158,19 +167,21 @@ public class Utils {
 
             content.setNonStrokingColor(0, 0, 0);
 
-            content = Utils.drawText(content, 107, 657, profile.getFirstname() + " " + profile.getLastname(), 11);
-            content = Utils.drawText(content, 107, 627, profile.getBirthday(), 11);
-            content = Utils.drawText(content, 240, 627, profile.getPlaceofbirth(), 11);
-            content = Utils.drawText(content, 124, 596, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11);
+
+            content = Utils.drawText(content, 107, 657, profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
+
+            content = Utils.drawText(content, 107, 627, profile.getBirthday(), 11, pdFont);
+            content = Utils.drawText(content, 240, 627, profile.getPlaceofbirth(), 11, pdFont);
+            content = Utils.drawText(content, 124, 596, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
 
             for(Reason reason : attestation.getReasons())
             {
-                content =Utils.drawText(content, 59, reason.getPdfPosY(), "x", 17);
+                content =Utils.drawText(content, 59, reason.getPdfPosY(), "x", 17, pdFont);
             }
 
-            content = Utils.drawText(content, 93, 122, profile.getCity(), Utils.getIdealFontSize(profile.getCity()));
-            content = Utils.drawText(content, 76, 92, attestation.getDatesortie(), 11);
-            content = Utils.drawText(content, 246, 92, attestation.getHeuresortie(), 11);
+            content = Utils.drawText(content, 93, 122, profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
+            content = Utils.drawText(content, 76, 92, attestation.getDatesortie(), 11, pdFont);
+            content = Utils.drawText(content, 246, 92, attestation.getHeuresortie(), 11, pdFont);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -201,9 +212,18 @@ public class Utils {
             document.save(activity.getFilesDir() + "/" + attestation.getUuid() + ".pdf");
             document.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
+            if(e instanceof IllegalArgumentException)
+            {
+
+
+
+            }
+
+            return false;
         }
+        return true;
     }
 
     /**

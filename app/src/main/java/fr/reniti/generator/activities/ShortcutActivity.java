@@ -1,9 +1,14 @@
 package fr.reniti.generator.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 
@@ -17,9 +22,12 @@ import fr.reniti.generator.utils.Utils;
 
 public class ShortcutActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         finishAffinity();
 
@@ -41,7 +49,7 @@ public class ShortcutActivity extends AppCompatActivity {
                 new StorageManager(this);
             }
 
-            Date d = new Date();
+
 
             Profile selectedProfile = StorageManager.getInstance().getProfilesManager().getDefaultProfile();
 
@@ -50,9 +58,14 @@ public class ShortcutActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.activity_attestation_create_error_profile, Toast.LENGTH_SHORT).show();
                 return;
             }
+            Toast.makeText(this, R.string.shortcut_working, Toast.LENGTH_SHORT).show();
 
-            AttestationCreateActivity.buildAttestation(this, selectedProfile, Utils.DATE_FORMAT.format(d), Utils.HOUR_FORMAT.format(d), new Reason[] {reason}, true);
-            Toast.makeText(this, "Une attestation a été créé pour " + selectedProfile.getFirstname() + " " + selectedProfile.getLastname() + " avec le motif " + reason.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Intent test = new Intent(this, AttestationGenerationActivity.class);
+            test.putExtra("reason_id", reasonId);
+            startActivityForResult(test, 1);
+
         }
     }
+
+
 }
