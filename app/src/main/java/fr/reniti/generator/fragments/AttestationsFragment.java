@@ -77,7 +77,7 @@ public class AttestationsFragment extends Fragment {
                         if(StorageManager.getInstance().getAttestationsManager().isDisableDeleteWarning())
                         {
                             StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
-                            Toast.makeText(getActivity(), R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.fragment_delete_success, Toast.LENGTH_SHORT).show();
                             onResume();
                         } else {
 
@@ -98,7 +98,7 @@ public class AttestationsFragment extends Fragment {
                             builder.setPositiveButton(R.string.delete, (dialog, which) -> {
 
                                 StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
-                                Toast.makeText(mainActivity, R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mainActivity, R.string.fragment_delete_success, Toast.LENGTH_SHORT).show();
                                 onResume();
                             });
 

@@ -10,7 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.util.Collection;
 
@@ -59,8 +61,42 @@ public class ProfilesFragment extends Fragment {
                 deleteBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StorageManager.getInstance().getProfilesManager().removeProfile(profile.getUuid());
-                        onResume();
+
+                        if(StorageManager.getInstance().getAttestationsManager().isDisableDeleteWarning()) {
+                            StorageManager.getInstance().getProfilesManager().removeProfile(profile.getUuid());
+                            Toast.makeText(getActivity(), R.string.fragment_delete_success, Toast.LENGTH_SHORT).show();
+                            onResume();
+                        } else {
+
+                            FragmentActivity mainActivity = getActivity();
+
+                            if(mainActivity == null || mainActivity.isFinishing())
+                            {
+                                return;
+                            }
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                            builder.setTitle("ATTENTION");
+                            builder.setMessage(R.string.fragment_profiles_delete_title);
+                            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+
+                            });
+
+                            builder.setPositiveButton(R.string.delete, (dialog, which) -> {
+
+                                StorageManager.getInstance().getProfilesManager().removeProfile(profile.getUuid());
+                                Toast.makeText(mainActivity, R.string.fragment_delete_success, Toast.LENGTH_SHORT).show();
+                                onResume();
+                            });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.setOnShowListener(a -> {
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(mainActivity.getResources().getColor(R.color.design_default_color_error));
+                                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(mainActivity.getResources().getColor(R.color.textColor));
+                            });
+                            dialog.show();
+
+                        }
                     }
                 });
 

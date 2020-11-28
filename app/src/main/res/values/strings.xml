@@ -10,7 +10,7 @@
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
     <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
     <string name="ok">OK</string>
-    <string name="fragment_attestations_delete_success">Supression réussie !</string>
+
     <string name="shortcut_working">Création de l\'attestation ...</string>
 
     <!--- Attestation View -->
@@ -62,15 +62,17 @@
     <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact">contact@reniti.fr</string>
     <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créées il y a plus de 24h</string>
-    <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant la suppression d\'une attestation</string>
+    <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant suppression</string>
     <!-- Attestations fragment -->
 
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.\nAppuyez sur + pour en créer une.</string>
     <string name="fragment_attestations_delete_title">Êtes-vous certain de vouloir supprimer cette attestation ?</string>
+    <string name="fragment_delete_success">Supression réussie !</string>
     <!-- Profiles fragment -->
 
     <string name="fragment_profiles_empty">Vous n\'avez aucun profil.\nAppuyez sur + pour en créer un.</string>
     <string name="fragment_profiles_default">Ce profil a été défini par défaut !</string>
+    <string name="fragment_profiles_delete_title">Êtes-vous certain de vouloir supprimer ce profil ?</string>
 
     <!-- Attestation Create Activity -->
 
