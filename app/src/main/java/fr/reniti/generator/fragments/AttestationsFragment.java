@@ -35,6 +35,11 @@ public class AttestationsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        if(getActivity() == null)
+        {
+            return;
+        }
+
         View fragmentView = getView();
 
         ArrayList<Attestation> attestations = StorageManager.getInstance().getAttestationsManager().getSortedList();
@@ -59,7 +64,7 @@ public class AttestationsFragment extends Fragment {
 
                 attestationInfosView.setOnClickListener(v -> {
 
-                    Intent intent = new Intent(MainActivity.getInstance().get(), AttestationViewActivity.class);
+                    Intent intent = new Intent(getActivity(), AttestationViewActivity.class);
                     intent.putExtra("attestation_uuid", attestation.getUuid());
 
                     startActivity(intent);
@@ -72,7 +77,7 @@ public class AttestationsFragment extends Fragment {
                         if(StorageManager.getInstance().getAttestationsManager().isDisableDeleteWarning())
                         {
                             StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
-                            Toast.makeText(MainActivity.getInstance().get(), R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
                             onResume();
                         } else {
 
