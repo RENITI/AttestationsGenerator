@@ -61,7 +61,7 @@
     <string name="activity_about_github">Code source:</string>
     <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact">contact@reniti.fr</string>
-    <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créés il y a plus de 24h</string>
+    <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créées il y a plus de 24h</string>
     <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant la suppression d\'une attestation</string>
     <!-- Attestations fragment -->
 
