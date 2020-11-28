@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class AttestationsFragment extends Fragment {
                             onResume();
                         } else {
 
-                            MainActivity mainActivity = MainActivity.getInstance().get();
+                            FragmentActivity mainActivity = getActivity();
 
                             if(mainActivity == null || mainActivity.isFinishing())
                             {
