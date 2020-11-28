@@ -15,6 +15,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import java.lang.ref.WeakReference;
+
 import fr.reniti.generator.activities.AboutActivity;
 import fr.reniti.generator.activities.AttestationCreateActivity;
 import fr.reniti.generator.activities.ProfileEditActivity;
@@ -24,7 +26,7 @@ import fr.reniti.generator.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static MainActivity instance;
+    private static WeakReference<MainActivity> instance;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        instance = this;
+        instance = new WeakReference<>(this);
 
         new StorageManager(this);
 
@@ -57,18 +59,18 @@ public class MainActivity extends AppCompatActivity {
 
             if (viewPager.getCurrentItem() == 0) {
                 if (StorageManager.getInstance().getProfilesManager().getProfilesList().size() <= 0) {
-                    Snackbar.make(MainActivity.getInstance().findViewById(R.id.activity_main), getResources().getString(R.string.error_no_profile), Snackbar.LENGTH_LONG)
+                    Snackbar.make(MainActivity.getInstance().get().findViewById(R.id.activity_main), getResources().getString(R.string.error_no_profile), Snackbar.LENGTH_LONG)
                             .setAction("Action", null)
                             .show();
                     return;
                 }
 
-                Intent intent = new Intent(MainActivity.getInstance(), AttestationCreateActivity.class);
+                Intent intent = new Intent(MainActivity.getInstance().get(), AttestationCreateActivity.class);
                 startActivity(intent);
             }
 
             if (viewPager.getCurrentItem() == 1) {
-                Intent intent = new Intent(MainActivity.getInstance(), ProfileEditActivity.class);
+                Intent intent = new Intent(MainActivity.getInstance().get(), ProfileEditActivity.class);
                 startActivity(intent);
             }
         });
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             AlertDialog dialog = builder.create();
-            dialog.setOnShowListener(a -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(instance.getResources().getColor(R.color.textColor)));
+            dialog.setOnShowListener(a -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.textColor)));
             dialog.show();
         }
 
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static MainActivity getInstance() {
+    public static WeakReference<MainActivity> getInstance() {
         return instance;
     }
 }

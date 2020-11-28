@@ -100,7 +100,7 @@ public class StorageManager {
         } catch (Exception e) {
             e.printStackTrace();
 
-            Toast.makeText(MainActivity.getInstance(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.getInstance().get(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             profilesFile.delete();
             profilesManager = new ProfilesManager();
@@ -125,7 +125,7 @@ public class StorageManager {
         } catch (Exception e) {
             e.printStackTrace();
 
-            Toast.makeText(MainActivity.getInstance(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.getInstance().get(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
             attestationsFile.delete();
             attestationsManager = new AttestationsManager();

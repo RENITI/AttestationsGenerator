@@ -7,15 +7,15 @@ import fr.reniti.generator.R;
 
 public enum Reason {
 
-    TRAVAIL("Travail", 488, "travail", R.id.activity_attestation_create_reason_travail, R.drawable.ic_baseline_work_16),
-    ACHATS("Achats", 417, "achats", R.id.activity_attestation_create_reason_achats, R.drawable.ic_baseline_shopping_cart_16),
-    SANTE("Santé", 347, "sante", R.id.activity_attestation_create_reason_sante, R.drawable.ic_baseline_local_hospital_16),
-    FAMILLE("Famille", 325, "famille", R.id.activity_attestation_create_reason_famille, R.drawable.ic_baseline_family_restroom_16),
-    HANDICAP("Handicap", 291, "handicap", R.id.activity_attestation_create_reason_handicap, R.drawable.ic_baseline_accessible_16),
-    SPORT_ANIMAUX("Sports et Animaux", 269, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.drawable.ic_baseline_directions_bike_16),
-    CONVOCATION("Convocation", 199, "convocation", R.id.activity_attestation_create_reason_convocation, R.drawable.ic_baseline_assignment_16),
-    MISSIONS("Missions", 178, "missions", R.id.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
-    ENFANTS("Enfants",157, "enfants", R.id.activity_attestation_create_reason_enfants, R.drawable.ic_baseline_escalator_warning_16);
+    TRAVAIL("Travail", 553, "travail", R.id.activity_attestation_create_reason_travail, R.drawable.ic_baseline_work_16),
+    ACHATS("Achats, culture et culte", 482, "achats_culturel_cultuel", R.id.activity_attestation_create_reason_achats, R.drawable.ic_baseline_shopping_cart_16),
+    SANTE("Santé", 434, "sante", R.id.activity_attestation_create_reason_sante, R.drawable.ic_baseline_local_hospital_16),
+    FAMILLE("Famille", 410, "famille", R.id.activity_attestation_create_reason_famille, R.drawable.ic_baseline_family_restroom_16),
+    HANDICAP("Handicap", 373, "handicap", R.id.activity_attestation_create_reason_handicap, R.drawable.ic_baseline_accessible_16),
+    SPORT_ANIMAUX("Sports et Animaux", 349, "sport_animaux", R.id.activity_attestation_create_reason_sport_animaux, R.drawable.ic_baseline_directions_bike_16),
+    CONVOCATION("Convocation", 276, "convocation", R.id.activity_attestation_create_reason_convocation, R.drawable.ic_baseline_assignment_16),
+    MISSIONS("Missions", 252, "missions", R.id.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
+    ENFANTS("Enfants",228, "enfants", R.id.activity_attestation_create_reason_enfants, R.drawable.ic_baseline_escalator_warning_16);
 
     @Expose(serialize = false, deserialize = false)
     private final String displayName;

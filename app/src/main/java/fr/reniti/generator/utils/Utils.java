@@ -126,23 +126,25 @@ public class Utils {
 
             PDPage page = document.getPage(0);
 
+            /*
+            USELESS WITH THIS NEW PDF
             PDDocumentCatalog docCatalog = document.getDocumentCatalog();
 
             PDAcroForm acroForm = docCatalog.getAcroForm();
 
-            for(PDField field : acroForm.getFields())
-            {
-                field.setReadOnly(true);
-                field.setNoExport(true);
-            }
-            acroForm.setNeedAppearances(true);
-            docCatalog.setAcroForm(acroForm);
-
+            if(acroForm != null) {
+                for (PDField field : acroForm.getFields()) {
+                    field.setReadOnly(true);
+                    field.setNoExport(true);
+                }
+                acroForm.setNeedAppearances(true);
+                docCatalog.setAcroForm(acroForm);
+            }*/
             PDPageContentStream content = new PDPageContentStream(document, page, true, true);
 
             Profile profile = attestation.getProfile();
 
-            content.setNonStrokingColor(0, 0, 0); //black text
+           /* content.setNonStrokingColor(0, 0, 0); //black text
 
             for(Reason r : Reason.values())
             {
@@ -153,25 +155,27 @@ public class Utils {
                 content.setNonStrokingColor(255, 255, 255);
                 content.addRect(57, r.getPdfPosY()-1, 12, 12);
                 content.fill();
-            }
+            }*/
 
             content.setNonStrokingColor(0, 0, 0);
 
 
-            content = Utils.drawText(content, 107, 657, profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
+            content = Utils.drawText(content, 92, 702, profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
 
-            content = Utils.drawText(content, 107, 627, profile.getBirthday(), 11, pdFont);
-            content = Utils.drawText(content, 240, 627, profile.getPlaceofbirth(), 11, pdFont);
-            content = Utils.drawText(content, 124, 596, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
+            content = Utils.drawText(content, 92, 684, profile.getBirthday(), 11, pdFont);
+            content = Utils.drawText(content, 214, 684, profile.getPlaceofbirth(), 11, pdFont);
+            content = Utils.drawText(content, 104, 665, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
 
             for(Reason reason : attestation.getReasons())
             {
-                content =Utils.drawText(content, 59, reason.getPdfPosY(), "x", 17, pdFont);
+                content =Utils.drawText(content, 47, reason.getPdfPosY(), "x", 12, pdFont);
             }
 
-            content = Utils.drawText(content, 93, 122, profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
-            content = Utils.drawText(content, 76, 92, attestation.getDatesortie(), 11, pdFont);
-            content = Utils.drawText(content, 246, 92, attestation.getHeuresortie(), 11, pdFont);
+            content = Utils.drawText(content, 78, 76, profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
+
+            content = Utils.drawText(content, 63, 58, attestation.getDatesortie(), 11, pdFont);
+            content = Utils.drawText(content, 227, 58, attestation.getHeuresortie(), 11, pdFont);
+
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 

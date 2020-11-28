@@ -4,10 +4,13 @@
 
     <string name="app_name">Générateur d\'attestations</string>
     <string name="confirm">Valider</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
     <string name="delete_profile">Supprimer ce profil</string>
     <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
     <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
     <string name="ok">OK</string>
+    <string name="fragment_attestations_delete_success">Supression réussie !</string>
     <string name="shortcut_working">Création de l\'attestation ...</string>
 
     <!--- Attestation View -->
@@ -52,18 +55,18 @@
     <!-- About Activity -->
 
     <string name="activity_about_title">Paramètres</string>
-    <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.</string>
+    <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.\n\nConformément à la norme les QR Codes générés contiennent la date et l\'heure de création de l\'attestation.</string>
     <string name="activity_about_credits_title">Librairies utilisés :</string>
     <string name="activity_about_credits">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
     <string name="activity_about_github">Code source:</string>
     <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact">contact@reniti.fr</string>
     <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créés il y a plus de 24h</string>
-
+    <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant la suppression d\'une attestation</string>
     <!-- Attestations fragment -->
 
     <string name="fragment_attestations_title">Vous n\'avez aucune attestation.</string>
-
+    <string name="fragment_attestations_delete_title">Êtes-vous certain de vouloir supprimer cette attestation ?</string>
     <!-- Profiles fragment -->
 
     <string name="fragment_profiles_empty">Vous n\'avez aucun profil !</string>
@@ -77,12 +80,12 @@
     <string name="activity_attestation_create_input_datesortie">Champ date de sortie</string>
     <string name="activity_attestation_create_input_heuresortie">Champ heure de sortie</string>
     <string name="activity_attestation_create_profil">Selectionner un profil</string>
-    <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation, déplacements professionnels ne pouvant être différés, déplacements pour un concours ou un examen.</string>
-    <string name="activity_attestation_create_reason_achats">Déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, des achats de première nécessité dans des établissements dont les activités demeurent autorisées, le retrait de commande et les livraisons à domicile.</string>
+    <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation ; déplacements professionnels ne pouvant être différés ; déplacements pour un concours ou un examen.</string>
+    <string name="activity_attestation_create_reason_achats">Déplacements pour se rendre dans un établissement culturel autorisé ou un lieu de culte ; déplacements pour effectuer des achats de biens, pour des services dont la fourniture est autorisée, pour les retraits de commandes et les livraisons à domicile.</string>
     <string name="activity_attestation_create_reason_sante">Consultations, examens et soins ne pouvant être assurés à distance et l’achat de médicaments.</string>
     <string name="activity_attestation_create_reason_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfants.</string>
     <string name="activity_attestation_create_reason_handicap">Déplacement des personnes en situation de handicap et leur accompagnant.</string>
-    <string name="activity_attestation_create_reason_sport_animaux">Déplacements brefs, dans la limite d\'une heure quotidienne et dans un rayon maximal d\'un kilomètre autour du domicile, liés soit à l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</string>
+    <string name="activity_attestation_create_reason_sport_animaux">Déplacements en plein air ou vers un lieu de plein air, sans changement du lieu de résidence, dans la limite de trois heures quotidiennes et dans un rayon maximal de vingt kilomètres autour du domicile, liés soit à l\’activité physique ou aux loisirs individuels, à l\’exclusion de toute pratique sportive collective et de toute proximité avec d\’autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</string>
     <string name="activity_attestation_create_reason_convocation">Convocation judiciaire ou administrative et pour se rendre dans un service public.</string>
     <string name="activity_attestation_create_reason_missions">Participation à des missions d\'intérêt général sur demande de l\'autorité administrative.</string>
     <string name="activity_attestation_create_reason_enfants">Déplacement pour chercher les enfants à l\’école et à l\’occasion de leurs activités périscolaires.</string>

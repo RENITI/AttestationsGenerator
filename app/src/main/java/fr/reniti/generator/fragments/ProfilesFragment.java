@@ -65,7 +65,7 @@ public class ProfilesFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             StorageManager.getInstance().getProfilesManager().setDefaultProfile(profile.getUuid());
-                            Toast.makeText(MainActivity.getInstance(), R.string.fragment_profiles_default, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.getInstance().get(), R.string.fragment_profiles_default, Toast.LENGTH_SHORT).show();
                             onResume();
                         }
                     });

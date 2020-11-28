@@ -63,6 +63,19 @@ public class AboutActivity extends AppCompatActivity {
                 instance.saveAttestations();
             }
         });
+
+        Switch deleteWarning = (Switch) findViewById(R.id.activity_about_layout_settings_deletewarning);
+
+        deleteWarning.setChecked(StorageManager.getInstance().getAttestationsManager().isDisableDeleteWarning());
+
+        deleteWarning.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                StorageManager instance = StorageManager.getInstance();
+                instance.getAttestationsManager().setDisableDeleteWarning(isChecked);
+                instance.saveAttestations();
+            }
+        });
     }
 
     @Override

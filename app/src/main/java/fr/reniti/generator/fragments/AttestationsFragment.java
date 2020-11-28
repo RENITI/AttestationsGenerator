@@ -11,9 +11,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.activities.AttestationViewActivity;
 import fr.reniti.generator.MainActivity;
@@ -55,7 +58,7 @@ public class AttestationsFragment extends Fragment {
 
                 attestationInfosView.setOnClickListener(v -> {
 
-                    Intent intent = new Intent(MainActivity.getInstance(), AttestationViewActivity.class);
+                    Intent intent = new Intent(MainActivity.getInstance().get(), AttestationViewActivity.class);
                     intent.putExtra("attestation_uuid", attestation.getUuid());
 
                     startActivity(intent);
@@ -64,8 +67,42 @@ public class AttestationsFragment extends Fragment {
                 attestationInfosView.findViewById(R.id.attestation_infos_delete_btn).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
-                        onResume();
+
+                        if(StorageManager.getInstance().getAttestationsManager().isDisableDeleteWarning())
+                        {
+                            StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
+                            Toast.makeText(MainActivity.getInstance().get(), R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
+                            onResume();
+                        } else {
+
+                            MainActivity mainActivity = MainActivity.getInstance().get();
+
+                            if(mainActivity == null || mainActivity.isFinishing())
+                            {
+                                return;
+                            }
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                            builder.setTitle("ATTENTION");
+                            builder.setMessage(R.string.fragment_attestations_delete_title);
+                            builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+
+                            });
+
+                            builder.setPositiveButton(R.string.delete, (dialog, which) -> {
+
+                                StorageManager.getInstance().getAttestationsManager().removeAttestation(attestation.getUuid());
+                                Toast.makeText(mainActivity, R.string.fragment_attestations_delete_success, Toast.LENGTH_SHORT).show();
+                                onResume();
+                            });
+
+                            AlertDialog dialog = builder.create();
+                            dialog.setOnShowListener(a -> {
+                                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(mainActivity.getResources().getColor(R.color.design_default_color_error));
+                                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(mainActivity.getResources().getColor(R.color.textColor));
+                            });
+                            dialog.show();
+                        }
                     }
                 });
 
