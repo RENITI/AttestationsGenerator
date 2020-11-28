@@ -59,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (viewPager.getCurrentItem() == 0) {
                 if (StorageManager.getInstance().getProfilesManager().getProfilesList().size() <= 0) {
-                    Snackbar.make(MainActivity.getInstance().get().findViewById(R.id.activity_main), getResources().getString(R.string.error_no_profile), Snackbar.LENGTH_LONG)
+                    /*Snackbar.make(MainActivity.getInstance().get().findViewById(R.id.activity_main), getResources().getString(R.string.error_no_profile), Snackbar.LENGTH_LONG)
                             .setAction("Action", null)
-                            .show();
+                            .show();*/
+                    Intent intent = new Intent(MainActivity.getInstance().get(), ProfileEditActivity.class);
+                    startActivity(intent);
                     return;
                 }
 
