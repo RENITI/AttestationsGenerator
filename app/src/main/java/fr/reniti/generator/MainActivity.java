@@ -59,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
 
             if (viewPager.getCurrentItem() == 0) {
                 if (StorageManager.getInstance().getProfilesManager().getProfilesList().size() <= 0) {
-                    Intent intent = new Intent(MainActivity.getInstance().get(), ProfileEditActivity.class);
+                    Intent intent = new Intent(getApplication(), ProfileEditActivity.class);
                     startActivity(intent);
                     return;
                 }
 
-                Intent intent = new Intent(MainActivity.getInstance().get(), AttestationCreateActivity.class);
+                Intent intent = new Intent(getApplication(), AttestationCreateActivity.class);
                 startActivity(intent);
             }
 
             if (viewPager.getCurrentItem() == 1) {
-                Intent intent = new Intent(MainActivity.getInstance().get(), ProfileEditActivity.class);
+                Intent intent = new Intent(getApplication(), ProfileEditActivity.class);
                 startActivity(intent);
             }
         });
