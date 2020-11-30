@@ -1,6 +1,8 @@
 package fr.reniti.generator;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.lang.ref.WeakReference;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.activities.AboutActivity;
 import fr.reniti.generator.activities.AttestationCreateActivity;
@@ -51,10 +54,27 @@ public class MainActivity extends AppCompatActivity {
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pageAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
+
         tabs.setupWithViewPager(viewPager);
 
         FloatingActionButton fab = findViewById(R.id.activity_main_add_btn);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                fab.setImageDrawable(getResources().getDrawable(position == 0 ? R.drawable.ic_baseline_create_24 : R.drawable.ic_baseline_add_24));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         fab.setOnClickListener(view -> {
 
             if (viewPager.getCurrentItem() == 0) {

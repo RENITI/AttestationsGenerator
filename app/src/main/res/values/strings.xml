@@ -65,7 +65,7 @@
     <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant suppression</string>
     <!-- Attestations fragment -->
 
-    <string name="fragment_attestations_title">Vous n\'avez aucune attestation.\nAppuyez sur + pour en créer une.</string>
+    <string name="fragment_attestations_title">Vous n\'avez aucune attestation.\nAppuyez sur le crayon pour en créer une.</string>
     <string name="fragment_attestations_delete_title">Êtes-vous certain de vouloir supprimer cette attestation ?</string>
     <string name="fragment_delete_success">Supression réussie !</string>
     <!-- Profiles fragment -->

@@ -4,6 +4,7 @@
 
         <item name="colorPrimary">@color/mainColor</item>
         <item name="colorPrimaryVariant">@color/mainColor</item>
+
         <item name="colorOnPrimary">@color/white</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">@color/mainColor</item>
@@ -30,15 +31,6 @@
 
     <style name="Theme.AttestationsGenerator.AppBarOverlay" parent="Theme.MaterialComponents" >
         <item name="android:background">@color/mainColor</item>
-
-    </style>
-
-    <!-- Tab layout -->
-    <style name="Theme.AttestationsGenerator.TabLayout" parent="Widget.MaterialComponents.TabLayout">
-
-        <item name="android:background">@color/mainColor</item>
-        <item name="tabTextColor">@color/gray</item>
-        <item name="tabSelectedTextColor">@color/white</item>
 
     </style>
 

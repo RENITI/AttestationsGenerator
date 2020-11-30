@@ -28,16 +28,18 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.AttestationsGenerator.TabLayout"
 
+            android:theme="@style/Widget.Design.TabLayout"
 
-
+            app:tabMode="fixed"
+            app:tabIndicatorGravity="bottom"
+            android:background="@color/mainColor"
+            app:tabTextColor="@color/gray"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="3dp"
             />
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
 
 
     <androidx.viewpager.widget.ViewPager
@@ -55,7 +57,7 @@
 
         android:layout_margin="@dimen/fab_margin"
         android:theme="@style/Widget.App.FloatingActionButton"
-        app:srcCompat="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_baseline_create_24"
         android:layout_gravity="bottom|end"/>
 
 
