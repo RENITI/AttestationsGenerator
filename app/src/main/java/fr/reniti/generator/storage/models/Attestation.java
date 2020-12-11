@@ -31,21 +31,20 @@ public class Attestation {
     @Expose
     private Reason[] reasons;
 
+    @Expose
+    private AttestationType type;
+
     /**
      * Constructor : create new attestation
      * @param profile
      * @param datesortie
      * @param heuresortie
      * @param reasons
+     * @param type
      */
-    public Attestation(Profile profile, String datesortie, String heuresortie, Reason[] reasons)
+    public Attestation(Profile profile, String datesortie, String heuresortie, Reason[] reasons, AttestationType type)
     {
-        this.uuid = UUID.randomUUID().toString();
-        this.createdAt = System.currentTimeMillis();
-        this.profile = profile;
-        this.datesortie = datesortie;
-        this.heuresortie = heuresortie;
-        this.reasons = reasons;
+        this(UUID.randomUUID().toString(), System.currentTimeMillis(), profile, datesortie, heuresortie, reasons, type);
     }
 
     /**
@@ -56,13 +55,14 @@ public class Attestation {
      * @param datesortie
      * @param heuresortie
      * @param reasons
+     * @param type
      */
     public Attestation(String uuid,
                         long createdAt,
                        Profile profile,
                        String datesortie,
                        String heuresortie,
-                       Reason[] reasons)
+                       Reason[] reasons, AttestationType type)
     {
         this.uuid = uuid;
         this.createdAt = createdAt;
@@ -70,6 +70,12 @@ public class Attestation {
         this.datesortie = datesortie;
         this.heuresortie = heuresortie;
         this.reasons = reasons;
+        this.type = type;
+    }
+
+    public AttestationType getType() {
+        
+        return type != null ? type : AttestationType.DEPLACEMENT;
     }
 
     public String getFileName()

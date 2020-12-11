@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Générateur d\'attestations</string>
+    <string name="activity_profile_edit_firstname">Firstname</string>
+    <string name="activity_profile_edit_lastname">Lastname</string>
+    <string name="activity_profile_edit_birthdate">Birthdate</string>
+    <string name="activity_profile_edit_placeofbirth">Birthplace</string>
+    <string name="activity_profile_edit_address">Address</string>
+    <string name="activity_profile_edit_city">City</string>
+    <string name="activity_profile_edit_zipcode">Zipcode</string>
+</resources>

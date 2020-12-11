@@ -1,7 +1,10 @@
 package fr.reniti.generator.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
@@ -9,19 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.core.widget.CompoundButtonCompat;
 
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
@@ -29,6 +36,7 @@ import fr.reniti.generator.listeners.DateFieldWatcher;
 import fr.reniti.generator.listeners.TimeFieldWatcher;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
 import fr.reniti.generator.utils.Utils;
@@ -36,8 +44,10 @@ import fr.reniti.generator.utils.Utils;
 public class AttestationCreateActivity extends AppCompatActivity {
 
     private Profile selectedProfile = null;
+    private AttestationType selectedType = null;
     private boolean working = false;
 
+    private HashMap<Reason, CheckBox> boxes = new HashMap<>();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_editor_menu, menu);
@@ -102,6 +112,33 @@ public class AttestationCreateActivity extends AppCompatActivity {
             finishAffinity();
         }
 
+        RadioGroup typeSelect = findViewById(R.id.activity_attestation_create_type_select);
+        AttestationType defaultType = StorageManager.getInstance().getProfilesManager().getDefaultType();
+
+        for(AttestationType type : AttestationType.values())
+        {
+            RadioButton radio = new RadioButton(this);
+
+            radio.setText(type.getName() + "\nVersion du : " + type.getDocumentDate());
+            radio.setPadding(30, 30, 0, 30);
+
+            radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    selectedType = type;
+
+                    updateReasonsView();
+                }
+            });
+            typeSelect.addView(radio);
+
+            if(defaultType == type)
+            {
+                selectedType = type;
+                typeSelect.check(radio.getId());
+            }
+        }
+
+        updateReasonsView();
         findViewById(R.id.activity_attestation_create_confirm_btn).setOnClickListener(v -> saveAttestation());
     }
 
@@ -157,11 +194,22 @@ public class AttestationCreateActivity extends AppCompatActivity {
         }
 
         ArrayList<Reason> reasons = new ArrayList<>();
-        for (Reason reason : Reason.values()) {
-            if (((CheckBox) findViewById(reason.getFieldId())).isChecked()) {
+
+        for(Reason reason : boxes.keySet())
+        {
+            if(boxes.get(reason).isChecked())
+            {
+                if(reason.getRelatedType() != selectedType)
+                {
+                    Toast.makeText(this, R.string.error_invalid_reasons, Toast.LENGTH_LONG).show();
+                    break;
+                }
+
                 reasons.add(reason);
             }
         }
+
+
 
         if (reasons.size() <= 0) {
             setWorking(false);
@@ -175,10 +223,43 @@ public class AttestationCreateActivity extends AppCompatActivity {
         thread.start();
     }
 
+    public void updateReasonsView()
+    {
+        LinearLayout reasonListView = findViewById(R.id.activity_attestation_create_reason_list);
+
+        boxes.clear();
+        reasonListView.removeAllViews();
+
+        for(Reason reason : Reason.values())
+        {
+            if(reason.getRelatedType() == selectedType)
+            {
+                CheckBox checkBox = new CheckBox(this);
+
+
+
+                LinearLayout.LayoutParams checkBoxLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                checkBoxLayoutParams.setMargins(Utils.dpToPx(16), Utils.dpToPx(6) ,Utils.dpToPx(16), 0);
+                checkBox.setLayoutParams(checkBoxLayoutParams);
+
+                checkBox.setText(reason.getLongTextId());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    checkBox.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.mainColor)));
+                } else {
+                    CompoundButtonCompat.setButtonTintList(checkBox, ColorStateList.valueOf(getResources().getColor(R.color.mainColor)));
+                }
+
+                reasonListView.addView(checkBox);
+                boxes.put(reason, checkBox);
+            }
+        }
+
+    }
+
     public static void buildAttestation(Activity activity, Profile profile, String dateSortie, String heureSortie, Reason[] reasons, boolean shortcut)
     {
 
-            Attestation attestation = new Attestation(profile, dateSortie,  heureSortie, reasons);
+            Attestation attestation = new Attestation(profile, dateSortie,  heureSortie, reasons, reasons[0].getRelatedType());
 
             PDFBoxResourceLoader.init(activity);
             boolean success = Utils.savePDF(attestation, activity);
@@ -195,7 +276,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                     activity.finish();
                 } else {
-                    Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 if (!shortcut) {

@@ -60,7 +60,7 @@ public class AttestationsFragment extends Fragment {
 
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_common)).setText("Valable à partir du " + attestation.getDatesortie() + " à " + attestation.getHeuresortie());
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true));
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true) + " (" + attestation.getType().getShortName()+")");
 
                 attestationInfosView.setOnClickListener(v -> {
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
@@ -19,12 +20,17 @@ import androidx.core.content.FileProvider;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
+import org.spongycastle.asn1.x509.AttCertIssuer;
+
 import java.io.File;
+import java.util.Collection;
 import java.util.List;
 
+import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
+import fr.reniti.generator.utils.Utils;
 
 public class AttestationViewActivity extends AppCompatActivity {
 
@@ -50,7 +56,43 @@ public class AttestationViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        attestation = StorageManager.getInstance().getAttestationsManager().getAttestation(intent.getStringExtra("attestation_uuid"));
+
+
+        if(!intent.hasExtra("attestation_uuid")) {
+
+            Collection<Attestation> list = StorageManager.getInstance().getAttestationsManager().getAttestationsList().values();
+
+            for(Attestation a : list)
+            {
+                if(attestation == null || attestation.getCreatedAt() < a.getCreatedAt())
+                {
+                    attestation = a;
+                }
+            }
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("ERREUR");
+            builder.setMessage(getResources().getString(R.string.error_no_attestation1));
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.setOnShowListener(a -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.textColor)));
+            dialog.show();
+
+        } else {
+            attestation = StorageManager.getInstance().getAttestationsManager().getAttestation(intent.getStringExtra("attestation_uuid"));
+        }
+
+        if(attestation == null)
+        {
+            Intent newIntent = new Intent(this, MainActivity.class);
+            newIntent.putExtra("snackbar_message", R.string.error_no_attestation2);
+            startActivity(newIntent);
+            return;
+        }
 
         PDFView view = findViewById(R.id.activity_attestation_viewer_pdf);
 
@@ -60,7 +102,22 @@ public class AttestationViewActivity extends AppCompatActivity {
 
         if(!file.exists())
         {
-            return;
+            if(!file.exists())
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("ERREUR");
+                builder.setMessage(getResources().getString(R.string.error_no_pdf));
+                builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(a -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.textColor)));
+                dialog.show();
+
+                toggleQRCode();
+                return;
+            }
         }
 
         view.fromFile(file).load();
