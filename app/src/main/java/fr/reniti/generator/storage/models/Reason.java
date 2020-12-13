@@ -17,15 +17,15 @@ public enum Reason {
     MISSIONS("Missions", 252, "missions", R.id.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
     ENFANTS("Enfants",228, "enfants", R.id.activity_attestation_create_reason_enfants, R.drawable.ic_baseline_escalator_warning_16);
 */
-    TRAVAIL("Travail", AttestationType.DEPLACEMENT, 553, "travail", R.string.activity_attestation_create_reason_travail, R.drawable.ic_baseline_work_16),
-    ACHATS("Achats, culture et culte",AttestationType.DEPLACEMENT, 482, "achats_culturel_cultuel", R.string.activity_attestation_create_reason_achats,R.drawable.ic_baseline_shopping_cart_16),
-    SANTE("Santé",AttestationType.DEPLACEMENT, 434, "sante",R.string.activity_attestation_create_reason_sante, R.drawable.ic_baseline_local_hospital_16),
-    FAMILLE("Famille",AttestationType.DEPLACEMENT, 410, "famille",R.string.activity_attestation_create_reason_famille, R.drawable.ic_baseline_family_restroom_16),
-    HANDICAP("Handicap",AttestationType.DEPLACEMENT, 373, "handicap", R.string.activity_attestation_create_reason_handicap, R.drawable.ic_baseline_accessible_16),
-    SPORT_ANIMAUX("Sports et Animaux",AttestationType.DEPLACEMENT, 349, "sport_animaux", R.string.activity_attestation_create_reason_sport_animaux, R.drawable.ic_baseline_directions_bike_16),
-    CONVOCATION("Convocation",AttestationType.DEPLACEMENT, 276, "convocation",R.string.activity_attestation_create_reason_convocation, R.drawable.ic_baseline_assignment_16),
-    MISSIONS("Missions",AttestationType.DEPLACEMENT, 252, "missions", R.string.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
-    ENFANTS("Enfants",AttestationType.DEPLACEMENT,228, "enfants",  R.string.activity_attestation_create_reason_missions, R.drawable.ic_baseline_escalator_warning_16),
+    TRAVAIL("Travail", AttestationType.CONFINEMENT, 553, "travail", R.string.activity_attestation_create_reason_travail, R.drawable.ic_baseline_work_16),
+    ACHATS("Achats, culture et culte",AttestationType.CONFINEMENT, 482, "achats_culturel_cultuel", R.string.activity_attestation_create_reason_achats,R.drawable.ic_baseline_shopping_cart_16),
+    SANTE("Santé",AttestationType.CONFINEMENT, 434, "sante",R.string.activity_attestation_create_reason_sante, R.drawable.ic_baseline_local_hospital_16),
+    FAMILLE("Famille",AttestationType.CONFINEMENT, 410, "famille",R.string.activity_attestation_create_reason_famille, R.drawable.ic_baseline_family_restroom_16),
+    HANDICAP("Handicap",AttestationType.CONFINEMENT, 373, "handicap", R.string.activity_attestation_create_reason_handicap, R.drawable.ic_baseline_accessible_16),
+    SPORT_ANIMAUX("Sports et Animaux",AttestationType.CONFINEMENT, 349, "sport_animaux", R.string.activity_attestation_create_reason_sport_animaux, R.drawable.ic_baseline_directions_bike_16),
+    CONVOCATION("Convocation",AttestationType.CONFINEMENT, 276, "convocation",R.string.activity_attestation_create_reason_convocation, R.drawable.ic_baseline_assignment_16),
+    MISSIONS("Missions",AttestationType.CONFINEMENT, 252, "missions", R.string.activity_attestation_create_reason_missions, R.drawable.ic_baseline_engineering_16),
+    ENFANTS("Enfants",AttestationType.CONFINEMENT,228, "enfants",  R.string.activity_attestation_create_reason_missions, R.drawable.ic_baseline_escalator_warning_16),
 
     CF_TRAVAIL("Travail", AttestationType.COUVRE_FEU, 539, "travail", R.string.activity_attestation_create_reason_cf_travail, R.drawable.ic_baseline_work_16_orange),
     CF_SANTE("Santé", AttestationType.COUVRE_FEU, 489, "sante", R.string.activity_attestation_create_reason_cf_sante, R.drawable.ic_baseline_local_hospital_16_orange),
@@ -114,11 +114,11 @@ public enum Reason {
     }
 
 
-    public static Reason getById(String id)
+    public static Reason getById(String id, AttestationType type)
     {
         for(Reason reason : values())
         {
-            if(reason.getId().equals(id))
+            if(reason.getId().equals(id) && reason.getRelatedType() == type)
             {
                 return reason;
             }

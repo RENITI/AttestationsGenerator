@@ -1,16 +1,20 @@
 package fr.reniti.generator.storage.models;
 
+import android.icu.util.Calendar;
+
 import com.google.gson.annotations.Expose;
+
+import java.util.Date;
 
 import fr.reniti.generator.utils.PDFPos;
 
 public enum AttestationType {
 
-    DEPLACEMENT(0, "Déplacement dérogatoire Confinement", "Confinement", "28/11/2020", "certificate.pdf", new PDFPos(92, 702), new PDFPos(92, 684), new PDFPos(214, 684), new PDFPos(104, 665), new PDFPos(78, 76), new PDFPos(63, 58), new PDFPos(227, 58), 47),
-    COUVRE_FEU(1, "Déplacement dérogatoire Couvre-feu", "Couvre-feu", "15/12/2020", "cf_certificate.pdf", new PDFPos(119, 669), new PDFPos(119, 646), new PDFPos(312, 646), new PDFPos(133, 622), new PDFPos(105, 168), new PDFPos(91, 146), new PDFPos(312, 146), 73);
+    CONFINEMENT("confinement", "Déplacement dérogatoire Confinement", "Confinement", "28/11/2020", "certificate.pdf", new PDFPos(92, 702), new PDFPos(92, 684), new PDFPos(214, 684), new PDFPos(104, 665), new PDFPos(78, 76), new PDFPos(63, 58), new PDFPos(227, 58), 47),
+    COUVRE_FEU("couvre_feu", "Déplacement dérogatoire Couvre-feu", "Couvre-feu", "15/12/2020", "cf_certificate.pdf", new PDFPos(119, 669), new PDFPos(119, 646), new PDFPos(312, 646), new PDFPos(133, 622), new PDFPos(105, 168), new PDFPos(91, 146), new PDFPos(312, 146), 73);
 
     @Expose(serialize = false, deserialize = false)
-    private final int id;
+    private final String id;
 
     @Expose(serialize = false, deserialize = false)
     private final String name;
@@ -47,7 +51,7 @@ public enum AttestationType {
 
     private int reasonsBaseX;
 
-    AttestationType(int id, String name, String shortName, String documentDate, String assetName, PDFPos identityPos, PDFPos birthDayPos, PDFPos birthPlacePos, PDFPos completeAdressPos, PDFPos bottomCityPos, PDFPos datePos, PDFPos timePos, int reasonsBaseX)
+    AttestationType(String id, String name, String shortName, String documentDate, String assetName, PDFPos identityPos, PDFPos birthDayPos, PDFPos birthPlacePos, PDFPos completeAdressPos, PDFPos bottomCityPos, PDFPos datePos, PDFPos timePos, int reasonsBaseX)
     {
         this.id = id;
         this.name = name;
@@ -62,6 +66,28 @@ public enum AttestationType {
         this.datePos = datePos;
         this.timePos = timePos;
         this.reasonsBaseX = reasonsBaseX;
+    }
+
+    public static AttestationType getDefault()
+    {
+        if(CONFINEMENT.isAvailable())
+        {
+            return CONFINEMENT;
+        }
+        return COUVRE_FEU;
+    }
+
+    public boolean isAvailable()
+    {
+        if(this == CONFINEMENT)
+        {
+            // 16 dec 2020
+            if(System.currentTimeMillis() >= 1608073200000L)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getShortName() {
@@ -108,7 +134,7 @@ public enum AttestationType {
         return documentDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -116,11 +142,11 @@ public enum AttestationType {
         return name;
     }
 
-    public static AttestationType getById(int id)
+    public static AttestationType getById(String id)
     {
         for(AttestationType type : values())
         {
-            if(type.getId() == id)
+            if(type.getId().equals(id))
             {
                 return type;
             }

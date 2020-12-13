@@ -75,7 +75,7 @@ public class Attestation {
 
     public AttestationType getType() {
         
-        return type != null ? type : AttestationType.DEPLACEMENT;
+        return type != null ? type : AttestationType.getDefault();
     }
 
     public String getFileName()

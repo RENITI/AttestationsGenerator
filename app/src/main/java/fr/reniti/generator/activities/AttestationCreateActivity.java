@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
@@ -74,6 +76,10 @@ public class AttestationCreateActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        Intent intent = getIntent();
+
+
+
         EditText time = findViewById(R.id.activity_attestation_create_input_heuresortie);
         time.addTextChangedListener(new TimeFieldWatcher(time, Utils.HOUR_FORMAT.format(d)));
 
@@ -115,8 +121,18 @@ public class AttestationCreateActivity extends AppCompatActivity {
         RadioGroup typeSelect = findViewById(R.id.activity_attestation_create_type_select);
         AttestationType defaultType = StorageManager.getInstance().getProfilesManager().getDefaultType();
 
+        if(!defaultType.isAvailable())
+        {
+            defaultType = AttestationType.getDefault();
+        }
+
         for(AttestationType type : AttestationType.values())
         {
+            if(!type.isAvailable())
+            {
+                continue;
+            }
+
             RadioButton radio = new RadioButton(this);
 
             radio.setText(type.getName() + "\nVersion du : " + type.getDocumentDate());
@@ -217,10 +233,31 @@ public class AttestationCreateActivity extends AppCompatActivity {
             return;
         }
 
-        Thread thread = new Thread(() -> {
-            buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
-        });
-        thread.start();
+        Intent intent = getIntent();
+
+        if(intent != null && intent.hasExtra("shortcut") && intent.getBooleanExtra("shortcut", false))
+        {
+            Intent test = new Intent(this, AttestationGenerationActivity.class);
+
+            StringBuilder reasonList = new StringBuilder();
+
+            for(Reason reason : reasons)
+            {
+                reasonList.append(";" + reason.getId());
+            }
+
+            test.putExtra("reason_id", reasonList.substring(1));
+            test.putExtra("type_id", selectedType.getId());
+            startActivityForResult(test, 1);
+            finishAffinity();
+        } else {
+
+
+            Thread thread = new Thread(() -> {
+                buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
+            });
+            thread.start();
+        }
     }
 
     public void updateReasonsView()
@@ -276,7 +313,22 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                     activity.finish();
                 } else {
-                    Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_SHORT).show();
+
+                    if(reasons.length == 1)
+                    {
+                        Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
+
+                    }else {
+
+                        StringBuilder reasonsStr = new StringBuilder();
+
+                        for(Reason reason : reasons)
+                        {
+                            reasonsStr.append(", " + reason.getDisplayName());
+                        }
+
+                        Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec les motifs " + reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
+                    }
                 }
             } else {
                 if (!shortcut) {

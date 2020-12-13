@@ -161,6 +161,9 @@ public class AttestationsManager {
 
             lastReasons.add(reason);
         }
+
+        StorageManager.getInstance().getProfilesManager().setDefaultTypeAndSave(attestation.getType());
+
         StorageManager.getInstance().saveAttestations();
     }
 }

@@ -22,7 +22,7 @@ public class ProfilesManager {
 
     public ProfilesManager()
     {
-        this(new HashMap<>(), null, AttestationType.DEPLACEMENT);
+        this(new HashMap<>(), null, AttestationType.getDefault());
     }
 
     public ProfilesManager( HashMap<String, Profile> profilesList,  String defaultProfile, AttestationType defaultType)
@@ -41,6 +41,12 @@ public class ProfilesManager {
                 defaultProfile = d;
                 break;
             }
+            return false;
+        }
+
+        if(defaultType == null)
+        {
+            defaultType = AttestationType.getDefault();
             return false;
         }
 
@@ -99,6 +105,12 @@ public class ProfilesManager {
     }
 
     public AttestationType getDefaultType() {
-        return defaultType != null ? defaultType : AttestationType.DEPLACEMENT;
+        return defaultType != null ? defaultType : AttestationType.getDefault();
+    }
+
+    public void setDefaultTypeAndSave(AttestationType type)
+    {
+        this.defaultType = type;
+        StorageManager.getInstance().saveProfiles();
     }
 }

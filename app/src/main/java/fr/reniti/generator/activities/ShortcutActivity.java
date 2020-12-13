@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
+import fr.reniti.generator.utils.Utils;
 
 public class ShortcutActivity extends AppCompatActivity {
 
@@ -21,12 +23,20 @@ public class ShortcutActivity extends AppCompatActivity {
         if(intent.getAction() == Intent.ACTION_VIEW && intent.getData() != null)
         {
             String reasonId = intent.getData().getQueryParameter("reason");
-            Reason reason = Reason.getById(reasonId);
+            String typeId = intent.getData().getQueryParameter("type");
 
-            if(reasonId.equalsIgnoreCase("other") ||reason == null)
+
+
+            if(reasonId == null || reasonId.equalsIgnoreCase("other") || typeId == null || AttestationType.getById(typeId) == null ||  Reason.getById(reasonId, AttestationType.getById(typeId)) == null)
             {
+                if(typeId == null)
+                {
+                    Utils.updateShortcuts(this, true);
+                }
                 Intent i = new Intent(this, AttestationCreateActivity.class);
+                i.putExtra("shortcut", true);
                 startActivity(i);
+                finishAffinity();
                 return;
             }
 
@@ -47,6 +57,7 @@ public class ShortcutActivity extends AppCompatActivity {
 
             Intent test = new Intent(this, AttestationGenerationActivity.class);
             test.putExtra("reason_id", reasonId);
+            test.putExtra("type_id", typeId);
             startActivityForResult(test, 1);
 
             finish();
