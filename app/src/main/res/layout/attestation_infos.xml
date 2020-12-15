@@ -12,6 +12,7 @@
     >
 
 
+
     <TextView
         android:id="@+id/attestation_infos_name"
 
@@ -29,30 +30,95 @@
         android:layout_marginBottom="1dp"
         />
 
-    <TextView
-        android:layout_below="@id/attestation_infos_name"
+    <RelativeLayout
         android:id="@+id/attestation_infos_common"
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/attestation_infos_name"
+        android:orientation="horizontal"
         android:paddingRight="@dimen/fragment_text_right_margin"
 
+        >
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_baseline_today_22"
+            android:id="@+id/attestations_info_icon_date"
+            android:layout_alignParentStart="true">
+
+        </ImageView>
+
+
+        <TextView
+
+
+            android:id="@+id/attestation_infos_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="20/10/20"
+            android:layout_toEndOf="@id/attestations_info_icon_date"
+            android:theme="@style/Theme.AttestationsGenerator.CommonText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/attestations_info_icon_time"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@id/attestation_infos_date"
+
+            android:src="@drawable/ic_baseline_access_time_22"></ImageView>
+
+
+        <TextView
+
+            android:id="@+id/attestation_infos_time"
+
+            android:layout_toEndOf="@id/attestations_info_icon_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="10:50"
+            android:theme="@style/Theme.AttestationsGenerator.CommonText" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valable à partir du 20/20/2020 à 10:50"
-
-        android:theme="@style/Theme.AttestationsGenerator.CommonText"
-        />
-
-    <TextView
         android:layout_below="@id/attestation_infos_common"
         android:id="@+id/attestation_infos_motifs"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/fragment_text_right_margin">
 
-        android:paddingRight="@dimen/fragment_text_right_margin"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Motif : () "
-        android:theme="@style/Theme.AttestationsGenerator.CommonText"
-        />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_assignment_22"
+            android:id="@+id/attestations_info_icon_reasons"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+
+
+            android:id="@+id/attestation_infos_motifs_text"
+
+            android:layout_toEndOf="@id/attestations_info_icon_reasons"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motif : () "
+            android:theme="@style/Theme.AttestationsGenerator.CommonText"
+            />
+    </RelativeLayout>
+
+
 
     <ImageButton
         android:id="@+id/attestation_infos_delete_btn"
