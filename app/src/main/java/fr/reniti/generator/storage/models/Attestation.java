@@ -75,7 +75,7 @@ public class Attestation {
 
     public AttestationType getType() {
         
-        return type != null ? type : AttestationType.getDefault();
+        return type != null ? type : AttestationType.CONFINEMENT;
     }
 
     public String getFileName()
@@ -109,7 +109,7 @@ public class Attestation {
         builder.append("Naissance: " + profile.getBirthday() + " a " + profile.getPlaceofbirth() + ";\n ");
         builder.append("Adresse: " + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity() + ";\n ");
         builder.append("Sortie: " + datesortie + " a " + heuresortie + ";\n ");
-        builder.append("Motifs: " + getReasonsString(false));
+        builder.append("Motifs: " + getReasonsString(false) + ";");
 
         Bitmap bitmap = null;
 

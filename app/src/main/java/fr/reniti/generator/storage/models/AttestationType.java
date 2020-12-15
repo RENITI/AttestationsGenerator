@@ -11,7 +11,15 @@ import fr.reniti.generator.utils.PDFPos;
 public enum AttestationType {
 
     CONFINEMENT("confinement", "Déplacement dérogatoire Confinement", "Confinement", "28/11/2020", "certificate.pdf", new PDFPos(92, 702), new PDFPos(92, 684), new PDFPos(214, 684), new PDFPos(104, 665), new PDFPos(78, 76), new PDFPos(63, 58), new PDFPos(227, 58), 47),
-    COUVRE_FEU("couvre_feu", "Déplacement dérogatoire Couvre-feu", "Couvre-feu", "15/12/2020", "cf_certificate.pdf", new PDFPos(119, 669), new PDFPos(119, 646), new PDFPos(312, 646), new PDFPos(133, 622), new PDFPos(105, 168), new PDFPos(91, 146), new PDFPos(312, 146), 73);
+
+
+    COUVRE_FEU("couvre_feu", "Déplacement dérogatoire Couvre-feu", "Couvre-feu", "15/12/2020\nValable entre : 20h et 6h", "cf_certificate.pdf",
+            new PDFPos(119, 665),
+            new PDFPos(119, 645),
+            new PDFPos(312, 645),
+            new PDFPos(133, 625),
+            new PDFPos(105, 286),
+            new PDFPos(91, 267), new PDFPos(312, 267), 73);
 
     @Expose(serialize = false, deserialize = false)
     private final String id;
@@ -70,10 +78,6 @@ public enum AttestationType {
 
     public static AttestationType getDefault()
     {
-        if(CONFINEMENT.isAvailable())
-        {
-            return CONFINEMENT;
-        }
         return COUVRE_FEU;
     }
 
@@ -82,7 +86,7 @@ public enum AttestationType {
         if(this == CONFINEMENT)
         {
             // 16 dec 2020
-            if(System.currentTimeMillis() >= 1608073200000L)
+            if(System.currentTimeMillis() >= 1608014770496L)
             {
                 return false;
             }

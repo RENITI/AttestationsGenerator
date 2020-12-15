@@ -316,7 +316,9 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                     if(reasons.length == 1)
                     {
-                        Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success, profile.getFirstname() + " " + profile.getLastname(), reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")"), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
 
                     }else {
 
@@ -326,8 +328,8 @@ public class AttestationCreateActivity extends AppCompatActivity {
                         {
                             reasonsStr.append(", " + reason.getDisplayName());
                         }
-
-                        Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec les motifs " + reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success2, profile.getFirstname() + " " + profile.getLastname(), reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")"), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec les motifs " + reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
                     }
                 }
             } else {

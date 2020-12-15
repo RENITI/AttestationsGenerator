@@ -48,10 +48,18 @@ public class ProfilesFragment extends Fragment {
             {
                 View profileInfosView = getLayoutInflater().inflate(R.layout.profile_infos, (ViewGroup) fragmentView, false);
                 TextView nameInfos = profileInfosView.findViewById(R.id.profile_infos_name);
-                nameInfos.setText(profile.getFirstname() + " " + profile.getLastname() + " " + (defaultProfileUuid.equals(profile.getUuid()) ? "(Par défaut)" : ""));
 
+                if(defaultProfileUuid.equals(profile.getUuid()))
+                {
+                    nameInfos.setText(getString(R.string.fragment_profile_name_default, profile.getFirstname() + " " + profile.getLastname()));
+
+                } else {
+                    nameInfos.setText(profile.getFirstname() + " " + profile.getLastname());
+
+                }
+                
                 TextView birthInfos = profileInfosView.findViewById(R.id.profile_infos_birth);
-                birthInfos.setText("Né(e) le " + profile.getBirthday() + " à " + profile.getPlaceofbirth());
+                birthInfos.setText(getString(R.string.fragment_profile_birth, profile.getBirthday(), profile.getPlaceofbirth()));
 
                 TextView locationInfos = profileInfosView.findViewById(R.id.profile_infos_location);
                 locationInfos.setText(profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity());
