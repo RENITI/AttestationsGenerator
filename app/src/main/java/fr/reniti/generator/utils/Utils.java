@@ -250,7 +250,8 @@ public class Utils {
                 for (Reason reason : StorageManager.getInstance().getAttestationsManager().getLastReasons()) {
                     rank--;
 
-                    builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(reason.getDisplayName()).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(reason.getDisplayName() + " (" + reason.getRelatedType().getShortName() + ")");
+                    String displayName = context.getString(reason.getDisplayName());
+                    builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(displayName).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(displayName + " (" + context.getString(reason.getRelatedType().getShortName()) + ")");
                     builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("renitiattgen").authority("shortcut").appendQueryParameter("type", "" + reason.getRelatedType().getId()).appendQueryParameter("reason", reason.getId()).build()));
 
                     shortcutInfoList.add(builder.build());

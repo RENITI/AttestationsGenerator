@@ -1,6 +1,9 @@
 package fr.reniti.generator.storage.models;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+
+import androidx.annotation.Nullable;
 
 import com.google.gson.annotations.Expose;
 
@@ -83,16 +86,21 @@ public class Attestation {
         return uuid + ".pdf";
     }
 
-    public String getReasonsString(boolean human)
+    /**
+     * Get reasons string
+     * @param context in order to have human readable (translation)
+     * @return
+     */
+    public String getReasonsString(@Nullable  Context context)
     {
         String rawReasons = "";
         for(Reason reason : reasons)
         {
-            if(!human)
+            if(context == null)
             {
                 rawReasons += ", " + reason.getId();
             } else {
-                rawReasons += ", "  + reason.getDisplayName();
+                rawReasons += ", "  + context.getString(reason.getDisplayName());
             }
         }
         return rawReasons.substring(2);
@@ -109,7 +117,7 @@ public class Attestation {
         builder.append("Naissance: " + profile.getBirthday() + " a " + profile.getPlaceofbirth() + ";\n ");
         builder.append("Adresse: " + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity() + ";\n ");
         builder.append("Sortie: " + datesortie + " a " + heuresortie + ";\n ");
-        builder.append("Motifs: " + getReasonsString(false) + ";");
+        builder.append("Motifs: " + getReasonsString(null) + ";");
 
         Bitmap bitmap = null;
 

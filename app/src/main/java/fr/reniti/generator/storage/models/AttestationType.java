@@ -6,14 +6,15 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 
+import fr.reniti.generator.R;
 import fr.reniti.generator.utils.PDFPos;
 
 public enum AttestationType {
 
-    CONFINEMENT("confinement", "Déplacement dérogatoire Confinement", "Confinement", "28/11/2020", "certificate.pdf", new PDFPos(92, 702), new PDFPos(92, 684), new PDFPos(214, 684), new PDFPos(104, 665), new PDFPos(78, 76), new PDFPos(63, 58), new PDFPos(227, 58), 47),
+    CONFINEMENT("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate.pdf", new PDFPos(92, 702), new PDFPos(92, 684), new PDFPos(214, 684), new PDFPos(104, 665), new PDFPos(78, 76), new PDFPos(63, 58), new PDFPos(227, 58), 47),
 
 
-    COUVRE_FEU("couvre_feu", "Déplacement dérogatoire Couvre-feu", "Couvre-feu", "15/12/2020\nValable entre : 20h et 6h", "cf_certificate.pdf",
+    COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "cf_certificate.pdf",
             new PDFPos(119, 665),
             new PDFPos(119, 645),
             new PDFPos(312, 645),
@@ -25,13 +26,13 @@ public enum AttestationType {
     private final String id;
 
     @Expose(serialize = false, deserialize = false)
-    private final String name;
+    private final int name;
 
     @Expose(serialize = false, deserialize = false)
-    private final String shortName;
+    private final int shortName;
 
     @Expose(serialize = false, deserialize = false)
-    private final String documentDate;
+    private final int extraText;
 
     @Expose(serialize = false, deserialize = false)
     private final String assetName;
@@ -59,12 +60,12 @@ public enum AttestationType {
 
     private int reasonsBaseX;
 
-    AttestationType(String id, String name, String shortName, String documentDate, String assetName, PDFPos identityPos, PDFPos birthDayPos, PDFPos birthPlacePos, PDFPos completeAdressPos, PDFPos bottomCityPos, PDFPos datePos, PDFPos timePos, int reasonsBaseX)
+    AttestationType(String id, int name, int shortName, int extraText, String assetName, PDFPos identityPos, PDFPos birthDayPos, PDFPos birthPlacePos, PDFPos completeAdressPos, PDFPos bottomCityPos, PDFPos datePos, PDFPos timePos, int reasonsBaseX)
     {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
-        this.documentDate = documentDate;
+        this.extraText = extraText;
         this.assetName = assetName;
         this.identityPos = identityPos;
         this.birthDayPos = birthDayPos;
@@ -94,7 +95,7 @@ public enum AttestationType {
         return true;
     }
 
-    public String getShortName() {
+    public int getShortName() {
         return shortName;
     }
 
@@ -134,15 +135,15 @@ public enum AttestationType {
         return assetName;
     }
 
-    public String getDocumentDate() {
-        return documentDate;
+    public int getExtraText() {
+        return extraText;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 

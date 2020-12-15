@@ -135,7 +135,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
             RadioButton radio = new RadioButton(this);
 
-            radio.setText(type.getName() + "\nVersion du : " + type.getDocumentDate());
+            radio.setText(getString(type.getName()) + "\n" + getString(type.getExtraText()));
             radio.setPadding(30, 30, 0, 30);
 
             radio.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -317,7 +317,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     if(reasons.length == 1)
                     {
 
-                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success, profile.getFirstname() + " " + profile.getLastname(), reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success, profile.getFirstname() + " " + profile.getLastname(), activity.getString(reasons[0].getDisplayName()) + " (" + activity.getString(reasons[0].getRelatedType().getShortName()) + ")"), Toast.LENGTH_LONG).show();
                         //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
 
                     }else {
@@ -326,9 +326,9 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                         for(Reason reason : reasons)
                         {
-                            reasonsStr.append(", " + reason.getDisplayName());
+                            reasonsStr.append(", " + activity.getString(reason.getDisplayName()));
                         }
-                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success2, profile.getFirstname() + " " + profile.getLastname(), reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success2, profile.getFirstname() + " " + profile.getLastname(), reasonsStr.substring(2) + " (" + activity.getString(reasons[0].getRelatedType().getShortName()) + ")"), Toast.LENGTH_LONG).show();
                         //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec les motifs " + reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
                     }
                 }

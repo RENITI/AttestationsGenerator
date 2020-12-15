@@ -58,9 +58,20 @@ public class AttestationsFragment extends Fragment {
 
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText("Attestation de " + attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname());
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_common)).setText("Valable à partir du " + attestation.getDatesortie() + " à " + attestation.getHeuresortie());
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_common)).setText(getString(R.string.fragment_attestation_date, attestation.getDatesortie(),attestation.getHeuresortie()));
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText("Motif" +(attestation.getReasons().length > 1 ? "s" : "")+ ": " + attestation.getReasonsString(true) + " (" + attestation.getType().getShortName()+")");
+                if(attestation.getReasons().length <= 1)
+                {
+
+                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText(getString(R.string.fragment_attestation_reason, attestation.getReasonsString(getContext()), getString(attestation.getType().getShortName())));
+
+
+                } else {
+                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText(getString(R.string.fragment_attestation_reasons, attestation.getReasonsString(getContext()), getString(attestation.getType().getShortName())));
+
+                }
+
+
 
                 attestationInfosView.setOnClickListener(v -> {
 
