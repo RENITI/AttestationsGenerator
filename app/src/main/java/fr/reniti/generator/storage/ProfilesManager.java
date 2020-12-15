@@ -2,7 +2,11 @@ package fr.reniti.generator.storage;
 
 import com.google.gson.annotations.Expose;
 
+import java.security.acl.LastOwnerException;
 import java.util.HashMap;
+import java.util.logging.Logger;
+
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 
 public class ProfilesManager {
@@ -13,14 +17,18 @@ public class ProfilesManager {
     @Expose
     private String defaultProfile;
 
+    @Expose
+    private AttestationType defaultType;
+
     public ProfilesManager()
     {
-        this(new HashMap<>(), null);
+        this(new HashMap<>(), null, AttestationType.getDefault());
     }
 
-    public ProfilesManager( HashMap<String, Profile> profilesList,  String defaultProfile)
+    public ProfilesManager( HashMap<String, Profile> profilesList,  String defaultProfile, AttestationType defaultType)
     {
         this.profilesList = profilesList;
+        this.defaultProfile = defaultProfile;
         this.defaultProfile = defaultProfile;
     }
 
@@ -33,6 +41,12 @@ public class ProfilesManager {
                 defaultProfile = d;
                 break;
             }
+            return false;
+        }
+
+        if(defaultType == null)
+        {
+            defaultType = AttestationType.getDefault();
             return false;
         }
 
@@ -88,5 +102,15 @@ public class ProfilesManager {
 
     public String getDefaultProfileUUID() {
         return defaultProfile != null ? defaultProfile : "";
+    }
+
+    public AttestationType getDefaultType() {
+        return defaultType != null ? defaultType : AttestationType.getDefault();
+    }
+
+    public void setDefaultTypeAndSave(AttestationType type)
+    {
+        this.defaultType = type;
+        StorageManager.getInstance().saveProfiles();
     }
 }

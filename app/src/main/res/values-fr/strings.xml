@@ -1,0 +1,150 @@
+<resources>
+
+    <string name="app_name">Générateur d\'attestations</string>
+
+    <!--- Common -->
+    <string name="confirm">Valider</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
+    <string name="tab_certificates">Attestations</string>
+    <string name="tab_profiles">Profils</string>
+    <string name="shortcut_working">Création de l\'attestation ...</string>
+
+    <!-- Errors -->
+    <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
+    <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
+    <string name="error_no_attestation1">Aucune attestation n\'a été selectionné. La plus récente a donc été sélectionné !</string>
+    <string name="error_no_attestation2">Aucune attestation n\'a été trouvée !</string>
+    <string name="error_no_pdf">Le fichier PDF de cette attestation n\'a pas été trouvé ! Le QR Code est toujours utilisable.</string>
+    <string name="error_invalid_reasons">Les motifs sélectionnés ne sont pas valides avec le type d\'attestation !</string>
+
+
+    <!--- Attestation View -->
+    <string name="activity_attestation_view_title">Mon attestation</string>
+    <string name="activity_attestation_view_qr">QR Code</string>
+    <string name="activity_attestation_view_pdf">Exporter le PDF</string>
+
+
+    <!--- Profile Edit Activity -->
+    <string name="activity_profile_edit_title">Créer un nouveau profil</string>
+    <string name="activity_profile_create_success">Le profil a été créé avec succès.</string>
+    <string name="activity_profile_edit_firstname">Prénom</string>
+    <string name="activity_profile_edit_lastname">Nom</string>
+    <string name="activity_profile_edit_birthdate">Date de naissance</string>
+    <string name="activity_profile_edit_placeofbirth">Lieu de naissance</string>
+    <string name="activity_profile_edit_address">Adresse</string>
+    <string name="activity_profile_edit_city">Ville</string>
+    <string name="activity_profile_edit_zipcode">Code Postal</string>
+
+    <string name="activity_profile_edit_firstname_input">Champ Prénom</string>
+    <string name="activity_profile_edit_lastname_input">Champ Nom</string>
+    <string name="activity_profile_edit_birthdate_input">Champ date de naissance</string>
+    <string name="activity_profile_edit_placeofbirth_input">Champ Ville de naissance</string>
+    <string name="activity_profile_edit_address_input">Champ Adresse</string>
+    <string name="activity_profile_edit_city_input">Champ Ville</string>
+    <string name="activity_profile_edit_zipcode_input">Champ code postal</string>
+
+    <string name="activity_profile_edit_error_firstname">Le champ prénom n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_lastname">Le champ nom n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_birthday">La date de naissance n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_placeofbirth">Le lieu de naissance n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_address">L\'adresse n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_city">La ville n\'est pas valide !</string>
+    <string name="activity_profile_edit_error_zipcode">Le code postal n\'est pas valide !</string>
+
+
+    <!-- About Activity -->
+    <string name="activity_about_title">Paramètres</string>
+    <string name="activity_about_credits_title">Librairies utilisés :</string>
+    <string name="activity_about_github">Code source:</string>
+    <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créées il y a plus de 24h</string>
+    <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant suppression</string>
+    <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.
+        L\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.
+        Conformément à la norme les QR Codes générés contiennent la date et l\'heure de création de l\'attestation.</string>
+
+
+    <!-- Attestations fragment -->
+    <string name="fragment_attestations_title">Vous n\'avez aucune attestation. Appuyez sur le crayon pour en créer une.</string>
+    <string name="fragment_attestations_delete_title">Êtes-vous certain de vouloir supprimer cette attestation ?</string>
+    <string name="fragment_delete_success">Supression réussie !</string>
+    <string name="fragment_attestation_reasons">Motifs: %1$s (%2$s)</string>
+    <string name="fragment_attestation_reason">Motif: %1$s (%2$s)</string>
+    <string name="fragment_attestation_date">Valable à partir du %1$s à %2$s</string>
+    <string name="fragment_attestation_delete_alt">Supprimer cette attestation</string>
+
+    <!-- Profiles fragment -->
+    <string name="fragment_profiles_empty">Vous n\'avez aucun profil. Appuyez sur + pour en créer un.</string>
+    <string name="fragment_profiles_default">Ce profil a été défini par défaut !</string>
+    <string name="fragment_profiles_delete_title">Êtes-vous certain de vouloir supprimer ce profil ?</string>
+    <string name="fragment_profile_name_default">%1$s (Par défaut)</string>
+    <string name="fragment_profile_birth">Né(e) le %1$s à %2$s</string>
+    <string name="fragment_profile_delete_alt">Supprimer ce profil</string>
+
+    <!-- Attestation Create Activity -->
+    <string name="attestation_create_success">Attestation créée avec succès ! Cliquez dessus pour l\'afficher.</string>
+    <string name="attestation_create_failed">Une erreur est survenue lors de la création de l\'attestation. Cela est probablement dû à la présence de caractères invalides dans le profil.</string>
+    <string name="activity_attestation_create_title">Nouvelle attestation</string>
+    <string name="activity_attestation_create_input_datesortie">Champ date de sortie</string>
+    <string name="activity_attestation_create_input_heuresortie">Champ heure de sortie</string>
+    <string name="activity_attestation_create_profil">Sélectionner un profil</string>
+    <string name="activity_attestation_create_type">Sélectionner un type d\'attestation</string>
+    <string name="activity_attestation_create_datesortie">Date de sortie</string>
+    <string name="activity_attestation_create_heuresortie">Heure de sortie</string>
+    <string name="activity_attestation_create_reason">Motif de déplacement</string>
+    <string name="activity_attestation_create_success">Une attestation a été créé pour %1$s avec le motif %2$s</string>
+    <string name="activity_attestation_create_success2">Une attestation a été créé pour %1$s avec les motifs %2$s</string>
+
+    <string name="activity_attestation_create_error_reasons">Vous devez au moins selectionner un motif !</string>
+    <string name="activity_attestation_create_error_profile">Aucun profil n\'a été selectionné !</string>
+    <string name="activity_attestation_create_error_datesortie">La date de sortie doit être de la forme: jj:mm:aaaa</string>
+    <string name="activity_attestation_create_error_heuresortie">L\'heure de sortie doit être de la forme: hh:mm</string>
+
+
+    <!-- Confinement -->
+    <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation ; déplacements professionnels ne pouvant être différés ; déplacements pour un concours ou un examen.</string>
+    <string name="activity_attestation_create_reason_achats">Déplacements pour se rendre dans un établissement culturel autorisé ou un lieu de culte ; déplacements pour effectuer des achats de biens, pour des services dont la fourniture est autorisée, pour les retraits de commandes et les livraisons à domicile.</string>
+    <string name="activity_attestation_create_reason_sante">Consultations, examens et soins ne pouvant être assurés à distance et l’achat de médicaments.</string>
+    <string name="activity_attestation_create_reason_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfants.</string>
+    <string name="activity_attestation_create_reason_handicap">Déplacement des personnes en situation de handicap et leur accompagnant.</string>
+    <string name="activity_attestation_create_reason_sport_animaux">Déplacements en plein air ou vers un lieu de plein air, sans changement du lieu de résidence, dans la limite de trois heures quotidiennes et dans un rayon maximal de vingt kilomètres autour du domicile, liés soit à l\’activité physique ou aux loisirs individuels, à l\’exclusion de toute pratique sportive collective et de toute proximité avec d\’autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</string>
+    <string name="activity_attestation_create_reason_convocation">Convocation judiciaire ou administrative et pour se rendre dans un service public.</string>
+    <string name="activity_attestation_create_reason_missions">Participation à des missions d\'intérêt général sur demande de l\'autorité administrative.</string>
+    <string name="activity_attestation_create_reason_enfants">Déplacement pour chercher les enfants à l\’école et à l\’occasion de leurs activités périscolaires.</string>
+
+    <!-- Couvre-feu -->
+    <string name="activity_attestation_create_reason_cf_travail">Déplacements entre le domicile et le lieu d\'exercice de l\'activité professionnelle ou le lieu d\'enseignement et de formation, déplacements professionnels ne pouvant être différés</string>
+    <string name="activity_attestation_create_reason_cf_animaux">Déplacements brefs, dans un rayon maximal d\'un kilomètre autour du domicile pour les besoins des animaux de compagnie</string>
+    <string name="activity_attestation_create_reason_cf_sante">Déplacements pour des consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ou pour l\'achat de produits de santé</string>
+    <string name="activity_attestation_create_reason_cf_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables ou précaires ou pour la garde d\'enfants</string>
+    <string name="activity_attestation_create_reason_cf_handicap">Déplacements des personnes en situation de handicap et de leur accompagnant</string>
+    <string name="activity_attestation_create_reason_cf_convocation">Déplacements pour répondre à une convocation judiciaire ou administrative</string>
+    <string name="activity_attestation_create_reason_cf_missions">Déplacements pour participer à des missions d\'intérêt général sur demande de l\'autorité administrative</string>
+    <string name="activity_attestation_create_reason_cf_transits">Déplacements liés à des transits pour des déplacements de longues distances</string>
+
+
+    <!-- Reasons display name -->
+    <string name="reason_travail">Travail</string>
+    <string name="reason_sante">Santé</string>
+    <string name="reason_famille">Famille</string>
+    <string name="reason_handicap">Handicap</string>
+    <string name="reason_convocation">Convocation</string>
+    <string name="reason_missions">Missions</string>
+    <string name="reason_transits">Transits</string>
+    <string name="reason_animaux">Animaux</string>
+    <string name="reason_sport_animaux">Sport et animaux</string>
+    <string name="reason_enfants">Enfants</string>
+    <string name="reason_achats">Achats, culture et culte</string>
+
+    <!-- Attestation types -->
+    <string name="attestation_type_confinement_shortname">Confinement</string>
+    <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
+    <string name="attestation_type_confinement">Déplacement dérogatoire Confinement</string>
+    <string name="attestation_type_couvrefeu">Déplacement dérogatoire Couvre-feu</string>
+    <string name="attestation_type_confinement_extra">Version du 28/11/2020</string>
+    <string name="attestation_type_couvrefeu_extra">Version du 15/12/2020\nValable entre : 20h et 6h</string>
+
+
+
+</resources>

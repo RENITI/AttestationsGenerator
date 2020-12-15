@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
@@ -35,6 +36,7 @@ import java.util.List;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
 
@@ -43,6 +45,11 @@ public class Utils {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat HOUR_FORMAT = new SimpleDateFormat("HH:mm");
     public static final Reason[] DEFAULT_REASONS = new Reason[] {Reason.ACHATS, Reason.TRAVAIL, Reason.SPORT_ANIMAUX};
+
+
+    public static int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
 
     public static boolean isValidDate(String rawDate, boolean allowFuture)
     {
@@ -87,17 +94,15 @@ public class Utils {
     /**
      * Draw text
      * @param content PDPageContentStream instance
-     * @param tx Position x
-     * @param ty Position y
      * @param text Text to draw
      * @param size Text size
      * @return Updated PDPageContentStream
      * @throws IOException If text contains invalid chars
      */
-    public static PDPageContentStream drawText(PDPageContentStream content, int tx, int ty, String text, int size, PDFont pdFont) throws Exception {
+    public static PDPageContentStream drawText(PDPageContentStream content, PDFPos pdfPos, String text, int size, PDFont pdFont) throws Exception {
         content.beginText();
         content.setFont(pdFont, size);
-        content.newLineAtOffset(tx, ty);
+        content.newLineAtOffset(pdfPos.getX(), pdfPos.getY());
         content.showText(text);
         content.endText();
         return content;
@@ -111,7 +116,10 @@ public class Utils {
     public static boolean savePDF(Attestation attestation, Activity activity)
     {
         try {
-            InputStream stream = activity.getResources().getAssets().open("certificate.pdf");
+
+            AttestationType type = attestation.getType();
+
+            InputStream stream = activity.getResources().getAssets().open(type.getAssetName());
             PDDocument document = PDDocument.load(stream);
 
             PDFont pdFont = PDType0Font.load(document, activity.getResources().getAssets().open("Roboto-Regular.ttf"));
@@ -160,21 +168,21 @@ public class Utils {
             content.setNonStrokingColor(0, 0, 0);
 
 
-            content = Utils.drawText(content, 92, 702, profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
+            content = Utils.drawText(content, type.getIdentityPos(), profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
 
-            content = Utils.drawText(content, 92, 684, profile.getBirthday(), 11, pdFont);
-            content = Utils.drawText(content, 214, 684, profile.getPlaceofbirth(), 11, pdFont);
-            content = Utils.drawText(content, 104, 665, profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
+            content = Utils.drawText(content, type.getBirthDayPos(), profile.getBirthday(), 11, pdFont);
+            content = Utils.drawText(content, type.getBirthPlacePos(), profile.getPlaceofbirth(), 11, pdFont);
+            content = Utils.drawText(content, type.getCompleteAdressPos(), profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
 
             for(Reason reason : attestation.getReasons())
             {
-                content =Utils.drawText(content, 47, reason.getPdfPosY(), "x", 12, pdFont);
+                content =Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
             }
 
-            content = Utils.drawText(content, 78, 76, profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
+            content = Utils.drawText(content, type.getBottomCityPos(), profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
 
-            content = Utils.drawText(content, 63, 58, attestation.getDatesortie(), 11, pdFont);
-            content = Utils.drawText(content, 227, 58, attestation.getHeuresortie(), 11, pdFont);
+            content = Utils.drawText(content, type.getDatePos(), attestation.getDatesortie(), 11, pdFont);
+            content = Utils.drawText(content, type.getTimePos(), attestation.getHeuresortie(), 11, pdFont);
 
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -234,11 +242,17 @@ public class Utils {
 
                 shortcutInfoList.add(builder.build());
 
+                if(StorageManager.getInstance() == null)
+                {
+                    new StorageManager(context);
+                }
+
                 for (Reason reason : StorageManager.getInstance().getAttestationsManager().getLastReasons()) {
                     rank--;
 
-                    builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(reason.getDisplayName()).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(reason.getDisplayName());
-                    builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("renitiattgen").authority("shortcut").appendQueryParameter("reason", reason.getId()).build()));
+                    String displayName = context.getString(reason.getDisplayName());
+                    builder = new ShortcutInfo.Builder(context, reason.getId()).setShortLabel(displayName).setIcon(Icon.createWithResource(context, reason.getIconId())).setRank(rank).setLongLabel(displayName + " (" + context.getString(reason.getRelatedType().getShortName()) + ")");
+                    builder.setIntent(new Intent(Intent.ACTION_VIEW, new Uri.Builder().scheme("renitiattgen").authority("shortcut").appendQueryParameter("type", "" + reason.getRelatedType().getId()).appendQueryParameter("reason", reason.getId()).build()));
 
                     shortcutInfoList.add(builder.build());
                 }

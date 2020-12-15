@@ -1,95 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Certificate generator</string>
 
     <!--- Common -->
+    <string name="confirm">Confirm</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 
-    <string name="app_name">Générateur d\'attestations</string>
-    <string name="confirm">Valider</string>
-    <string name="delete">Supprimer</string>
-    <string name="cancel">Annuler</string>
-    <string name="delete_profile">Supprimer ce profil</string>
-    <string name="error_no_profile">Erreur : Vous devez avoir créé au moins un profil avant de générer une attestation.</string>
-    <string name="error_no_pdf_reader">Aucun lecteur de PDF n\'a été trouvé !</string>
     <string name="ok">OK</string>
+    <string name="shortcut_working">Creating the certificate ...</string>
+    <string name="tab_certificates">Certificates</string>
+    <string name="tab_profiles">Profiles</string>
 
-    <string name="shortcut_working">Création de l\'attestation ...</string>
+    <!--- Errors -->
+    <string name="error_no_profile">Error: You must have created at least one profile before generating a certificate.</string>
+    <string name="error_no_pdf_reader">No PDF reader was found!</string>
+    <string name="error_no_attestation1">No certificates have been selected. The most recent one has therefore been selected!</string>
+    <string name="error_no_attestation2">No certificates were found!</string>
+    <string name="error_no_pdf">The PDF file of this certificate was not found! The QR Code is still usable.</string>
+    <string name="error_invalid_reasons">Selected motifs are not valid with the type of certificate!</string>
+
 
     <!--- Attestation View -->
-
-    <string name="activity_attestation_view_title">Mon attestation</string>
+    <string name="activity_attestation_view_title">My certificate</string>
     <string name="activity_attestation_view_qr">QR Code</string>
-    <string name="activity_attestation_view_pdf">Exporter le PDF</string>
+    <string name="activity_attestation_view_pdf">Export PDF</string>
+
 
     <!--- Profile Edit Activity -->
+    <string name="activity_profile_edit_title">Create a new profile</string>
+    <string name="activity_profile_create_success">The profile was successfully created.</string>
+    <string name="activity_profile_edit_firstname">Firstname</string>
+    <string name="activity_profile_edit_lastname">Lastname</string>
+    <string name="activity_profile_edit_birthdate">Birthdate</string>
+    <string name="activity_profile_edit_placeofbirth">Birthplace</string>
+    <string name="activity_profile_edit_address">Address</string>
+    <string name="activity_profile_edit_city">City</string>
+    <string name="activity_profile_edit_zipcode">Zipcode</string>
 
-    <string name="activity_profile_edit_title">Créer un nouveau profil</string>
-    <string name="activity_profile_create_success">Le profil a été créé avec succès.</string>
-    <string name="activity_profile_edit_firstname">Prénom</string>
-    <string name="activity_profile_edit_lastname">Nom</string>
-    <string name="activity_profile_edit_birthdate">Date de naissance</string>
-    <string name="activity_profile_edit_placeofbirth">Lieu de naissance</string>
-    <string name="activity_profile_edit_address">Adresse</string>
-    <string name="activity_profile_edit_city">Ville</string>
-    <string name="activity_profile_edit_zipcode">Code Postal</string>
-    <string name="activity_profile_edit_firstname_input">Champ Prénom</string>
-    <string name="activity_profile_edit_lastname_input">Champ Nom</string>
-    <string name="activity_profile_edit_birthdate_input">Champ date de naissance</string>
-    <string name="activity_profile_edit_placeofbirth_input">Champ Ville de naissance</string>
-    <string name="activity_profile_edit_address_input">Champ Adresse</string>
-    <string name="activity_profile_edit_city_input">Champ Ville</string>
-    <string name="activity_profile_edit_zipcode_input">Champ code postal</string>
-    <string name="activity_profile_edit_error_firstname">Le champ prénom n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_lastname">Le champ nom n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_birthday">La date de naissance n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_placeofbirth">Le lieu de naissance n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_address">L\'adresse n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_city">La ville n\'est pas valide !</string>
-    <string name="activity_profile_edit_error_zipcode">Le code postal n\'est pas valide !</string>
-    <string name="activity_attestation_create_datesortie">Date de sortie</string>
-    <string name="activity_attestation_create_heuresortie">Heure de sortie</string>
-    <string name="activity_attestation_create_reason">Motif de déplacement</string>
-    <string name="activity_attestation_create_error_reasons">Vous devez au moins selectionner un motif !</string>
-    <string name="activity_attestation_create_error_profile">Aucun profil n\'a été selectionné !</string>
-    <string name="activity_attestation_create_error_datesortie">La date de sortie doit être de la forme: jj:mm:aaaa</string>
-    <string name="activity_attestation_create_error_heuresortie">L\'heure de sortie doit être de la forme: hh:mm</string>
+    <string name="activity_profile_edit_firstname_input">First name field</string>
+    <string name="activity_profile_edit_lastname_input">Name field</string>
+    <string name="activity_profile_edit_birthdate_input">Date of birth field</string>
+    <string name="activity_profile_edit_placeofbirth_input">Field City of birth</string>
+    <string name="activity_profile_edit_address_input">Address field</string>
+    <string name="activity_profile_edit_city_input">City field</string>
+    <string name="activity_profile_edit_zipcode_input">Postcode field</string>
+
+    <string name="activity_profile_edit_error_firstname">The first name field is not valid!</string>
+    <string name="activity_profile_edit_error_lastname">The name field is not valid!</string>
+    <string name="activity_profile_edit_error_birthday">The date of birth is not valid!</string>
+    <string name="activity_profile_edit_error_placeofbirth">The place of birth is not valid!</string>
+    <string name="activity_profile_edit_error_address">The address is not valid!</string>
+    <string name="activity_profile_edit_error_city">The city is not valid!</string>
+    <string name="activity_profile_edit_error_zipcode">The postcode is not valid!</string>
+
 
     <!-- About Activity -->
+    <string name="activity_about_title">Settings</string>
+    <string name="activity_about_switch_autodelete">Automatically delete certificates created more than 24 hours ago</string>
+    <string name="activity_about_switch_deletewarning">Deactivate confirmation before deletion</string>
+    <string name="activity_about_github">Source code:</string>
+    <string name="activity_about_credits_title">Used libraries :</string>
+    <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.  The use of this application must be done with due care and is the responsibility of the user.  In accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
 
-    <string name="activity_about_title">Paramètres</string>
-    <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.\n\nL\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.\n\nConformément à la norme les QR Codes générés contiennent la date et l\'heure de création de l\'attestation.</string>
-    <string name="activity_about_credits_title">Librairies utilisés :</string>
-    <string name="activity_about_credits">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
-    <string name="activity_about_github">Code source:</string>
-    <string name="activity_about_github_link"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
-    <string name="activity_about_contact">contact@reniti.fr</string>
-    <string name="activity_about_switch_autodelete">Supprimer automatiquement les attestations créées il y a plus de 24h</string>
-    <string name="activity_about_switch_deletewarning">Désactiver la confirmation avant suppression</string>
+
+    <string name="activity_about_credits" translatable="false">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
+    <string name="activity_about_github_link" translatable="false"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
+    <string name="activity_about_contact" translatable="false">contact@reniti.fr</string>
+
+
     <!-- Attestations fragment -->
+    <string name="fragment_attestations_delete_title">Are you sure you want to remove this certificate?</string>
+    <string name="fragment_attestations_title">You do not have any certificates. Press the pencil to create one.</string>
+    <string name="fragment_attestation_reasons">Reasons: %1$s (%2$s)</string>
+    <string name="fragment_attestation_reason">Reason: %1$s (%2$s)</string>
+    <string name="fragment_attestation_date">Valid from %1$s %2$s</string>
+    <string name="fragment_delete_success">Supression successful!</string>
+    <string name="fragment_attestation_delete_alt">Delete this certificate</string>
 
-    <string name="fragment_attestations_title">Vous n\'avez aucune attestation.\nAppuyez sur le crayon pour en créer une.</string>
-    <string name="fragment_attestations_delete_title">Êtes-vous certain de vouloir supprimer cette attestation ?</string>
-    <string name="fragment_delete_success">Supression réussie !</string>
     <!-- Profiles fragment -->
-
-    <string name="fragment_profiles_empty">Vous n\'avez aucun profil.\nAppuyez sur + pour en créer un.</string>
-    <string name="fragment_profiles_default">Ce profil a été défini par défaut !</string>
-    <string name="fragment_profiles_delete_title">Êtes-vous certain de vouloir supprimer ce profil ?</string>
+    <string name="fragment_profiles_delete_title">Are you sure you want to delete this profile?</string>
+    <string name="fragment_profiles_default">This profile has been set by default!</string>
+    <string name="fragment_profile_name_default">%1$s (By default)</string>
+    <string name="fragment_profile_birth">Born on %1$s in %2$s</string>
+    <string name="fragment_profiles_empty">You have no profile. Press + to create one.</string>
+    <string name="fragment_profile_delete_alt">Delete this profile</string>
 
     <!-- Attestation Create Activity -->
+    <string name="attestation_create_failed">An error occurred during the creation of the certificate. This is probably due to the presence of invalid characters in the profile.</string>
+    <string name="attestation_create_success">Certificate successfully created! Click on it to display it.</string>
+    <string name="activity_attestation_create_success">A certificate was created for %1$s with the reason %2$s.</string>
+    <string name="activity_attestation_create_success2">A certificate has been created for %1$s with the reasons: %2$s</string>
+    <string name="activity_attestation_create_type">Select a type of certificate</string>
+    <string name="activity_attestation_create_profil">Select a profile</string>
+    <string name="activity_attestation_create_input_heuresortie">Exit time field</string>
+    <string name="activity_attestation_create_input_datesortie">Exit date field</string>
+    <string name="activity_attestation_create_title">New certificate</string>
+    <string name="activity_attestation_create_datesortie">Exit date</string>
+    <string name="activity_attestation_create_heuresortie">Exit time</string>
+    <string name="activity_attestation_create_reason">Reason for displacement</string>
 
-    <string name="attestation_create_success">Attestation créée avec succès ! Cliquez dessus pour l\'afficher.</string>
-    <string name="attestation_create_failed">Une erreur est survenue lors de la création de l\'attestation. Cela est probablement dû à la présence de caractères invalides dans le profil.</string>
-    <string name="activity_attestation_create_title">Nouvelle attestation</string>
-    <string name="activity_attestation_create_input_datesortie">Champ date de sortie</string>
-    <string name="activity_attestation_create_input_heuresortie">Champ heure de sortie</string>
-    <string name="activity_attestation_create_profil">Selectionner un profil</string>
-    <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation ; déplacements professionnels ne pouvant être différés ; déplacements pour un concours ou un examen.</string>
-    <string name="activity_attestation_create_reason_achats">Déplacements pour se rendre dans un établissement culturel autorisé ou un lieu de culte ; déplacements pour effectuer des achats de biens, pour des services dont la fourniture est autorisée, pour les retraits de commandes et les livraisons à domicile.</string>
-    <string name="activity_attestation_create_reason_sante">Consultations, examens et soins ne pouvant être assurés à distance et l’achat de médicaments.</string>
-    <string name="activity_attestation_create_reason_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfants.</string>
-    <string name="activity_attestation_create_reason_handicap">Déplacement des personnes en situation de handicap et leur accompagnant.</string>
-    <string name="activity_attestation_create_reason_sport_animaux">Déplacements en plein air ou vers un lieu de plein air, sans changement du lieu de résidence, dans la limite de trois heures quotidiennes et dans un rayon maximal de vingt kilomètres autour du domicile, liés soit à l\’activité physique ou aux loisirs individuels, à l\’exclusion de toute pratique sportive collective et de toute proximité avec d\’autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</string>
-    <string name="activity_attestation_create_reason_convocation">Convocation judiciaire ou administrative et pour se rendre dans un service public.</string>
-    <string name="activity_attestation_create_reason_missions">Participation à des missions d\'intérêt général sur demande de l\'autorité administrative.</string>
-    <string name="activity_attestation_create_reason_enfants">Déplacement pour chercher les enfants à l\’école et à l\’occasion de leurs activités périscolaires.</string>
+    <string name="activity_attestation_create_error_reasons">You have to select at least one reason!</string>
+    <string name="activity_attestation_create_error_profile">No profiles have been selected!</string>
+    <string name="activity_attestation_create_error_datesortie">The exit date must be in the form: dd:mm:yyyyy</string>
+    <string name="activity_attestation_create_error_heuresortie">The exit time must be in the form: hh:mm</string>
+
+    <!-- Confinement -->
+    <string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>
+    <string name="activity_attestation_create_reason_achats">Running necessary errands to purchase items for professional activity, or basic commodities  available in the businesses allowed to provide service, order withdrawal or home deliveries</string>
+    <string name="activity_attestation_create_reason_sante">Consults and provision of care that cannot be done remotely, medication purchase</string>
+    <string name="activity_attestation_create_reason_famille">Imperative family reasons, assisting vulnerable persons, persons in a precarious situation or taking care of children.</string>
+    <string name="activity_attestation_create_reason_handicap">Persons with a disability and their accompanying person</string>
+    <string name="activity_attestation_create_reason_sport_animaux">Outdoor activities to practice sport individually or for leisure (collective physical activity and proximity to others are not allowed), with no change in the place of residence,  walking out with only the people living in the same household or walking out a pet, within 20km of one’s place of residence and for three hours per day</string>
+    <string name="activity_attestation_create_reason_convocation">Judicial or administrative summons; appointment to public service offices</string>
+    <string name="activity_attestation_create_reason_missions">Participating in a mission of general interest upon request from an administrative authority</string>
+    <string name="activity_attestation_create_reason_enfants">Taking children to and picking them up from school or after-school activity</string>
+
+
+    <!-- Couvre-feu -->
+    <string name="activity_attestation_create_reason_cf_travail">Commuting to and from work or university and training place, business trips that cannot be delayed</string>
+    <string name="activity_attestation_create_reason_cf_sante">Consults and provision of care that cannot be done remotely or delayed</string>
+    <string name="activity_attestation_create_reason_cf_famille">Imperative family reasons, assisting vulnerable persons, persons in a precarious situation or taking care of children</string>
+    <string name="activity_attestation_create_reason_cf_handicap">Persons with a disability and their accompanying person</string>
+    <string name="activity_attestation_create_reason_cf_convocation">Judicial or administrative summons</string>
+    <string name="activity_attestation_create_reason_cf_missions">Participating in a mission of general interest upon request from an administrative authority</string>
+    <string name="activity_attestation_create_reason_cf_transits">Air or rail transit related to long distance journeys</string>
+    <string name="activity_attestation_create_reason_cf_animaux">Walking a pet outdoors within 1km of one’s place of residence and for a brief amount of time</string>
+
+
+    <!-- Reasons display name -->
+    <string name="reason_travail">Work</string>
+    <string name="reason_sante">Health</string>
+    <string name="reason_famille">Family</string>
+    <string name="reason_handicap">Handicap</string>
+    <string name="reason_convocation">Convocation</string>
+    <string name="reason_missions">Missions</string>
+    <string name="reason_transits">Transits</string>
+    <string name="reason_animaux">Animals</string>
+    <string name="reason_sport_animaux">Sport and animals</string>
+    <string name="reason_enfants">Children</string>
+    <string name="reason_achats">Shopping, culture and religion</string>
+
+    <!-- Attestation types -->
+    <string name="attestation_type_confinement_shortname">Lockdown</string>
+    <string name="attestation_type_couvrefeu_shortname">Curfew</string>
+    <string name="attestation_type_confinement">Derogating movement Lockdown</string>
+    <string name="attestation_type_couvrefeu">Derogating movement Curfew</string>
+    <string name="attestation_type_confinement_extra">Version of 28/11/2020</string>
+    <string name="attestation_type_couvrefeu_extra">Version of 15/12/2020\nValid between: 20h and 6h</string>
 
 </resources>

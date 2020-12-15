@@ -62,5 +62,5 @@
 
         android:layout_centerVertical="true"
         android:background="@drawable/ic_baseline_delete_36"
-        android:text="@string/delete_profile" />
+        android:text="@string/fragment_attestation_delete_alt" />
 </RelativeLayout>
