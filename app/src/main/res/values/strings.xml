@@ -62,7 +62,7 @@
     <string name="activity_about_github">Source code:</string>
     <string name="activity_about_credits_title">Used libraries :</string>
     <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.  The use of this application must be done with due care and is the responsibility of the user.  In accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
-
+    <string name="activity_about_version">Version: %1$s\n\nUsed space: %2$s</string>
 
     <string name="activity_about_credits" translatable="false">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
     <string name="activity_about_github_link" translatable="false"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
@@ -72,19 +72,18 @@
     <!-- Attestations fragment -->
     <string name="fragment_attestations_delete_title">Are you sure you want to remove this certificate?</string>
     <string name="fragment_attestations_title">You do not have any certificates. Press the pencil to create one.</string>
-    <string name="fragment_attestation_reasons">Reasons: %1$s (%2$s)</string>
-    <string name="fragment_attestation_reason">Reason: %1$s (%2$s)</string>
-    <string name="fragment_attestation_date">Valid from %1$s %2$s</string>
     <string name="fragment_delete_success">Supression successful!</string>
     <string name="fragment_attestation_delete_alt">Delete this certificate</string>
+    <string name="fragment_attestation_details">Type: %1$s\nCreation date: %2$s at %3$s\nLast name: %4$s\nFirst name: %5$s\nBirth date: %6$s in %7$s\nAddress: %8$s\nExit date: %9$s at %10$s\nReasons: %11$s</string>
+    <string name="fragment_attestation_details_clone">Clone</string>
+    <string name="fragment_attestation_name">Certificate of %1$s</string>
 
     <!-- Profiles fragment -->
     <string name="fragment_profiles_delete_title">Are you sure you want to delete this profile?</string>
     <string name="fragment_profiles_default">This profile has been set by default!</string>
     <string name="fragment_profile_name_default">%1$s (By default)</string>
-    <string name="fragment_profile_birth">Born on %1$s in %2$s</string>
+    <string name="fragment_profile_birth">%1$s in %2$s</string>
     <string name="fragment_profiles_empty">You have no profile. Press + to create one.</string>
-    <string name="fragment_profile_delete_alt">Delete this profile</string>
 
     <!-- Attestation Create Activity -->
     <string name="attestation_create_failed">An error occurred during the creation of the certificate. This is probably due to the presence of invalid characters in the profile.</string>
@@ -114,7 +113,6 @@
     <string name="activity_attestation_create_reason_sport_animaux">Outdoor activities to practice sport individually or for leisure (collective physical activity and proximity to others are not allowed), with no change in the place of residence,  walking out with only the people living in the same household or walking out a pet, within 20km of one’s place of residence and for three hours per day</string>
     <string name="activity_attestation_create_reason_convocation">Judicial or administrative summons; appointment to public service offices</string>
     <string name="activity_attestation_create_reason_missions">Participating in a mission of general interest upon request from an administrative authority</string>
-    <string name="activity_attestation_create_reason_enfants">Taking children to and picking them up from school or after-school activity</string>
 
 
     <!-- Couvre-feu -->

@@ -1,5 +1,6 @@
 package fr.reniti.generator.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,13 +18,17 @@ import androidx.fragment.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Logger;
 
+import fr.reniti.generator.activities.AttestationGenerationActivity;
 import fr.reniti.generator.activities.AttestationViewActivity;
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.Profile;
+import fr.reniti.generator.utils.Utils;
 
 public class AttestationsFragment extends Fragment {
 
@@ -56,22 +61,12 @@ public class AttestationsFragment extends Fragment {
             {
                 View attestationInfosView = getLayoutInflater().inflate(R.layout.attestation_infos, (ViewGroup) fragmentView, false);
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText("Attestation de " + attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname());
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText(getString(R.string.fragment_attestation_name, attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname()));
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_common)).setText(getString(R.string.fragment_attestation_date, attestation.getDatesortie(),attestation.getHeuresortie()));
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_date)).setText(attestation.getDatesortie());
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_time)).setText(attestation.getHeuresortie());
 
-                if(attestation.getReasons().length <= 1)
-                {
-
-                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText(getString(R.string.fragment_attestation_reason, attestation.getReasonsString(getContext()), getString(attestation.getType().getShortName())));
-
-
-                } else {
-                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs)).setText(getString(R.string.fragment_attestation_reasons, attestation.getReasonsString(getContext()), getString(attestation.getType().getShortName())));
-
-                }
-
-
+                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(getContext()) + " (" + getString(attestation.getType().getShortName()) + ")");
 
                 attestationInfosView.setOnClickListener(v -> {
 
@@ -123,6 +118,40 @@ public class AttestationsFragment extends Fragment {
                     }
                 });
 
+                attestationInfosView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("DETAILS");
+
+                        StringBuilder message = new StringBuilder();
+                        Date creationDate = new Date(attestation.getCreatedAt());
+
+                        Profile profile = attestation.getProfile();
+
+                        builder.setMessage(getString(R.string.fragment_attestation_details, getString(attestation.getType().getShortName()), Utils.DATE_FORMAT.format(creationDate), Utils.HOUR_FORMAT.format(creationDate), profile.getLastname(), profile.getFirstname(), profile.getBirthday(), profile.getPlaceofbirth(), profile.getAddress(), attestation.getDatesortie(), attestation.getHeuresortie(), attestation.getReasonsString(getContext())));
+                        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+
+                        });
+
+                        builder.setNeutralButton(R.string.fragment_attestation_details_clone, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent test = new Intent(getActivity(), AttestationGenerationActivity.class);
+                                test.putExtra("attestation_uuid", attestation.getUuid());
+                                startActivityForResult(test, 2);
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.setOnShowListener(a -> {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getActivity().getResources().getColor(R.color.textColor));
+                        });
+                        dialog.show();
+                        return false;
+                    }
+                });
                 profilesContainer.addView(attestationInfosView);
             }
         } else {

@@ -77,6 +77,21 @@ public class StorageManager {
         }
     }
 
+    public String calcUsedSpace()
+    {
+        double size = 0;
+
+        for(File f : baseDirectory.listFiles())
+        {
+            if(f.isFile())
+                size += f.length();
+        }
+
+
+
+        return size < 100000 ? (String.format("%.2g", size /1000) + " ko") : (String.format("%.2g", size / 1000000) + " mo") ;
+    }
+
     public void removeFile(String name)
     {
         File f = new File(baseDirectory + "/" + name);

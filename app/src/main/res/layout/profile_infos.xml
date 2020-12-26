@@ -26,33 +26,69 @@
     android:layout_marginBottom="1dp"
          />
 
-    <TextView
-        android:layout_below="@id/profile_infos_name"
+    <RelativeLayout
         android:id="@+id/profile_infos_birth"
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_infos_name"
+        android:orientation="horizontal"
         android:paddingRight="@dimen/fragment_text_right_margin"
 
-        android:layout_width="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cake_22"
+            android:id="@+id/profile_infos_icon_birth"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+
+
+            android:id="@+id/profile_infos_birth_text"
+            android:layout_toEndOf="@id/profile_infos_icon_birth"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/01/1970 à Caen"
+            android:theme="@style/Theme.AttestationsGenerator.CommonText"
+            />
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Né(e) birstdate à birstplace"
-
-        android:theme="@style/Theme.AttestationsGenerator.CommonText"
-        />
-
-    <TextView
         android:layout_below="@id/profile_infos_birth"
-        android:id="@+id/profile_infos_location"
-
+        android:orientation="horizontal"
         android:paddingRight="@dimen/fragment_text_right_margin"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="address zipcode city"
+        >
 
-        android:theme="@style/Theme.AttestationsGenerator.CommonText"
-        />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_house_22"
+            android:id="@+id/profile_infos_icon_address"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
 
 
+            android:id="@+id/profile_infos_address_text"
+            android:layout_toEndOf="@id/profile_infos_icon_address"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:theme="@style/Theme.AttestationsGenerator.CommonText"
+            />
+
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/profile_infos_delete_btn"
