@@ -91,7 +91,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/attestation_infos_common"
-        android:id="@+id/attestation_infos_motifs"
         android:orientation="horizontal"
         android:paddingRight="@dimen/fragment_text_right_margin">
 

@@ -63,6 +63,7 @@
     <string name="activity_about_credits_infos">Aucune donnée n\'est transmise à un tiers ou via internet lors de l\'utilisation de cette application.
         L\'utilisation de cette application doit se faire à bon escient et est à la responsabilité de l\'utilisateur.
         Conformément à la norme les QR Codes générés contiennent la date et l\'heure de création de l\'attestation.</string>
+    <string name="activity_about_version">Version: %1$s\n\nEspace utilisé: %2$s</string>
 
 
     <!-- Attestations fragment -->

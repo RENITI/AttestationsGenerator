@@ -34,10 +34,9 @@ public class AboutActivity extends AppCompatActivity {
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(this.getPackageName(), 0);
 
-            ((TextView) findViewById(R.id.activity_about_version)).setText("Version: " + pInfo.versionName);
+            ((TextView) findViewById(R.id.activity_about_version)).setText(getString(R.string.activity_about_version, pInfo.versionName, StorageManager.getInstance().calcUsedSpace()));
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            ((TextView) findViewById(R.id.activity_about_version)).setText("Version: Inconnue");
         }
 
         ((TextView) findViewById(R.id.activity_about_credits)).setMovementMethod(LinkMovementMethod.getInstance());

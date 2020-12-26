@@ -60,7 +60,6 @@
 
 
     <RelativeLayout
-        android:id="@+id/profile_infos_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_infos_birth"
