@@ -3,6 +3,8 @@ Gérer facilement ses attestations de sortie.
 
 Intègre un système de profils afin d'enregistrer les informations de base d'une personne.
 
+https://play.google.com/store/apps/details?id=fr.reniti.generator
+
 # Projets utilisées :
 - GSON https://github.com/google/gson
 - PdfBox-Android https://github.com/TomRoush/PdfBox-Android
