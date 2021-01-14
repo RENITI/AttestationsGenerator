@@ -61,7 +61,7 @@
     <string name="activity_about_switch_deletewarning">Deactivate confirmation before deletion</string>
     <string name="activity_about_github">Source code:</string>
     <string name="activity_about_credits_title">Used libraries :</string>
-    <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.  The use of this application must be done with due care and is the responsibility of the user.  In accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
+    <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.\n\nThe use of this application must be done with due care and is the responsibility of the user.\n\nIn accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
     <string name="activity_about_version">Version: %1$s\n\nUsed space: %2$s</string>
 
     <string name="activity_about_credits" translatable="false">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
@@ -122,7 +122,7 @@
     <string name="activity_attestation_create_reason_cf_handicap">Persons with a disability and their accompanying person</string>
     <string name="activity_attestation_create_reason_cf_convocation">Judicial or administrative summons</string>
     <string name="activity_attestation_create_reason_cf_missions">Participating in a mission of general interest upon request from an administrative authority</string>
-    <string name="activity_attestation_create_reason_cf_transits">Air or rail transit related to long distance journeys</string>
+    <string name="activity_attestation_create_reason_cf_transits">Air, rail or bus transit related to long distance journeys</string>
     <string name="activity_attestation_create_reason_cf_animaux">Walking a pet outdoors within 1km of one’s place of residence and for a brief amount of time</string>
 
 
@@ -145,6 +145,7 @@
     <string name="attestation_type_confinement">Derogating movement Lockdown</string>
     <string name="attestation_type_couvrefeu">Derogating movement Curfew</string>
     <string name="attestation_type_confinement_extra">Version of 28/11/2020</string>
-    <string name="attestation_type_couvrefeu_extra">Version of 15/12/2020\nValid between: 20h and 6h</string>
+    <string name="attestation_type_couvrefeu_extra">Version of 15/12/2020\nValid between: 18h and 6h</string>
+    <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>
 
 </resources>

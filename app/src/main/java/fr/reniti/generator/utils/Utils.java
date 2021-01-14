@@ -44,7 +44,7 @@ public class Utils {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat HOUR_FORMAT = new SimpleDateFormat("HH:mm");
-    public static final Reason[] DEFAULT_REASONS = new Reason[] {Reason.ACHATS, Reason.TRAVAIL, Reason.SPORT_ANIMAUX};
+    //public static final Reason[] DEFAULT_REASONS = new Reason[] {Reason.ACHATS, Reason.TRAVAIL, Reason.SPORT_ANIMAUX};
 
 
     public static int dpToPx(int dp) {
@@ -133,43 +133,13 @@ public class Utils {
             information.setKeywords("covid19,covid-19,attestation,déclaration,déplacement,officielle,gouvernement");
 
             PDPage page = document.getPage(0);
-
-            /*
-            USELESS WITH THIS NEW PDF
-            PDDocumentCatalog docCatalog = document.getDocumentCatalog();
-
-            PDAcroForm acroForm = docCatalog.getAcroForm();
-
-            if(acroForm != null) {
-                for (PDField field : acroForm.getFields()) {
-                    field.setReadOnly(true);
-                    field.setNoExport(true);
-                }
-                acroForm.setNeedAppearances(true);
-                docCatalog.setAcroForm(acroForm);
-            }*/
             PDPageContentStream content = new PDPageContentStream(document, page, true, true);
 
             Profile profile = attestation.getProfile();
 
-           /* content.setNonStrokingColor(0, 0, 0); //black text
-
-            for(Reason r : Reason.values())
-            {
-                content.setNonStrokingColor(0, 0, 0);
-                content.addRect(56, r.getPdfPosY()-2, 14, 14);
-                content.fill();
-
-                content.setNonStrokingColor(255, 255, 255);
-                content.addRect(57, r.getPdfPosY()-1, 12, 12);
-                content.fill();
-            }*/
-
             content.setNonStrokingColor(0, 0, 0);
 
-
             content = Utils.drawText(content, type.getIdentityPos(), profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
-
             content = Utils.drawText(content, type.getBirthDayPos(), profile.getBirthday(), 11, pdFont);
             content = Utils.drawText(content, type.getBirthPlacePos(), profile.getPlaceofbirth(), 11, pdFont);
             content = Utils.drawText(content, type.getCompleteAdressPos(), profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);

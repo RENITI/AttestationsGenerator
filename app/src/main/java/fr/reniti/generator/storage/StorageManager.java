@@ -47,18 +47,6 @@ public class StorageManager {
         this.profilesFile = new File(baseDirectory + "/profiles.json");
         this.attestationsFile = new File(baseDirectory + "/attestations.json");
 
-        /*
-        DEBUG ONLY
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                Logger.getGlobal().info("attestations.json => " + new String(Files.readAllBytes(Paths.get(attestationsFile.toURI())), StandardCharsets.UTF_8));
-                Logger.getGlobal().info("profiles.json => " + new String(Files.readAllBytes(Paths.get(profilesFile.toURI())), StandardCharsets.UTF_8));
-            }
-        }catch (Exception E)
-        {
-
-        }*/
-
         try {
             reloadProfiles();
             reloadAttestations();
@@ -87,9 +75,7 @@ public class StorageManager {
                 size += f.length();
         }
 
-
-
-        return size < 100000 ? (String.format("%.2g", size /1000) + " ko") : (String.format("%.2g", size / 1000000) + " mo") ;
+        return (size < 100000 ? (String.format("%.2g", size /1000) + " ko") : (String.format("%.2g", size / 1000000) + " mo")).replace(',', '.');
     }
 
     public void removeFile(String name)
@@ -181,8 +167,6 @@ public class StorageManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public ProfilesManager getProfilesManager() { return profilesManager; }

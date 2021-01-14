@@ -78,37 +78,15 @@ public class AttestationsManager {
             }
         }
 
-        boolean needCheck = lastReasons.size() < 3;
-
-        if(!needCheck)
+        for(Reason reason : (ArrayList<Reason>) lastReasons.clone())
         {
-            for(Reason r : lastReasons)
+            if(!reason.getRelatedType().isAvailable())
             {
-                if(r == null)
-                {
-                    needCheck = true;
-                    break;
-                }
+                lastReasons.remove(reason);
+                isValid = false;
             }
         }
 
-        if(needCheck)
-        {
-            for(Reason reason : Utils.DEFAULT_REASONS)
-            {
-                if(lastReasons.size() >= 3)
-                {
-                    break;
-                }
-
-                if(!lastReasons.contains(reason))
-                {
-                    lastReasons.add(reason);
-                }
-            }
-
-            isValid = false;
-        }
         return isValid;
     }
 

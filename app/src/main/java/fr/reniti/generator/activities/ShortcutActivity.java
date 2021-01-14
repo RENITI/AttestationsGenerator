@@ -50,6 +50,14 @@ public class ShortcutActivity extends AppCompatActivity {
             if(selectedProfile == null)
             {
                 Toast.makeText(this, R.string.activity_attestation_create_error_profile, Toast.LENGTH_SHORT).show();
+                finishAffinity();
+                return;
+            }
+
+            if(!AttestationType.getById(typeId).isAvailable())
+            {
+                Toast.makeText(this, R.string.attestation_type_not_available, Toast.LENGTH_SHORT).show();
+                finishAffinity();
                 return;
             }
 
