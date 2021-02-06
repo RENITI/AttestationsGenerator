@@ -27,17 +27,25 @@ public class AttestationsManager {
     @Expose
     private boolean disableDeleteWarning;
 
+    @Expose
+    private boolean disableNotification;
+
     public AttestationsManager()
     {
-        this(new HashMap<>(), new ArrayList<>(), false, false);
+        this(new HashMap<>(), new ArrayList<>(), false, false, false);
     }
 
-    public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons, boolean autoDelete, boolean disableDeleteWarning)
+    public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons, boolean autoDelete, boolean disableDeleteWarning, boolean disableNotification)
     {
         this.attestationsList = attestationsList;
         this.lastReasons = lastReasons;
         this.autoDelete = autoDelete;
         this.disableDeleteWarning = disableDeleteWarning;
+        this.disableNotification = disableNotification;
+    }
+
+    public boolean isDisableNotification() {
+        return disableNotification;
     }
 
     public boolean isDisableDeleteWarning() {
@@ -46,6 +54,10 @@ public class AttestationsManager {
 
     public boolean isAutoDelete() {
         return autoDelete;
+    }
+
+    public void setDisableNotification(boolean disableNotification) {
+        this.disableNotification = disableNotification;
     }
 
     public void setDisableDeleteWarning(boolean disableDeleteWarning)

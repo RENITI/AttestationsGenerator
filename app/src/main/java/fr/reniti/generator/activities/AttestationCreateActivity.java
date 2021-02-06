@@ -2,6 +2,11 @@ package fr.reniti.generator.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
@@ -22,6 +27,8 @@ import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.widget.CompoundButtonCompat;
 
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
@@ -30,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import fr.reniti.generator.MainActivity;
@@ -44,6 +52,9 @@ import fr.reniti.generator.storage.models.Reason;
 import fr.reniti.generator.utils.Utils;
 
 public class AttestationCreateActivity extends AppCompatActivity {
+
+    public static int NOTIFICATION_ID  = 1459;
+    public static final String NOTIFICATION_GROUP = "fr.reniti.generator.CREATE_NOTIFICATION";
 
     private Profile selectedProfile = null;
     private AttestationType selectedType = null;
@@ -78,8 +89,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
-
         EditText time = findViewById(R.id.activity_attestation_create_input_heuresortie);
         time.addTextChangedListener(new TimeFieldWatcher(time, Utils.HOUR_FORMAT.format(d)));
 
@@ -105,7 +114,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     }
                  });
                 profileSelect.addView(radio);
-
 
                 if(profile.getUuid().equals(defaultProfileUUID))
                 {
@@ -225,8 +233,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
             }
         }
 
-
-
         if (reasons.size() <= 0) {
             setWorking(false);
             Toast.makeText(this, R.string.activity_attestation_create_error_reasons, Toast.LENGTH_LONG).show();
@@ -252,7 +258,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
             finishAffinity();
         } else {
 
-
             Thread thread = new Thread(() -> {
                 buildAttestation(this, selectedProfile, datesortie.toString(), heuresortie.toString(), reasons.toArray(new Reason[0]), false);
             });
@@ -272,8 +277,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
             if(reason.getRelatedType() == selectedType)
             {
                 CheckBox checkBox = new CheckBox(this);
-
-
 
                 LinearLayout.LayoutParams checkBoxLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 checkBoxLayoutParams.setMargins(Utils.dpToPx(16), Utils.dpToPx(6) ,Utils.dpToPx(16), 0);
@@ -305,6 +308,59 @@ public class AttestationCreateActivity extends AppCompatActivity {
                 StorageManager.getInstance().getAttestationsManager().addAttestationAndSave(attestation);
                 Utils.updateShortcuts(activity, true);
 
+
+               if(!StorageManager.getInstance().getAttestationsManager().isDisableNotification())
+               {
+                   String notificationChannelId = null;
+
+                   if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                       NotificationChannel channel = new NotificationChannel("ATTESTATIONS_GENERATOR", "Attestations", NotificationManager.IMPORTANCE_HIGH);
+                       NotificationManager notificationManager =
+                               (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+                       notificationManager.createNotificationChannel(channel);
+
+                       channel.setGroup(NOTIFICATION_GROUP);
+
+                       notificationChannelId = channel.getId();
+                   }
+
+                   String title = activity.getString(R.string.notification_title, profile.getFirstname() + " " + profile.getLastname());
+
+                   NotificationCompat.Builder builder = new NotificationCompat.Builder(activity, notificationChannelId);
+                   builder.setSmallIcon(R.mipmap.ic_launcher);
+                   builder.setContentTitle(title);
+                   builder.setGroup(NOTIFICATION_GROUP);
+                   builder.setContentText(activity.getString(R.string.notification_short_desc));
+                   builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                   builder.setAutoCancel(true);
+
+                   NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+                   bigTextStyle.setBigContentTitle(title);
+                   bigTextStyle.setSummaryText("");
+                   bigTextStyle.bigText(activity.getString(R.string.notification_long_desc, attestation.getReasons().length > 1 ? "s" : "", attestation.getReasonsString(activity), attestation.getDatesortie(), attestation.getHeuresortie(),  Utils.DATE_FORMAT.format(attestation.getCreatedAt()), Utils.HOUR_FORMAT.format(attestation.getCreatedAt())));
+
+                   builder.setStyle(bigTextStyle);
+
+                   Intent notificationIntent = new Intent(activity, AttestationViewActivity.class);
+                   notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                   notificationIntent.putExtra("attestation_uuid", attestation.getUuid());
+                   PendingIntent pendingNotificationIntent = PendingIntent.getActivity(activity, 0, notificationIntent, 0);
+
+                   builder.setContentIntent(pendingNotificationIntent);
+
+                   Notification summaryNotification =
+                           new NotificationCompat.Builder(activity, notificationChannelId)
+                                   .setContentTitle(activity.getString(R.string.tab_certificates))
+                                   .setSmallIcon(R.mipmap.ic_launcher)
+                                   .setGroup(NOTIFICATION_GROUP)
+                                   .setGroupSummary(true)
+                                   .build();
+
+                   NotificationManagerCompat notificationManager = NotificationManagerCompat.from(activity);
+                   notificationManager.notify(NOTIFICATION_ID++, builder.build());
+                   notificationManager.notify(1458, summaryNotification);
+               }
+
                 if (!shortcut) {
                     Intent intent = new Intent(activity, MainActivity.class);
                     intent.putExtra("snackbar_message", R.string.attestation_create_success);
@@ -316,10 +372,7 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                     if(reasons.length == 1)
                     {
-
                         Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success, profile.getFirstname() + " " + profile.getLastname(), activity.getString(reasons[0].getDisplayName()) + " (" + activity.getString(reasons[0].getRelatedType().getShortName()) + ")"), Toast.LENGTH_LONG).show();
-                        //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec le motif " + reasons[0].getDisplayName() + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
-
                     }else {
 
                         StringBuilder reasonsStr = new StringBuilder();
@@ -329,7 +382,6 @@ public class AttestationCreateActivity extends AppCompatActivity {
                             reasonsStr.append(", " + activity.getString(reason.getDisplayName()));
                         }
                         Toast.makeText(activity, activity.getString(R.string.activity_attestation_create_success2, profile.getFirstname() + " " + profile.getLastname(), reasonsStr.substring(2) + " (" + activity.getString(reasons[0].getRelatedType().getShortName()) + ")"), Toast.LENGTH_LONG).show();
-                        //Toast.makeText(activity, "Une attestation a été créé pour " + profile.getFirstname() + " " + profile.getLastname() + " avec les motifs " + reasonsStr.substring(2) + " (" + reasons[0].getRelatedType().getShortName() + ")", Toast.LENGTH_LONG).show();
                     }
                 }
             } else {

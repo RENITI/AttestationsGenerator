@@ -59,6 +59,7 @@
     <string name="activity_about_title">Settings</string>
     <string name="activity_about_switch_autodelete">Automatically delete certificates created more than 24 hours ago</string>
     <string name="activity_about_switch_deletewarning">Deactivate confirmation before deletion</string>
+    <string name="activity_about_switch_notification">Disable notification when creating a certificate.</string>
     <string name="activity_about_github">Source code:</string>
     <string name="activity_about_credits_title">Used libraries :</string>
     <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.\n\nThe use of this application must be done with due care and is the responsibility of the user.\n\nIn accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
@@ -103,6 +104,11 @@
     <string name="activity_attestation_create_error_profile">No profiles have been selected!</string>
     <string name="activity_attestation_create_error_datesortie">The exit date must be in the form: dd:mm:yyyyy</string>
     <string name="activity_attestation_create_error_heuresortie">The exit time must be in the form: hh:mm</string>
+
+    <!-- Notifications -->
+    <string name="notification_title">Certificate of %1$s</string>
+    <string name="notification_short_desc">Tap to display</string>
+    <string name="notification_long_desc">Reason%1$s: %2$s\nExit date: %3$s at %4$s\nCreation date: %5$s at %6$s</string>
 
     <!-- Confinement -->
     <string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>

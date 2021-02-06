@@ -31,6 +31,11 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.activity_about_title);
 
+        if(StorageManager.getInstance() == null)
+        {
+            new StorageManager(this);
+        }
+
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(this.getPackageName(), 0);
 
@@ -72,6 +77,19 @@ public class AboutActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 StorageManager instance = StorageManager.getInstance();
                 instance.getAttestationsManager().setDisableDeleteWarning(isChecked);
+                instance.saveAttestations();
+            }
+        });
+
+        Switch notificationDisable = (Switch) findViewById(R.id.activity_about_layout_settings_notification);
+
+        notificationDisable.setChecked(StorageManager.getInstance().getAttestationsManager().isDisableNotification());
+
+        notificationDisable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                StorageManager instance = StorageManager.getInstance();
+                instance.getAttestationsManager().setDisableNotification(isChecked);
                 instance.saveAttestations();
             }
         });

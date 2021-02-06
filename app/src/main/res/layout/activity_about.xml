@@ -64,6 +64,18 @@
                 android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"/>
 
 
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_about_layout_settings_notification"
+                android:layout_below="@id/activity_about_layout_settings_deletewarning"
+                android:text="@string/activity_about_switch_notification"
+                android:layout_marginTop="16dip"
+                android:layout_marginHorizontal="16dip"
+                android:textStyle="bold"
+                android:theme="@style/Theme.AttestationsGenerator.ProfileEditInput"/>
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +85,7 @@
                 android:id="@+id/activity_about_infos_r"
                 android:text="@string/activity_about_credits_infos"
 
-                android:layout_below="@id/activity_about_layout_settings_deletewarning"
+                android:layout_below="@id/activity_about_layout_settings_notification"
                 android:layout_marginTop="16dip"
                 android:layout_marginHorizontal="16dip"
                 android:textStyle="normal"

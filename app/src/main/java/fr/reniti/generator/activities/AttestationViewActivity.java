@@ -57,6 +57,10 @@ public class AttestationViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
+        if(StorageManager.getInstance() == null)
+        {
+            new StorageManager(this);
+        }
 
         if(!intent.hasExtra("attestation_uuid")) {
 
