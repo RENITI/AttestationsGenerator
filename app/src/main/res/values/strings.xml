@@ -109,6 +109,7 @@
     <string name="notification_title">Certificate of %1$s</string>
     <string name="notification_short_desc">Tap to display</string>
     <string name="notification_long_desc">Reason%1$s: %2$s\nExit date: %3$s at %4$s\nCreation date: %5$s at %6$s</string>
+    <string name="notification_channel_name">Certificate creation</string>
 
     <!-- Confinement -->
     <string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>

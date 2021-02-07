@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -54,7 +55,7 @@ import fr.reniti.generator.utils.Utils;
 public class AttestationCreateActivity extends AppCompatActivity {
 
     public static int NOTIFICATION_ID  = 1459;
-    public static final String NOTIFICATION_GROUP = "fr.reniti.generator.CREATE_NOTIFICATION";
+    public static final String NOTIFICATION_GROUP_ID = "fr.reniti.generator.CREATE_NOTIFICATION";
 
     private Profile selectedProfile = null;
     private AttestationType selectedType = null;
@@ -311,27 +312,30 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
                if(!StorageManager.getInstance().getAttestationsManager().isDisableNotification())
                {
-                   String notificationChannelId = null;
 
-                   if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                       NotificationChannel channel = new NotificationChannel("ATTESTATIONS_GENERATOR", "Attestations", NotificationManager.IMPORTANCE_HIGH);
-                       NotificationManager notificationManager =
-                               (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+                   NotificationManager notificationManager =
+                           (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+
+                   if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+                   {
+                       notificationManager.createNotificationChannelGroup(new NotificationChannelGroup(NOTIFICATION_GROUP_ID, activity.getString(R.string.tab_certificates)));
+
+                       NotificationChannel channel = new NotificationChannel(NOTIFICATION_GROUP_ID, activity.getString(R.string.notification_channel_name), NotificationManager.IMPORTANCE_HIGH);
+                       channel.setImportance(NotificationManager.IMPORTANCE_LOW);
+                       channel.setGroup(NOTIFICATION_GROUP_ID);
                        notificationManager.createNotificationChannel(channel);
-
-                       channel.setGroup(NOTIFICATION_GROUP);
-
-                       notificationChannelId = channel.getId();
                    }
 
                    String title = activity.getString(R.string.notification_title, profile.getFirstname() + " " + profile.getLastname());
 
-                   NotificationCompat.Builder builder = new NotificationCompat.Builder(activity, notificationChannelId);
+                   NotificationCompat.Builder builder = new NotificationCompat.Builder(activity, NOTIFICATION_GROUP_ID);
                    builder.setSmallIcon(R.mipmap.ic_launcher);
                    builder.setContentTitle(title);
-                   builder.setGroup(NOTIFICATION_GROUP);
+                   builder.setGroup(NOTIFICATION_GROUP_ID);
                    builder.setContentText(activity.getString(R.string.notification_short_desc));
-                   builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                   builder.setPriority(NotificationCompat.PRIORITY_MIN);
                    builder.setAutoCancel(true);
 
                    NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
@@ -349,16 +353,17 @@ public class AttestationCreateActivity extends AppCompatActivity {
                    builder.setContentIntent(pendingNotificationIntent);
 
                    Notification summaryNotification =
-                           new NotificationCompat.Builder(activity, notificationChannelId)
+                           new NotificationCompat.Builder(activity, NOTIFICATION_GROUP_ID)
                                    .setContentTitle(activity.getString(R.string.tab_certificates))
                                    .setSmallIcon(R.mipmap.ic_launcher)
-                                   .setGroup(NOTIFICATION_GROUP)
+                                   .setGroup(NOTIFICATION_GROUP_ID)
                                    .setGroupSummary(true)
+                                   .setPriority(NotificationCompat.PRIORITY_LOW)
                                    .build();
 
-                   NotificationManagerCompat notificationManager = NotificationManagerCompat.from(activity);
-                   notificationManager.notify(NOTIFICATION_ID++, builder.build());
-                   notificationManager.notify(1458, summaryNotification);
+                   NotificationManagerCompat managerCompat = NotificationManagerCompat.from(activity);
+                   managerCompat.notify(NOTIFICATION_ID++, builder.build());
+                   managerCompat.notify(1458, summaryNotification);
                }
 
                 if (!shortcut) {
