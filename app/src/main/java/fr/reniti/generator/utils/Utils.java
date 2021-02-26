@@ -44,8 +44,6 @@ public class Utils {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
     public static final SimpleDateFormat HOUR_FORMAT = new SimpleDateFormat("HH:mm");
-    //public static final Reason[] DEFAULT_REASONS = new Reason[] {Reason.ACHATS, Reason.TRAVAIL, Reason.SPORT_ANIMAUX};
-
 
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
@@ -157,12 +155,12 @@ public class Utils {
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-            Bitmap smallQr = attestation.getQRCode(92);
+            Bitmap smallQr = attestation.getQRCode(82);
             smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             PDImageXObject pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
             outputStream.close();
 
-            content.drawImage(pdImage,page.getMediaBox().getWidth() - 156, 25, 92, 92);
+            content.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 660, 82, 82);
 
             content.close();
 

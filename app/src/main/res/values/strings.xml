@@ -112,15 +112,18 @@
     <string name="notification_channel_name">Certificate creation</string>
 
     <!-- Confinement -->
-    <string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>
+    <!--<string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>
     <string name="activity_attestation_create_reason_achats">Running necessary errands to purchase items for professional activity, or basic commodities  available in the businesses allowed to provide service, order withdrawal or home deliveries</string>
     <string name="activity_attestation_create_reason_sante">Consults and provision of care that cannot be done remotely, medication purchase</string>
     <string name="activity_attestation_create_reason_famille">Imperative family reasons, assisting vulnerable persons, persons in a precarious situation or taking care of children.</string>
     <string name="activity_attestation_create_reason_handicap">Persons with a disability and their accompanying person</string>
     <string name="activity_attestation_create_reason_sport_animaux">Outdoor activities to practice sport individually or for leisure (collective physical activity and proximity to others are not allowed), with no change in the place of residence,  walking out with only the people living in the same household or walking out a pet, within 20km of one’s place of residence and for three hours per day</string>
     <string name="activity_attestation_create_reason_convocation">Judicial or administrative summons; appointment to public service offices</string>
-    <string name="activity_attestation_create_reason_missions">Participating in a mission of general interest upon request from an administrative authority</string>
+    <string name="activity_attestation_create_reason_missions">Participating in a mission of general interest upon request from an administrative authority</string>-->
 
+
+
+    <!-- TODO / Verifier les traductions -->
 
     <!-- Couvre-feu -->
     <string name="activity_attestation_create_reason_cf_travail">Commuting to and from work or university and training place, business trips that cannot be delayed</string>
@@ -131,6 +134,18 @@
     <string name="activity_attestation_create_reason_cf_missions">Participating in a mission of general interest upon request from an administrative authority</string>
     <string name="activity_attestation_create_reason_cf_transits">Air, rail or bus transit related to long distance journeys</string>
     <string name="activity_attestation_create_reason_cf_animaux">Walking a pet outdoors within 1km of one’s place of residence and for a brief amount of time</string>
+
+    <!-- Confinement Week end -->
+    <string name="activity_attestation_create_reason_conf_courses">Trips to make purchases of supplies necessary for professional activity, purchases of basic necessities, withdrawals of orders, home deliveries, as well as for removals</string>
+    <string name="activity_attestation_create_reason_conf_sport">Short journeys, within the limit of one hour per day and within a maximum radius of five kilometres around the home, linked either to the individual physical activity of the persons, excluding any collective sporting practice and any proximity with other persons, or to a walk with only the persons grouped together in the same home</string>
+    <string name="activity_attestation_create_reason_conf_rassemblements">Travel to or from a place of worship, participation in gatherings, meetings or activities on the public highway or in a place open to the public which are not prohibited under Article 3</string>
+    <string name="activity_attestation_create_reason_conf_demarches">Travel to go to a public service or to a legal professional\'s office for an act or procedure that cannot be carried out remotely</string>
+
+    <string name="reason_courses">Shopping</string>
+    <string name="reason_sport">Sport</string>
+    <string name="reason_rassemblements">Authorised meetings</string>
+    <string name="reason_demarches">Administrative or legal steps</string>
+
 
 
     <!-- Reasons display name -->
@@ -152,7 +167,10 @@
     <string name="attestation_type_confinement">Derogating movement Lockdown</string>
     <string name="attestation_type_couvrefeu">Derogating movement Curfew</string>
     <string name="attestation_type_confinement_extra">Version of 28/11/2020</string>
-    <string name="attestation_type_couvrefeu_extra">Version of 15/12/2020\nValid between: 18h and 6h</string>
+    <string name="attestation_type_couvrefeu_extra">Version of 27/02/2021\nValid between: 18h and 6h</string>
     <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>
 
+    <string name="attestation_type_confinement_weekend_shortname">Weekend Lockdown</string>
+    <string name="attestation_type_confinement_weekend">Weekend Lockdown</string>
+    <string name="attestation_type_confinement_weekend_extra">Valid only from 6 a.m. to 6 p.m. in areas subject to weekend lockdown.</string>
 </resources>

@@ -108,7 +108,7 @@
     <string name="notification_channel_name">Création d\'une attestation</string>
 
     <!-- Confinement -->
-    <string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation ; déplacements professionnels ne pouvant être différés ; déplacements pour un concours ou un examen.</string>
+    <!--<string name="activity_attestation_create_reason_travail">Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle ou un établissement d’enseignement ou de formation ; déplacements professionnels ne pouvant être différés ; déplacements pour un concours ou un examen.</string>
     <string name="activity_attestation_create_reason_achats">Déplacements pour se rendre dans un établissement culturel autorisé ou un lieu de culte ; déplacements pour effectuer des achats de biens, pour des services dont la fourniture est autorisée, pour les retraits de commandes et les livraisons à domicile.</string>
     <string name="activity_attestation_create_reason_sante">Consultations, examens et soins ne pouvant être assurés à distance et l’achat de médicaments.</string>
     <string name="activity_attestation_create_reason_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables et précaires ou la garde d\'enfants.</string>
@@ -116,16 +116,23 @@
     <string name="activity_attestation_create_reason_sport_animaux">Déplacements en plein air ou vers un lieu de plein air, sans changement du lieu de résidence, dans la limite de trois heures quotidiennes et dans un rayon maximal de vingt kilomètres autour du domicile, liés soit à l\’activité physique ou aux loisirs individuels, à l\’exclusion de toute pratique sportive collective et de toute proximité avec d\’autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</string>
     <string name="activity_attestation_create_reason_convocation">Convocation judiciaire ou administrative et pour se rendre dans un service public.</string>
     <string name="activity_attestation_create_reason_missions">Participation à des missions d\'intérêt général sur demande de l\'autorité administrative.</string>
+-->
 
     <!-- Couvre-feu -->
-    <string name="activity_attestation_create_reason_cf_travail">Déplacements entre le domicile et le lieu d\'exercice de l\'activité professionnelle ou le lieu d\'enseignement et de formation, déplacements professionnels ne pouvant être différés</string>
-    <string name="activity_attestation_create_reason_cf_animaux">Déplacements brefs, dans un rayon maximal d\'un kilomètre autour du domicile pour les besoins des animaux de compagnie</string>
-    <string name="activity_attestation_create_reason_cf_sante">Déplacements pour des consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ou pour l\'achat de produits de santé</string>
-    <string name="activity_attestation_create_reason_cf_famille">Déplacements pour motif familial impérieux, pour l\'assistance aux personnes vulnérables ou précaires ou pour la garde d\'enfants</string>
+    <string name="activity_attestation_create_reason_cf_travail">Déplacements entre le domicile et le lieu d’exercice de l\’activité professionnelle ou le lieu d\’enseignement et de formation, déplacements professionnels ne pouvant être différés</string>
+    <string name="activity_attestation_create_reason_cf_sante">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé</string>
+    <string name="activity_attestation_create_reason_cf_famille">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d\’enfants</string>
     <string name="activity_attestation_create_reason_cf_handicap">Déplacements des personnes en situation de handicap et de leur accompagnant</string>
     <string name="activity_attestation_create_reason_cf_convocation">Déplacements pour répondre à une convocation judiciaire ou administrative</string>
     <string name="activity_attestation_create_reason_cf_missions">Déplacements pour participer à des missions d\'intérêt général sur demande de l\'autorité administrative</string>
     <string name="activity_attestation_create_reason_cf_transits">Déplacements liés à des transits ferroviaires, aériens ou en bus pour des déplacements de longues distances</string>
+    <string name="activity_attestation_create_reason_cf_animaux">Déplacements brefs, dans un rayon maximal d\'un kilomètre autour du domicile pour les besoins des animaux de compagnie</string>
+
+
+    <string name="activity_attestation_create_reason_conf_courses">Déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, des achats de première nécessité, des retraits de commandes, des livraisons à domicile, ainsi que pour les déménagements</string>
+    <string name="activity_attestation_create_reason_conf_sport">Déplacements brefs, dans la limite d\'une heure quotidienne et dans un rayon maximal de cinq kilomètres autour du domicile, liés soit à l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive collective et de toute proximité avec d\'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile</string>
+    <string name="activity_attestation_create_reason_conf_rassemblements">Déplacements à destination ou en provenance d\'un lieu de culte, participation à des rassemblements, réunions ou activités sur la voie publique ou dans un lieu ouvert au public qui ne sont pas interdits en application de l\'article 3</string>
+    <string name="activity_attestation_create_reason_conf_demarches">Déplacements pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peuvent être réalisés à distance.</string>
 
 
     <!-- Reasons display name -->
@@ -133,7 +140,7 @@
     <string name="reason_sante">Santé</string>
     <string name="reason_famille">Famille</string>
     <string name="reason_handicap">Handicap</string>
-    <string name="reason_convocation">Convocation</string>
+    <string name="reason_convocation">Convocation judiciaire ou administrative</string>
     <string name="reason_missions">Missions</string>
     <string name="reason_transits">Transits</string>
     <string name="reason_animaux">Animaux</string>
@@ -142,14 +149,22 @@
     <string name="reason_achats">Achats, culture et culte</string>
 
 
+    <string name="reason_courses">Achats</string>
+    <string name="reason_sport">Activités physiques</string>
+    <string name="reason_rassemblements">Rassemblements autorisés</string>
+    <string name="reason_demarches">Démarches administratives ou juridiques</string>
     <!-- Attestation types -->
     <string name="attestation_type_confinement_shortname">Confinement</string>
     <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
     <string name="attestation_type_confinement">Déplacement dérogatoire Confinement</string>
     <string name="attestation_type_couvrefeu">Déplacement dérogatoire Couvre-feu</string>
     <string name="attestation_type_confinement_extra">Version du 28/11/2020</string>
-    <string name="attestation_type_couvrefeu_extra">Version du 15/12/2020\nValable entre : 18h et 6h</string>
+    <string name="attestation_type_couvrefeu_extra">Version du 27/02/2021\nValable entre : 18h et 6h</string>
     <string name="attestation_type_not_available">Ce type d\'attestation n\'est pas disponible pour le moment</string>
+
+    <string name="attestation_type_confinement_weekend_shortname">Confinement Week-end</string>
+    <string name="attestation_type_confinement_weekend">Confinement Week-end</string>
+    <string name="attestation_type_confinement_weekend_extra">Valable uniquement de 6h à 18h dans les territoires soumis à un confinement le week-end</string>
 
 
 

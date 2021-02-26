@@ -15,12 +15,23 @@ public enum AttestationType {
 
 
     COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "cf_certificate.pdf",
-            new PDFPos(119, 665),
-            new PDFPos(119, 645),
-            new PDFPos(312, 645),
-            new PDFPos(133, 625),
-            new PDFPos(105, 286),
-            new PDFPos(91, 267), new PDFPos(312, 267), 73);
+            new PDFPos(144, 705),
+            new PDFPos(144, 684),
+            new PDFPos(310, 684),
+            new PDFPos(148, 655),
+            /* bottomcity */
+            new PDFPos(103, 112),
+            new PDFPos(91, 95), new PDFPos(310, 95), 72),
+
+    CONFINEMENT_WEEKEND("confinement_weekend", R.string.attestation_type_confinement_weekend, R.string.attestation_type_confinement_weekend_shortname, R.string.attestation_type_confinement_weekend_extra, "cf_certificate.pdf",
+            new PDFPos(144, 705),
+            new PDFPos(144, 684),
+            new PDFPos(310, 684),
+            new PDFPos(148, 665),
+            /* bottomCity */
+            new PDFPos(103, 112),
+            /* date */
+            new PDFPos(91, 95), new PDFPos(310, 95), 72);
 
     @Expose(serialize = false, deserialize = false)
     private final String id;
