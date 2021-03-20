@@ -142,15 +142,14 @@ public class Utils {
             content = Utils.drawText(content, type.getBirthPlacePos(), profile.getPlaceofbirth(), 11, pdFont);
             content = Utils.drawText(content, type.getCompleteAdressPos(), profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
 
-            for(Reason reason : attestation.getReasons())
-            {
-                content =Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+            if(attestation.getType() == AttestationType.COUVRE_FEU) {
+                for (Reason reason : attestation.getReasons()) {
+                    content = Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+
+
+                }
             }
 
-            content = Utils.drawText(content, type.getBottomCityPos(), profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
-
-            content = Utils.drawText(content, type.getDatePos(), attestation.getDatesortie(), 11, pdFont);
-            content = Utils.drawText(content, type.getTimePos(), attestation.getHeuresortie(), 11, pdFont);
 
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -163,6 +162,25 @@ public class Utils {
             content.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 660, 82, 82);
 
             content.close();
+
+            PDPage page1 = document.getPage(1);
+            PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
+            content1.setNonStrokingColor(0, 0, 0);
+
+            //
+            //content1 = Utils.drawText(content1, type.getBottomCityPos(), profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
+            content1 = Utils.drawText(content1, type.getBottomCityPos(), profile.getCity(), 11, pdFont);
+
+            content1 = Utils.drawText(content1, type.getDatePos(), attestation.getDatesortie(), 10, pdFont);
+            content1 = Utils.drawText(content1, type.getTimePos(), attestation.getHeuresortie(), 10, pdFont);
+
+            if(attestation.getType() != AttestationType.COUVRE_FEU) {
+                for (Reason reason : attestation.getReasons()) {
+                    content1 = Utils.drawText(content1, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+                }
+            }
+
+            content1.close();
 
 
             PDPage page2 = new PDPage();
