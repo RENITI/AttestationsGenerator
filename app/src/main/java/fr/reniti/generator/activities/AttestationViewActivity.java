@@ -30,6 +30,7 @@ import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.utils.Utils;
 
 public class AttestationViewActivity extends AppCompatActivity {
@@ -133,6 +134,12 @@ public class AttestationViewActivity extends AppCompatActivity {
      */
     public void toggleQRCode()
     {
+        if(attestation.getType() == AttestationType.UNKNOWN)
+        {
+            Toast.makeText(this, R.string.attestation_type_unknown_message, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         ImageView qr = findViewById(R.id.activity_attestation_viewer_qr_image);
 
         if(state == 0)

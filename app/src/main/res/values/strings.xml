@@ -143,27 +143,40 @@
     <string name="reason_cf_animaux">Pets</string>
     <string name="activity_attestation_create_reason_cf_animaux">Walking a pet outdoors within 1km of one’s place of residence and for a brief amount of time</string>
 
-    <!-- Confinement Week end NA -->
-    <string name="activity_attestation_create_reason_conf_courses">Trips to make purchases of supplies necessary for professional activity, purchases of basic necessities, withdrawals of orders, home deliveries, as well as for removals</string>
-    <string name="activity_attestation_create_reason_conf_sport">Short journeys, within the limit of one hour per day and within a maximum radius of five kilometres around the home, linked either to the individual physical activity of the persons, excluding any collective sporting practice and any proximity with other persons, or to a walk with only the persons grouped together in the same home</string>
-    <string name="activity_attestation_create_reason_conf_rassemblements">Travel to or from a place of worship, participation in gatherings, meetings or activities on the public highway or in a place open to the public which are not prohibited under Article 3</string>
-    <string name="activity_attestation_create_reason_conf_demarches">Travel to go to a public service or to a legal professional\'s office for an act or procedure that cannot be carried out remotely</string>
 
     <!-- Confinement 20/03/2021 -->
-    <string name="reason_confinement_achats_pro">Professional purchases and home deliveries</string>
-    <string name="reason_confinement_achats_pro_desc">Déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, ou pour des livraisons à domicile</string>
-    <string name="reason_confinement_achats">Shopping</string>
-    <string name="reason_confinement_achats_desc">Déplacements pour effectuer des achats de première nécessité ou des retraits de commandes</string>
-    <string name="reason_confinement_demenagement">Moving</string>
-    <string name="reason_confinement_demenagement_desc">Déplacements liés à un déménagement résultant d\'un changement de domicile et déplacements indispensables à l\'acquisition ou à la location d’une résidence principale, insusceptibles d`\'être différés</string>
-    <string name="reason_confinement_sport">Physical activities and walking</string>
+
+    <!-- Loc -->
+    <string name="reason_confinement_sport">Activités physiques</string>
     <string name="reason_confinement_sport_desc">Déplacements dans un rayon maximal de dix kilomètres autour du domicile, liés soit à l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive collective, soit à la promenade avec les seules personnes regroupées dans un même domicile</string>
-    <string name="reason_confinement_demarches">Administrative or legal procedures</string>
-    <string name="reason_confinement_demarches_desc">Déplacements pour se rendre dans un service public pour un acte ou une démarche qui ne peuvent être réalisés à distance</string>
-    <string name="reason_confinement_culte">Worship</string>
-    <string name="reason_confinement_culte_desc">Déplacements à destination ou en provenance d\'un lieu de culte</string>
-    <string name="reason_confinement_rassemblements">Participation in authorised gatherings</string>
-    <string name="reason_confinement_rassemblements_desc">Participation à des rassemblements, réunions ou activités sur la voie publique ou dans un lieu ouvert au public qui ne sont pas interdits en application de l\'article 3</string>
+
+    <!-- Dep -->
+    <string name="reason_confinement_dep_achats">Achats</string>
+    <string name="reason_confinement_dep_achats_desc">Déplacements pour effectuer des achats de première nécessité ou des retraits de commandes</string>
+    <string name="reason_confinement_dep_enfants">Accompagnement des enfants à l’école</string>
+    <string name="reason_confinement_dep_enfants_desc">Déplacements pour emmener et aller chercher les enfants à l\’école et à l\’occasion de leurs activités péri-scolaires</string>
+    <string name="reason_confinement_dep_culte">Etablissement culturel ou lieu de culte</string>
+    <string name="reason_confinement_dep_culte_desc">Déplacements pour se rendre dans un établissement culturel (bibliothèques et médiathèques) ou un lieu de culte</string>
+    <string name="reason_confinement_dep_demarches">Démarches administratives ou juridiques</string>
+    <string name="reason_confinement_dep_demarches_desc">Déplacements pour se rendre dans un service public pour un acte ou une démarche qui ne peuvent être réalisés à distance</string>
+
+    <!-- Autres -->
+    <string name="reason_confinement_travail">Activité professionnelle, enseignement et formation, mission d\’intérêt général</string>
+    <string name="reason_confinement_travail_desc">Déplacements entre le domicile et le lieu d’exercice de l\’activité professionnelle ou le lieu d\’enseignement et de formation, déplacements professionnels ne pouvant être différés, livraisons à domicile, déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, déplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative</string>
+    <string name="reason_confinement_sante">Santé (consultations et soins)</string>
+    <string name="reason_confinement_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé</string>
+    <string name="reason_confinement_famille">Motif familial impérieux, personnes vulnérables ou précaires ou gardes d\’enfants</string>
+    <string name="reason_confinement_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d\’enfants</string>
+    <string name="reason_confinement_handicap">Situation de handicap</string>
+    <string name="reason_confinement_handicap_desc">Déplacements des personnes en situation de handicap et de leur accompagnant</string>
+    <string name="reason_confinement_convocation">Convocation judiciaire ou administrative</string>
+    <string name="reason_confinement_convocation_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, déplacements pour se rendre chez un professionnel du droit, pour un acte ou une démarche qui ne peuvent être réalisés à distance</string>
+    <string name="reason_confinement_demenagement">Déménagement</string>
+    <string name="reason_confinement_demenagement_desc">Déplacements liés à un déménagement résultant d\'un changement de domicile et déplacements indispensables à l\'acquisition ou à la location d’une résidence principale, insusceptibles d\'être différés</string>
+    <string name="reason_confinement_transit">Déplacement de transit vers les gares et les aéroports</string>
+
+    <!-- END -->
+
 
 
     <string name="reason_courses">Shopping</string>
@@ -172,15 +185,24 @@
     <string name="reason_demarches">Administrative or legal steps</string>
 
     <!-- Attestation types -->
-    <string name="attestation_type_confinement_shortname">Lockdown</string>
-    <string name="attestation_type_couvrefeu_shortname">Curfew</string>
-    <string name="attestation_type_confinement">Derogating movement Lockdown</string>
-    <string name="attestation_type_couvrefeu">Derogating movement Curfew</string>
-    <string name="attestation_type_confinement_extra">Valid only from 6am to 7pm in territories subject to reinforced measures</string>
-    <string name="attestation_type_couvrefeu_extra">Version of 20/03/2021\nValid between: 19h and 6h</string>
-    <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>
+    <string name="attestation_type_confinement_shortname">Confinement</string>
+    <string name="attestation_type_confinement">Déplacements sans limitation de distance (Journée / De 6h à 19h)</string>
+    <string name="attestation_type_confinement_extra">Valable dans les territoires soumis aux mesures renforcées</string>
 
-    <string name="attestation_type_confinement_weekend_shortname">Weekend Lockdown</string>
-    <string name="attestation_type_confinement_weekend">Weekend Lockdown</string>
-    <string name="attestation_type_confinement_weekend_extra">Valid only from 6 a.m. to 6 p.m. in areas subject to weekend lockdown.</string>
+    <string name="attestation_type_confinement_dep_shortname">Confinement (Département)</string>
+    <string name="attestation_type_confinement_dep">Déplacements au sein du département de résidence (Journée / De 6h à 19h)</string>
+    <string name="attestation_type_confinement_dep_extra">Valable dans les territoires soumis aux mesures renforcées</string>
+
+    <string name="attestation_type_confinement_loc_shortname">Confinement (10km)</string>
+    <string name="attestation_type_confinement_loc">Déplacements dans la lmite de 10km du domicile (Journée / De 6h à 19h)</string>
+    <string name="attestation_type_confinement_loc_extra">Valable dans les territoires soumis aux mesures renforcées</string>
+
+    <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
+    <string name="attestation_type_couvrefeu">Couvre-feu (De 19h à 6h)</string>
+    <string name="attestation_type_couvrefeu_extra">Dans tous les départements\nVersion du 21/03/2021</string>
+
+
+    <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>
+    <string name="attestation_type_unknown">Inconnu</string>
+    <string name="attestation_type_unknown_message">Cette attestation a été réstaurée, certaines actions ne sont pas disponibles.</string>
 </resources>

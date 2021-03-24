@@ -78,7 +78,7 @@ public class Attestation {
 
     public AttestationType getType() {
         
-        return type != null ? type : AttestationType.CONFINEMENT;
+        return type != null ? type : AttestationType.UNKNOWN;
     }
 
     public String getFileName()
@@ -166,7 +166,10 @@ public class Attestation {
         {
             if(reasons[i] == null)
             {
-                return false;
+                this.type = AttestationType.UNKNOWN;
+                this.reasons = new Reason[0];
+                break;
+               // return false;
             }
         }
         return true;

@@ -11,53 +11,79 @@ import fr.reniti.generator.utils.PDFPos;
 
 public enum AttestationType {
 
-    CONFINEMENT("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-19-03-2021.pdf",
+    UNKNOWN("unknown", R.string.attestation_type_unknown, R.string.attestation_type_unknown, R.string.attestation_type_unknown, "", null, null, null, null, null, null, null, 0),
+
+    CONFINEMENT_OTHER("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-20-03-2021.pdf",
 
 
             /* nom */
-            new PDFPos(144, 669),
+            new PDFPos(111, 516),
             /* date naissance */
-            new PDFPos(144, 653),
+            new PDFPos(111, 501),
             /* lieu naissance */
-            new PDFPos(210, 653),
+            new PDFPos(228, 501),
             /* address */
-            new PDFPos(144, 636),
+            new PDFPos(126, 487),
             /* bottomcity */
-            new PDFPos(95, 170),
+            new PDFPos(72, 99),
             /* date sortie */
-            new PDFPos(74, 155),
+            new PDFPos(72, 83),
             /* heure sortie */
-            new PDFPos(145, 155),
+            new PDFPos(310, 83),
             60),
 
-    COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "certificate-19-03-2021.pdf",
+    CONFINEMENT_DEP("confinement_dep", R.string.attestation_type_confinement_dep, R.string.attestation_type_confinement_dep_shortname, R.string.attestation_type_confinement_dep_extra, "certificate-20-03-2021.pdf",
             /* nom */
-            new PDFPos(144, 669),
+            new PDFPos(111, 516),
             /* date naissance */
-            new PDFPos(144, 653),
+            new PDFPos(111, 501),
             /* lieu naissance */
-            new PDFPos(210, 653),
+            new PDFPos(228, 501),
             /* address */
-            new PDFPos(144, 636),
+            new PDFPos(126, 487),
             /* bottomcity */
-            new PDFPos(95, 170),
+            new PDFPos(72, 99),
             /* date sortie */
-            new PDFPos(74, 155),
+            new PDFPos(72, 83),
             /* heure sortie */
-            new PDFPos(145, 155),
+            new PDFPos(310, 83),
+            60),
+
+    CONFINEMENT_LOC("confinement_loc", R.string.attestation_type_confinement_loc, R.string.attestation_type_confinement_loc_shortname, R.string.attestation_type_confinement_loc_extra, "certificate-20-03-2021.pdf",
+            /* nom */
+            new PDFPos(111, 516),
+            /* date naissance */
+            new PDFPos(111, 501),
+            /* lieu naissance */
+            new PDFPos(228, 501),
+            /* address */
+            new PDFPos(126, 487),
+            /* bottomcity */
+            new PDFPos(72, 99),
+            /* date sortie */
+            new PDFPos(72, 83),
+            /* heure sortie */
+            new PDFPos(310, 83),
             60),
 
 
-    // Plus valide
-    CONFINEMENT_WEEKEND("confinement_weekend", R.string.attestation_type_confinement_weekend, R.string.attestation_type_confinement_weekend_shortname, R.string.attestation_type_confinement_weekend_extra, "cf_certificate.pdf",
+    // Updated 21-03-2021
+    COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "certificate-20-03-2021-CF.pdf",
+            /* nom */
             new PDFPos(144, 705),
+            /* date naissance */
             new PDFPos(144, 684),
+            /* lieu naissance */
             new PDFPos(310, 684),
+            /* address */
             new PDFPos(148, 665),
-            /* bottomCity */
-            new PDFPos(103, 112),
-            /* date */
-            new PDFPos(91, 95), new PDFPos(310, 95), 72);
+            /* bottomcity */
+            new PDFPos(72, 99),
+            /* date sortie */
+            new PDFPos(72, 83),
+            /* heure sortie */
+            new PDFPos(310, 83),
+            72);
 
     @Expose(serialize = false, deserialize = false)
     private final String id;
@@ -121,15 +147,8 @@ public enum AttestationType {
 
     public boolean isAvailable()
     {
-        /*if(this == CONFINEMENT)
-        {
-            // 16 dec 2020
-            if(System.currentTimeMillis() >= 1608014770496L)
-            {
-                return false;
-            }
-        }*/
-        if(this == CONFINEMENT_WEEKEND)
+
+        if(this == UNKNOWN)
         {
             return false;
         }

@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
@@ -111,7 +112,7 @@ public class Utils {
      * @param attestation Attestation to convert
      * @param activity Instance
      */
-    public static boolean savePDF(Attestation attestation, Activity activity)
+    public static boolean savePDF(Attestation attestation, Context activity)
     {
         try {
 
@@ -142,28 +143,78 @@ public class Utils {
             content = Utils.drawText(content, type.getBirthPlacePos(), profile.getPlaceofbirth(), 11, pdFont);
             content = Utils.drawText(content, type.getCompleteAdressPos(), profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
 
-            if(attestation.getType() == AttestationType.COUVRE_FEU) {
-                for (Reason reason : attestation.getReasons()) {
-                    content = Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
 
+                for (Reason reason : attestation.getReasons()) {
+                    if(reason.getPage() == 0) {
+                        content = Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+                    }
 
                 }
+
+
+
+
+
+
+
+
+            ByteArrayOutputStream outputStream;
+            PDImageXObject pdImage;
+
+            if(document.getNumberOfPages() <= 1) {
+
+                /* Infos fin de page */
+                content = Utils.drawText(content,type.getBottomCityPos(), "Fait à "+ profile.getCity(), 11, pdFont);
+
+                content = Utils.drawText(content, type.getDatePos(), "Le " + attestation.getDatesortie(), 11, pdFont);
+                content = Utils.drawText(content, type.getTimePos(), "à " + attestation.getHeuresortie(), 11, pdFont);
+
+
+                 outputStream = new ByteArrayOutputStream();
+
+                Bitmap smallQr = attestation.getQRCode(82);
+                smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                 pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
+                outputStream.close();
+
+                content.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 107, 82, 82);
+
+                content.close();
+            } else {
+
+                content.close();
+                // Plus de 1 page
+                PDPage page1 = document.getPage(1);
+                PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
+                content1.setNonStrokingColor(0, 0, 0);
+
+
+
+                content1 = Utils.drawText(content1, type.getBottomCityPos(), "Fait à "+profile.getCity(), 11, pdFont);
+
+                content1 = Utils.drawText(content1, type.getDatePos(), "Le " + attestation.getDatesortie(), 10, pdFont);
+                content1 = Utils.drawText(content1, type.getTimePos(), "à " + attestation.getHeuresortie(), 10, pdFont);
+
+
+                for (Reason reason : attestation.getReasons()) {
+                     if(reason.getPage() == 1)
+                     {
+                        content1 = Utils.drawText(content1, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+                     }
+                }
+
+                 outputStream = new ByteArrayOutputStream();
+
+                Bitmap smallQr = attestation.getQRCode(82);
+                smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                 pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
+                outputStream.close();
+
+                content1.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 107, 82, 82);
+
+                content1.close();
             }
-
-
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-            Bitmap smallQr = attestation.getQRCode(82);
-            smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-            PDImageXObject pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
-            outputStream.close();
-
-            content.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 660, 82, 82);
-
-            content.close();
-
-            PDPage page1 = document.getPage(1);
+          /*  PDPage page1 = document.getPage(1);
             PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
             content1.setNonStrokingColor(0, 0, 0);
 
@@ -180,7 +231,7 @@ public class Utils {
                 }
             }
 
-            content1.close();
+            content1.close();*/
 
 
             PDPage page2 = new PDPage();
@@ -202,6 +253,8 @@ public class Utils {
 
         } catch (Exception e) {
             e.printStackTrace();
+
+            Logger.getGlobal().warning("ERROR =  " + e.getMessage());
             return false;
         }
         return true;

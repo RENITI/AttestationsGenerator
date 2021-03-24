@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Dimension;
@@ -32,6 +33,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.widget.CompoundButtonCompat;
 
+import com.google.gson.internal.$Gson$Preconditions;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
+import fr.reniti.generator.utils.ReasonTextToggle;
 import fr.reniti.generator.utils.Utils;
 
 public class AttestationCreateActivity extends AppCompatActivity {
@@ -283,12 +286,25 @@ public class AttestationCreateActivity extends AppCompatActivity {
                 checkBoxLayoutParams.setMargins(Utils.dpToPx(16), Utils.dpToPx(6) ,Utils.dpToPx(16), 0);
                 checkBox.setLayoutParams(checkBoxLayoutParams);
 
-                checkBox.setText(reason.getLongTextId());
+                checkBox.setText(reason.getDisplayName());
+
+                /*checkBox.setLongClickable(true);
+                checkBox.setOnLongClickListener(new ReasonTextToggle(reason));
+*/
+                checkBox.setOnCheckedChangeListener(new ReasonTextToggle(reason));
+                //checkBox.setText(reason.getLongTextId());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     checkBox.setButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.mainColor)));
                 } else {
                     CompoundButtonCompat.setButtonTintList(checkBox, ColorStateList.valueOf(getResources().getColor(R.color.mainColor)));
                 }
+
+               /* TextView title = new TextView(this);
+                title.setText(reason.getDisplayName());
+                title.setPadding(Utils.dpToPx(32),0,0,0);
+
+
+                reasonListView.addView(title);*/
 
                 reasonListView.addView(checkBox);
                 boxes.put(reason, checkBox);
@@ -297,12 +313,14 @@ public class AttestationCreateActivity extends AppCompatActivity {
 
     }
 
-    public static void buildAttestation(Activity activity, Profile profile, String dateSortie, String heureSortie, Reason[] reasons, boolean shortcut)
+    public static void buildAttestation(Context activity, Profile profile, String dateSortie, String heureSortie, Reason[] reasons, boolean shortcut)
     {
 
             Attestation attestation = new Attestation(profile, dateSortie,  heureSortie, reasons, reasons[0].getRelatedType());
 
             PDFBoxResourceLoader.init(activity);
+
+
             boolean success = Utils.savePDF(attestation, activity);
 
             if(success) {
@@ -372,7 +390,10 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     activity.startActivity(intent);
 
-                    activity.finish();
+                    if(activity instanceof Activity)
+                    {
+                        ((Activity) activity).finish();
+                    }
                 } else {
 
                     if(reasons.length == 1)
@@ -396,7 +417,10 @@ public class AttestationCreateActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     activity.startActivity(intent);
 
-                    activity.finish();
+                    if(activity instanceof Activity)
+                    {
+                        ((Activity) activity).finish();
+                    }
                 } else {
                     Toast.makeText(activity, R.string.attestation_create_failed, Toast.LENGTH_LONG).show();
                 }

@@ -27,6 +27,7 @@ import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.utils.Utils;
 
@@ -61,13 +62,16 @@ public class AttestationsFragment extends Fragment {
             {
                 View attestationInfosView = getLayoutInflater().inflate(R.layout.attestation_infos, (ViewGroup) fragmentView, false);
 
+
+
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText(getString(R.string.fragment_attestation_name, attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname()));
 
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_date)).setText(attestation.getDatesortie());
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_time)).setText(attestation.getHeuresortie());
 
-                ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(getContext()) + " (" + getString(attestation.getType().getShortName()) + ")");
-
+                if(attestation.getType() != AttestationType.UNKNOWN) {
+                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(getContext()) + " (" + getString(attestation.getType().getShortName()) + ")");
+                }
                 attestationInfosView.setOnClickListener(v -> {
 
                     Intent intent = new Intent(getActivity(), AttestationViewActivity.class);
@@ -129,21 +133,23 @@ public class AttestationsFragment extends Fragment {
 
                         Profile profile = attestation.getProfile();
 
-                        builder.setMessage(getString(R.string.fragment_attestation_details, getString(attestation.getType().getShortName()), Utils.DATE_FORMAT.format(creationDate), Utils.HOUR_FORMAT.format(creationDate), profile.getLastname(), profile.getFirstname(), profile.getBirthday(), profile.getPlaceofbirth(), profile.getAddress(), attestation.getDatesortie(), attestation.getHeuresortie(), attestation.getReasonsString(getContext())));
+                        builder.setMessage(getString(R.string.fragment_attestation_details, getString(attestation.getType().getShortName()), Utils.DATE_FORMAT.format(creationDate), Utils.HOUR_FORMAT.format(creationDate), profile.getLastname(), profile.getFirstname(), profile.getBirthday(), profile.getPlaceofbirth(), profile.getAddress(), attestation.getDatesortie(), attestation.getHeuresortie(), attestation.getType() != AttestationType.UNKNOWN ? attestation.getReasonsString(getContext()) : ""));
                         builder.setPositiveButton(R.string.ok, (dialog, which) -> {
 
                         });
 
-                        builder.setNeutralButton(R.string.fragment_attestation_details_clone, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                        if(attestation.getType() != AttestationType.UNKNOWN) {
+                            builder.setNeutralButton(R.string.fragment_attestation_details_clone, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                                Intent test = new Intent(getActivity(), AttestationGenerationActivity.class);
-                                test.putExtra("attestation_uuid", attestation.getUuid());
-                                startActivityForResult(test, 2);
-                            }
-                        });
+                                    Intent test = new Intent(getActivity(), AttestationGenerationActivity.class);
+                                    test.putExtra("attestation_uuid", attestation.getUuid());
+                                    startActivityForResult(test, 2);
+                                }
+                            });
 
+                        }
                         AlertDialog dialog = builder.create();
                         dialog.setOnShowListener(a -> {
                             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getActivity().getResources().getColor(R.color.textColor));
