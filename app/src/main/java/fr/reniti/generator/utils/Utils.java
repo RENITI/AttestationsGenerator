@@ -9,25 +9,39 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
+import android.renderscript.Allocation;
+import android.renderscript.ScriptGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
+import com.tom_roush.harmony.awt.geom.AffineTransform;
 import com.tom_roush.pdfbox.cos.COSName;
 import com.tom_roush.pdfbox.pdmodel.PDDocument;
 import com.tom_roush.pdfbox.pdmodel.PDDocumentCatalog;
 import com.tom_roush.pdfbox.pdmodel.PDDocumentInformation;
 import com.tom_roush.pdfbox.pdmodel.PDPage;
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream;
+import com.tom_roush.pdfbox.pdmodel.common.PDRectangle;
 import com.tom_roush.pdfbox.pdmodel.font.PDFont;
 import com.tom_roush.pdfbox.pdmodel.font.PDType0Font;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
+import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImage;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import com.tom_roush.pdfbox.pdmodel.interactive.form.PDField;
+import com.tom_roush.pdfbox.util.Matrix;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,42 +85,6 @@ public class Utils {
         return false;
     }
 
-
-    /**
-     * @from https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020/blob/main/src/js/pdf-util.js
-     * @param test String which we need to calc ideal font size
-     * @return Ideal font size
-     * @throws IOException If text contains invalid chars
-     */
-    public static int getIdealFontSize(String test) throws IOException {
-        int currentSize = 11;
-        float textWidth  = PDType1Font.HELVETICA.getStringWidth(test) / 1000 * currentSize;
-
-        while (textWidth  > 83 && currentSize > 7) {
-            currentSize--;
-            textWidth = PDType1Font.HELVETICA.getStringWidth(test) / 1000 * currentSize;
-        }
-
-        return textWidth > 83 ? 7 : currentSize;
-    }
-
-    /**
-     * Draw text
-     * @param content PDPageContentStream instance
-     * @param text Text to draw
-     * @param size Text size
-     * @return Updated PDPageContentStream
-     * @throws IOException If text contains invalid chars
-     */
-    public static PDPageContentStream drawText(PDPageContentStream content, PDFPos pdfPos, String text, int size, PDFont pdFont) throws Exception {
-        content.beginText();
-        content.setFont(pdFont, size);
-        content.newLineAtOffset(pdfPos.getX(), pdfPos.getY());
-        content.showText(text);
-        content.endText();
-        return content;
-    }
-
     /**
      * Save PDF related to a attestation
      * @param attestation Attestation to convert
@@ -118,10 +96,12 @@ public class Utils {
 
             AttestationType type = attestation.getType();
 
-            InputStream stream = activity.getResources().getAssets().open(type.getAssetName());
-            PDDocument document = PDDocument.load(stream);
+            PDDocument document = new PDDocument();
 
-            PDFont pdFont = PDType0Font.load(document, activity.getResources().getAssets().open("Roboto-Regular.ttf"));
+            PDFont fontLucioleRegular = PDType0Font.load(document, activity.getResources().getAssets().open("Luciole-Regular.ttf"));
+            PDFont fontLucioleBold = PDType0Font.load(document, activity.getResources().getAssets().open("Luciole-Bold.ttf"));
+            PDFont fontLucioleRegularItalic = PDType0Font.load(document, activity.getResources().getAssets().open("Luciole-Regular-Italic.ttf"));
+            PDFont fontLucioleBoldItalic = PDType0Font.load(document, activity.getResources().getAssets().open("Luciole-Bold-Italic.ttf"));
 
             PDDocumentInformation information = document.getDocumentInformation();
             information.setAuthor("Ministère de l'intérieur");
@@ -131,114 +111,111 @@ public class Utils {
             information.setSubject("Attestation de déplacement dérogatoire");
             information.setKeywords("covid19,covid-19,attestation,déclaration,déplacement,officielle,gouvernement");
 
-            PDPage page = document.getPage(0);
-            PDPageContentStream content = new PDPageContentStream(document, page, true, true);
+            PDPage page = new PDPage(PDRectangle.A4);
 
-            Profile profile = attestation.getProfile();
+            PDPageContentStream pageContentStream = new PDPageContentStream(document, page, true, true, true);
 
-            content.setNonStrokingColor(0, 0, 0);
+            JsonReader reader = new JsonReader(new InputStreamReader(activity.getResources().getAssets().open(type.getAssetName())));
+            JsonArray data = new Gson().fromJson(reader, JsonArray.class);
 
-            content = Utils.drawText(content, type.getIdentityPos(), profile.getFirstname() + " " + profile.getLastname(), 11, pdFont);
-            content = Utils.drawText(content, type.getBirthDayPos(), profile.getBirthday(), 11, pdFont);
-            content = Utils.drawText(content, type.getBirthPlacePos(), profile.getPlaceofbirth(), 11, pdFont);
-            content = Utils.drawText(content, type.getCompleteAdressPos(), profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity(), 11, pdFont);
+            for(int i = 0; i < data.size(); i++)
+            {
+                JsonObject object = data.get(i).getAsJsonObject();
 
+                if(object.has("label"))
+                {
+                    float top = (float) (object.get("top").getAsInt() * 0.6702782);
+                    float left = (float) (object.get("left").getAsInt() * 0.6702782);
+                    float size = (object.get("size").getAsInt() / 1.5151F);
 
-                for (Reason reason : attestation.getReasons()) {
-                    if(reason.getPage() == 0) {
-                        content = Utils.drawText(content, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
+                    pageContentStream.beginText();
+
+                    switch (object.get("font").getAsString())
+                    {
+                        case "Luciole":
+                            pageContentStream.setFont(fontLucioleRegular, size);
+                            break;
+                        case "LucioleItalic":
+                            pageContentStream.setFont(fontLucioleRegularItalic, size);
+                            break;
+                        case "LucioleBold":
+                            pageContentStream.setFont(fontLucioleBold, size);
+                            break;
+                        case "LucioleBoldItalic":
+                            pageContentStream.setFont(fontLucioleBoldItalic, size);
+                            break;
+                        default: break;
                     }
 
+                    pageContentStream.newLineAtOffset(left, page.getCropBox().getHeight() - top);
+
+                    String ltype = object.get("type").getAsString();
+
+                    if(ltype.contentEquals("checkbox"))
+                    {
+                        pageContentStream.showText( (attestation.hasReason(object.get("reason").getAsString()) ? "[x] " : "[ ] ") + object.get("label").getAsString());
+                    } else if(ltype.contentEquals("input")) {
+
+                        //String
+                        JsonArray inputs = object.get("inputs").getAsJsonArray();
+
+                        StringBuilder builder = new StringBuilder(object.get("label").getAsString());
+
+                        for(int j = 0; j < inputs.size(); j++)
+                        {
+                            switch (inputs.get(j).getAsString())
+                            {
+                                case "firstname":
+                                    builder.append(" " + attestation.getProfile().getFirstname());
+                                    break;
+                                case "lastname":
+                                    builder.append(" " + attestation.getProfile().getLastname());
+                                    break;
+                                case "birthday":
+                                    builder.append(" " + attestation.getProfile().getBirthday());
+                                    break;
+                                case "address":
+                                    builder.append(" " + attestation.getProfile().getAddress());
+                                    break;
+                                case "zipcode":
+                                    builder.append(" " + attestation.getProfile().getZipcode());
+                                    break;
+                                case "city":
+                                    builder.append(" " + attestation.getProfile().getCity());
+                                    break;
+                                default: break;
+                            }
+                        }
+
+                        pageContentStream.showText(builder.toString());
+                    } else {
+                        pageContentStream.showText(object.get("label").getAsString());
+                    }
+
+                    pageContentStream.endText();
                 }
+            }
 
-
-
-
-
-
-
-
-            ByteArrayOutputStream outputStream;
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();;
             PDImageXObject pdImage;
 
-            if(document.getNumberOfPages() <= 1) {
+            // QR Code 1
+            Bitmap smallQr = attestation.getQRCode(82);
+            smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
+            outputStream.close();
 
-                /* Infos fin de page */
-                content = Utils.drawText(content,type.getBottomCityPos(), "Fait à "+ profile.getCity(), 11, pdFont);
+            pageContentStream.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 21, 82, 82);
 
-                content = Utils.drawText(content, type.getDatePos(), "Le " + attestation.getDatesortie(), 11, pdFont);
-                content = Utils.drawText(content, type.getTimePos(), "à " + attestation.getHeuresortie(), 11, pdFont);
-
-
-                 outputStream = new ByteArrayOutputStream();
-
-                Bitmap smallQr = attestation.getQRCode(82);
-                smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                 pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
-                outputStream.close();
-
-                content.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 107, 82, 82);
-
-                content.close();
-            } else {
-
-                content.close();
-                // Plus de 1 page
-                PDPage page1 = document.getPage(1);
-                PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
-                content1.setNonStrokingColor(0, 0, 0);
-
-
-
-                content1 = Utils.drawText(content1, type.getBottomCityPos(), "Fait à "+profile.getCity(), 11, pdFont);
-
-                content1 = Utils.drawText(content1, type.getDatePos(), "Le " + attestation.getDatesortie(), 10, pdFont);
-                content1 = Utils.drawText(content1, type.getTimePos(), "à " + attestation.getHeuresortie(), 10, pdFont);
-
-
-                for (Reason reason : attestation.getReasons()) {
-                     if(reason.getPage() == 1)
-                     {
-                        content1 = Utils.drawText(content1, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
-                     }
-                }
-
-                 outputStream = new ByteArrayOutputStream();
-
-                Bitmap smallQr = attestation.getQRCode(82);
-                smallQr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                 pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, smallQr.getWidth(), smallQr.getHeight(), 8, PDDeviceRGB.INSTANCE);
-                outputStream.close();
-
-                content1.drawImage(pdImage,page.getMediaBox().getWidth() - 107, 107, 82, 82);
-
-                content1.close();
-            }
-          /*  PDPage page1 = document.getPage(1);
-            PDPageContentStream content1 = new PDPageContentStream(document, page1, true, true);
-            content1.setNonStrokingColor(0, 0, 0);
-
-            //
-            //content1 = Utils.drawText(content1, type.getBottomCityPos(), profile.getCity(), Utils.getIdealFontSize(profile.getCity()), pdFont);
-            content1 = Utils.drawText(content1, type.getBottomCityPos(), profile.getCity(), 11, pdFont);
-
-            content1 = Utils.drawText(content1, type.getDatePos(), attestation.getDatesortie(), 10, pdFont);
-            content1 = Utils.drawText(content1, type.getTimePos(), attestation.getHeuresortie(), 10, pdFont);
-
-            if(attestation.getType() != AttestationType.COUVRE_FEU) {
-                for (Reason reason : attestation.getReasons()) {
-                    content1 = Utils.drawText(content1, new PDFPos(type.getReasonsBaseX(), reason.getPdfPosY()), "x", 12, pdFont);
-                }
-            }
-
-            content1.close();*/
-
+            pageContentStream.close();
+            document.addPage(page);
 
             PDPage page2 = new PDPage();
             PDPageContentStream content2 = new PDPageContentStream(document, page2, true , true);
 
             outputStream = new ByteArrayOutputStream();
 
+            // QR Code 2
             Bitmap qr = attestation.getQRCode(300);
             qr.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             pdImage = new PDImageXObject(document, new ByteArrayInputStream(outputStream.toByteArray()), COSName.DCT_DECODE, qr.getWidth(), qr.getHeight(), 8, PDDeviceRGB.INSTANCE);

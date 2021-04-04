@@ -114,7 +114,7 @@ public class Attestation {
         builder.append("Cree le: " + Utils.DATE_FORMAT.format(creationDate) + " a " + Utils.HOUR_FORMAT.format(creationDate).replace(':', 'h') + ";\n ");
         builder.append("Nom: " + profile.getLastname() + ";\n ");
         builder.append("Prenom: " + profile.getFirstname() + ";\n ");
-        builder.append("Naissance: " + profile.getBirthday() + " a " + profile.getPlaceofbirth() + ";\n ");
+        builder.append("Naissance: " + profile.getBirthday()+ ";\n ");
         builder.append("Adresse: " + profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity() + ";\n ");
         builder.append("Sortie: " + datesortie + " a " + heuresortie + ";\n ");
         builder.append("Motifs: " + getReasonsString(null) + ";");
@@ -150,6 +150,18 @@ public class Attestation {
 
     public Reason[] getReasons() {
         return reasons;
+    }
+
+    public boolean hasReason(String rawName)
+    {
+        for(Reason reason : reasons)
+        {
+            if(reason.getId().contentEquals(rawName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -17,9 +17,6 @@ public class Profile {
     private final String birthday;
 
     @Expose
-    private final String placeofbirth;
-
-    @Expose
     private final String address;
 
     @Expose
@@ -34,7 +31,6 @@ public class Profile {
      * @param firstname Firstname
      * @param lastname Lastname
      * @param birthday Birthday
-     * @param placeofbirth Place of birth
      * @param address Address
      * @param city City
      * @param zipcode Zipcode
@@ -43,7 +39,6 @@ public class Profile {
                    String firstname,
                    String lastname,
                    String birthday,
-                   String placeofbirth,
                    String address,
                    String city,
                    String zipcode)
@@ -52,7 +47,6 @@ public class Profile {
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthday = birthday;
-        this.placeofbirth = placeofbirth;
         this.address = address;
         this.city = city;
         this.zipcode = zipcode;
@@ -81,10 +75,6 @@ public class Profile {
 
     public String getLastname() {
         return lastname;
-    }
-
-    public String getPlaceofbirth() {
-        return placeofbirth;
     }
 
     public String getZipcode() {

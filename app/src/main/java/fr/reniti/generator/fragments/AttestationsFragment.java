@@ -70,7 +70,7 @@ public class AttestationsFragment extends Fragment {
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_time)).setText(attestation.getHeuresortie());
 
                 if(attestation.getType() != AttestationType.UNKNOWN) {
-                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(getContext()) + " (" + getString(attestation.getType().getShortName()) + ")");
+                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(null) + " (" + getString(attestation.getType().getShortName()) + ")");
                 }
                 attestationInfosView.setOnClickListener(v -> {
 
@@ -133,7 +133,7 @@ public class AttestationsFragment extends Fragment {
 
                         Profile profile = attestation.getProfile();
 
-                        builder.setMessage(getString(R.string.fragment_attestation_details, getString(attestation.getType().getShortName()), Utils.DATE_FORMAT.format(creationDate), Utils.HOUR_FORMAT.format(creationDate), profile.getLastname(), profile.getFirstname(), profile.getBirthday(), profile.getPlaceofbirth(), profile.getAddress(), attestation.getDatesortie(), attestation.getHeuresortie(), attestation.getType() != AttestationType.UNKNOWN ? attestation.getReasonsString(getContext()) : ""));
+                        builder.setMessage(getString(R.string.fragment_attestation_details, getString(attestation.getType().getShortName()), Utils.DATE_FORMAT.format(creationDate), Utils.HOUR_FORMAT.format(creationDate), profile.getLastname(), profile.getFirstname(), profile.getBirthday(), profile.getAddress(), attestation.getDatesortie(), attestation.getHeuresortie(), attestation.getType() != AttestationType.UNKNOWN ? attestation.getReasonsString(getContext()) : ""));
                         builder.setPositiveButton(R.string.ok, (dialog, which) -> {
 
                         });

@@ -96,7 +96,7 @@
 
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/activity_profile_edit_placeofbirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -114,14 +114,14 @@
                 android:inputType="textCapSentences"
                 android:contentDescription="@string/activity_profile_edit_placeofbirth_input"
 
-                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>-->
 
             <TextView
                 android:id="@+id/activity_profile_edit_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_profile_edit_address"
-                android:layout_below="@id/activity_profile_edit_input_placeofbirth"
+                android:layout_below="@id/activity_profile_edit_input_birthdate"
 
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
 

@@ -1,8 +1,7 @@
 package fr.reniti.generator;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.drawable.Icon;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,18 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.viewpager.widget.ViewPager;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
-import androidx.work.WorkRequest;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 import java.lang.ref.WeakReference;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.activities.AboutActivity;
 import fr.reniti.generator.activities.AttestationCreateActivity;
@@ -31,9 +24,6 @@ import fr.reniti.generator.activities.ProfileEditActivity;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.utils.PageAdapter;
 import fr.reniti.generator.utils.Utils;
-import fr.reniti.generator.workers.AttestationWorker;
-
-import static java.util.concurrent.TimeUnit.MINUTES;
 
 public class MainActivity extends AppCompatActivity {
 

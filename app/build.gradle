@@ -10,8 +10,8 @@ android {
         applicationId "fr.reniti.generator"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 47
-        versionName "4.7"
+        versionCode 50
+        versionName "5.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,7 +44,4 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.tom_roush:pdfbox-android:1.8.10.1'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
-    // https://mvnrepository.com/artifact/androidx.work/work-runtime
-    implementation group: 'androidx.work', name: 'work-runtime', version: '2.0.1'
 }

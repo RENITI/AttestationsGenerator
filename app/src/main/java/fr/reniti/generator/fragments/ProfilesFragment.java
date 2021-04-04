@@ -59,7 +59,7 @@ public class ProfilesFragment extends Fragment {
                 }
                 
                 TextView birthInfos = profileInfosView.findViewById(R.id.profile_infos_birth_text);
-                birthInfos.setText(getString(R.string.fragment_profile_birth, profile.getBirthday(), profile.getPlaceofbirth()));
+                birthInfos.setText(profile.getBirthday());
 
                 TextView locationInfos = profileInfosView.findViewById(R.id.profile_infos_address_text);
                 locationInfos.setText(profile.getAddress() + " " + profile.getZipcode() + " " + profile.getCity());

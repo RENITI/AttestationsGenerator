@@ -70,7 +70,6 @@ public class ProfileEditActivity extends AppCompatActivity {
         Editable firstName = ((EditText) findViewById(R.id.activity_profile_edit_input_firstname)).getText();
         Editable lastName =((EditText)  findViewById(R.id.activity_profile_edit_input_lastname)).getText();
         Editable birthDate = ((EditText) findViewById(R.id.activity_profile_edit_input_birthdate)).getText();
-        Editable placeOfBirth = ((EditText) findViewById(R.id.activity_profile_edit_input_placeofbirth)).getText();
         Editable address = ((EditText) findViewById(R.id.activity_profile_edit_input_address)).getText();
         Editable city = ((EditText) findViewById(R.id.activity_profile_edit_input_city)).getText();
         Editable zipCode = ((EditText) findViewById(R.id.activity_profile_edit_input_zipcode)).getText();
@@ -93,12 +92,6 @@ public class ProfileEditActivity extends AppCompatActivity {
             return;
         }
 
-        if(placeOfBirth.length() <= 0)
-        {
-            Toast.makeText(this, R.string.activity_profile_edit_error_placeofbirth, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         if(address.length() <= 0)
         {
             Toast.makeText(this, R.string.activity_profile_edit_error_address, Toast.LENGTH_SHORT).show();
@@ -117,7 +110,7 @@ public class ProfileEditActivity extends AppCompatActivity {
             return;
         }
 
-        Profile profile = new Profile(UUID.randomUUID().toString(), firstName.toString(), lastName.toString(), birthDate.toString(), placeOfBirth.toString(), address.toString(), city.toString(), zipCode.toString());
+        Profile profile = new Profile(UUID.randomUUID().toString(), firstName.toString(), lastName.toString(), birthDate.toString(), address.toString(), city.toString(), zipCode.toString());
 
         StorageManager.getInstance().getProfilesManager().addProfileAndSave(profile);
 

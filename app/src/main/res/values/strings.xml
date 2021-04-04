@@ -33,7 +33,6 @@
     <string name="activity_profile_edit_firstname">Firstname</string>
     <string name="activity_profile_edit_lastname">Lastname</string>
     <string name="activity_profile_edit_birthdate">Birthdate</string>
-    <string name="activity_profile_edit_placeofbirth">Birthplace</string>
     <string name="activity_profile_edit_address">Address</string>
     <string name="activity_profile_edit_city">City</string>
     <string name="activity_profile_edit_zipcode">Zipcode</string>
@@ -41,7 +40,6 @@
     <string name="activity_profile_edit_firstname_input">First name field</string>
     <string name="activity_profile_edit_lastname_input">Name field</string>
     <string name="activity_profile_edit_birthdate_input">Date of birth field</string>
-    <string name="activity_profile_edit_placeofbirth_input">Field City of birth</string>
     <string name="activity_profile_edit_address_input">Address field</string>
     <string name="activity_profile_edit_city_input">City field</string>
     <string name="activity_profile_edit_zipcode_input">Postcode field</string>
@@ -49,7 +47,6 @@
     <string name="activity_profile_edit_error_firstname">The first name field is not valid!</string>
     <string name="activity_profile_edit_error_lastname">The name field is not valid!</string>
     <string name="activity_profile_edit_error_birthday">The date of birth is not valid!</string>
-    <string name="activity_profile_edit_error_placeofbirth">The place of birth is not valid!</string>
     <string name="activity_profile_edit_error_address">The address is not valid!</string>
     <string name="activity_profile_edit_error_city">The city is not valid!</string>
     <string name="activity_profile_edit_error_zipcode">The postcode is not valid!</string>
@@ -65,7 +62,7 @@
     <string name="activity_about_credits_infos">When using this application, no data is transmitted to a third party or via the Internet.\n\nThe use of this application must be done with due care and is the responsibility of the user.\n\nIn accordance with the standard, the QR Codes generated contain the date and time of creation of the certificate.</string>
     <string name="activity_about_version">Version: %1$s\n\nUsed space: %2$s</string>
 
-    <string name="activity_about_credits" translatable="false">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nGénérateur d\'attestation:\n<a href="https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020">https://github.com/LAB-MI/attestation-deplacement-derogatoire-q4-2020</a></string>
+    <string name="activity_about_credits" translatable="false">GSON:\n<a href="https://github.com/google/gson">https://github.com/google/gson</a>\n\nPdfBox-Android:\n<a href="https://github.com/TomRoush/PdfBox-Android">https://github.com/TomRoush/PdfBox-Android</a>\n\nAndroidPdfViewer:\n<a href="https://github.com/barteksc/AndroidPdfViewer">https://github.com/barteksc/AndroidPdfViewer</a>\n\nQR-Code-generator:\n<a href="https://github.com/nayuki/QR-Code-generator">https://github.com/nayuki/QR-Code-generator</a>\n\nPolice Luciole:\n<a href="https://www.luciole-vision.com/">https://www.luciole-vision.com/</a></string>
     <string name="activity_about_github_link" translatable="false"><a href="https://github.com/RENITI/AttestationsGenerator/">https://github.com/RENITI/AttestationsGenerator/</a></string>
     <string name="activity_about_contact" translatable="false">contact@reniti.fr</string>
 
@@ -75,7 +72,7 @@
     <string name="fragment_attestations_title">You do not have any certificates. Press the pencil to create one.</string>
     <string name="fragment_delete_success">Supression successful!</string>
     <string name="fragment_attestation_delete_alt">Delete this certificate</string>
-    <string name="fragment_attestation_details">Type: %1$s\nCreation date: %2$s at %3$s\nLast name: %4$s\nFirst name: %5$s\nBirth date: %6$s in %7$s\nAddress: %8$s\nExit date: %9$s at %10$s\nReasons: %11$s</string>
+    <string name="fragment_attestation_details">Type: %1$s\nCreation date: %2$s at %3$s\nLast name: %4$s\nFirst name: %5$s\nBirth date: %6$s\nAddress: %7$s\nExit date: %8$s at %9$s\nReasons: %10$s</string>
     <string name="fragment_attestation_details_clone">Clone</string>
     <string name="fragment_attestation_name">%1$s</string>
 
@@ -83,7 +80,6 @@
     <string name="fragment_profiles_delete_title">Are you sure you want to delete this profile?</string>
     <string name="fragment_profiles_default">This profile has been set by default!</string>
     <string name="fragment_profile_name_default">%1$s (By default)</string>
-    <string name="fragment_profile_birth">%1$s in %2$s</string>
     <string name="fragment_profiles_empty">You have no profile. Press + to create one.</string>
 
     <!-- Attestation Create Activity -->
@@ -111,91 +107,53 @@
     <string name="notification_long_desc">Reason%1$s: %2$s\nExit date: %3$s at %4$s\nCreation date: %5$s at %6$s</string>
     <string name="notification_channel_name">Certificate creation</string>
 
-    <!-- Confinement -->
-    <!--<string name="activity_attestation_create_reason_travail">Commuting to and from work or university and training places, for a competition or an exam, business trips that cannot be delayed</string>
-    <string name="activity_attestation_create_reason_achats">Running necessary errands to purchase items for professional activity, or basic commodities  available in the businesses allowed to provide service, order withdrawal or home deliveries</string>
-    <string name="activity_attestation_create_reason_sante">Consults and provision of care that cannot be done remotely, medication purchase</string>
-    <string name="activity_attestation_create_reason_famille">Imperative family reasons, assisting vulnerable persons, persons in a precarious situation or taking care of children.</string>
-    <string name="activity_attestation_create_reason_handicap">Persons with a disability and their accompanying person</string>
-    <string name="activity_attestation_create_reason_sport_animaux">Outdoor activities to practice sport individually or for leisure (collective physical activity and proximity to others are not allowed), with no change in the place of residence,  walking out with only the people living in the same household or walking out a pet, within 20km of one’s place of residence and for three hours per day</string>
-    <string name="activity_attestation_create_reason_convocation">Judicial or administrative summons; appointment to public service offices</string>
-    <string name="activity_attestation_create_reason_missions">Participating in a mission of general interest upon request from an administrative authority</string>-->
-
-
-
-    <!-- TODO / Verifier les traductions -->
-
     <!-- Couvre-feu -->
-    <string name="reason_cf_travail">Professional activity, education and training</string>
-    <string name="activity_attestation_create_reason_cf_travail">Commuting to and from work or university and training place, business trips that cannot be delayed</string>
-    <string name="reason_cf_sante">Consultations and care</string>
-    <string name="activity_attestation_create_reason_cf_sante">Consults and provision of care that cannot be done remotely or delayed</string>
-    <string name="reason_cf_famille">Compelling family reasons, vulnerable or insecure people or childcare</string>
-    <string name="activity_attestation_create_reason_cf_famille">Imperative family reasons, assisting vulnerable persons, persons in a precarious situation or taking care of children</string>
-    <string name="reason_cf_handicap">Disability status</string>
-    <string name="activity_attestation_create_reason_cf_handicap">Persons with a disability and their accompanying person</string>
-    <string name="reason_cf_convocation">Judicial or administrative summons</string>
-    <string name="activity_attestation_create_reason_cf_convocation">Judicial or administrative summons</string>
-    <string name="reason_cf_missions">Mission of general interest</string>
-    <string name="activity_attestation_create_reason_cf_missions">Participating in a mission of general interest upon request from an administrative authority</string>
-    <string name="reason_cf_transits">Transit and long-distance travel</string>
-    <string name="activity_attestation_create_reason_cf_transits">Air, rail or bus transit related to long distance journeys</string>
-    <string name="reason_cf_animaux">Pets</string>
-    <string name="activity_attestation_create_reason_cf_animaux">Walking a pet outdoors within 1km of one’s place of residence and for a brief amount of time</string>
 
+    <string name="reason_cf_travail">Activité professionnelle, enseignement et formation, mission d’intérêt général</string>
+    <string name="reason_cf_travail_desc">Déplacements entre le domicile et le lieu de travail ou d\’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements pour effectuer des achats de fournitures nécessaires à l\’activité professionnelle.\nDéplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative.</string>
 
-    <!-- Confinement 20/03/2021 -->
+    <string name="reason_cf_sante">Santé (consultation et soins)</string>
+    <string name="reason_cf_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé.</string>
 
-    <!-- Loc -->
-    <string name="reason_confinement_sport">Activités physiques</string>
-    <string name="reason_confinement_sport_desc">Déplacements dans un rayon maximal de dix kilomètres autour du domicile, liés soit à l\'activité physique individuelle des personnes, à l\'exclusion de toute pratique sportive collective, soit à la promenade avec les seules personnes regroupées dans un même domicile</string>
+    <string name="reason_cf_famille">Motif familial impérieux, assistance aux personnes vulnérables, garde d’enfants, situation de handicap</string>
+    <string name="reason_cf_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants.\nDéplacements des personnes en situation de handicap et de leur accompagnant.</string>
 
-    <!-- Dep -->
-    <string name="reason_confinement_dep_achats">Achats</string>
-    <string name="reason_confinement_dep_achats_desc">Déplacements pour effectuer des achats de première nécessité ou des retraits de commandes</string>
-    <string name="reason_confinement_dep_enfants">Accompagnement des enfants à l’école</string>
-    <string name="reason_confinement_dep_enfants_desc">Déplacements pour emmener et aller chercher les enfants à l\’école et à l\’occasion de leurs activités péri-scolaires</string>
-    <string name="reason_confinement_dep_culte">Etablissement culturel ou lieu de culte</string>
-    <string name="reason_confinement_dep_culte_desc">Déplacements pour se rendre dans un établissement culturel (bibliothèques et médiathèques) ou un lieu de culte</string>
-    <string name="reason_confinement_dep_demarches">Démarches administratives ou juridiques</string>
-    <string name="reason_confinement_dep_demarches_desc">Déplacements pour se rendre dans un service public pour un acte ou une démarche qui ne peuvent être réalisés à distance</string>
+    <string name="reason_cf_convocation_demarches">Convocation judiciaire ou administrative, démarches ne pouvant être menées à distance</string>
+    <string name="reason_cf_convocation_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
 
-    <!-- Autres -->
-    <string name="reason_confinement_travail">Activité professionnelle, enseignement et formation, mission d\’intérêt général</string>
-    <string name="reason_confinement_travail_desc">Déplacements entre le domicile et le lieu d’exercice de l\’activité professionnelle ou le lieu d\’enseignement et de formation, déplacements professionnels ne pouvant être différés, livraisons à domicile, déplacements pour effectuer des achats de fournitures nécessaires à l\'activité professionnelle, déplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative</string>
-    <string name="reason_confinement_sante">Santé (consultations et soins)</string>
-    <string name="reason_confinement_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé</string>
-    <string name="reason_confinement_famille">Motif familial impérieux, personnes vulnérables ou précaires ou gardes d\’enfants</string>
-    <string name="reason_confinement_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d\’enfants</string>
-    <string name="reason_confinement_handicap">Situation de handicap</string>
-    <string name="reason_confinement_handicap_desc">Déplacements des personnes en situation de handicap et de leur accompagnant</string>
-    <string name="reason_confinement_convocation">Convocation judiciaire ou administrative</string>
-    <string name="reason_confinement_convocation_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, déplacements pour se rendre chez un professionnel du droit, pour un acte ou une démarche qui ne peuvent être réalisés à distance</string>
+    <string name="reason_cf_animaux">Animaux de compagnie, le soir et la nuit.</string>
+    <string name="reason_cf_animaux_desc">Déplacements brefs pour les besoins des animaux de compagnie (dans un rayon de 1 kilomètre autour du domicile).</string>
+
+    <!-- Confinement 04/04/2021 -->
+
+    <string name="reason_confinement_sport">Activité physique, de plein air, promenade (dans un rayon de 10 kilomètres autour de votre domicile)</string>
+    <string name="reason_confinement_sport_desc">Déplacements liés à la promenade, à l\’activité physique individuelle, à l\’activité de plein air, aux besoins des animaux de compagnie.</string>
+
+    <string name="reason_confinement_achats_culte_culturel">Achats, établissements culturels ou lieux de culte (au sein de mon département)</string>
+    <string name="reason_confinement_achats_culte_culturel_desc">Déplacements pour effectuer des achats de première nécessité, pour les retraits de commandes, ou pour bénéficier de prestations de service.\nDéplacements pour se rendre dans un établissement culturel ouvert ou un lieu de culte.</string>
+
     <string name="reason_confinement_demenagement">Déménagement</string>
-    <string name="reason_confinement_demenagement_desc">Déplacements liés à un déménagement résultant d\'un changement de domicile et déplacements indispensables à l\'acquisition ou à la location d’une résidence principale, insusceptibles d\'être différés</string>
-    <string name="reason_confinement_transit">Déplacement de transit vers les gares et les aéroports</string>
+    <string name="reason_confinement_demenagement_desc">Déplacements liés à un déménagement résultant d\’un changement de domicile.\nDéplacements indispensables à l\’acquisition ou à la location d\’une résidence principale, ne pouvant être différés.</string>
+
+    <string name="reason_confinement_convocation_demarches">Convocation judiciaire ou administrative, démarches ne pouvant être menées à distance</string>
+    <string name="reason_confinement_convocation_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
+
+    <string name="reason_confinement_famille">Motif familial impérieux, assistance aux personnes vulnérables, garde d’enfants, situation de handicap</string>
+    <string name="reason_confinement_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants\nDéplacements des personnes en situation de handicap et de leur accompagnant </string>
+
+    <string name="reason_confinement_sante">Santé (consultation et soins)</string>
+    <string name="reason_confinement_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé.</string>
+
+    <string name="reason_confinement_travail">Activité professionnelle, enseignement et formation, mission d’intérêt général</string>
+    <string name="reason_confinement_travail_desc">Déplacements entre le domicile et le lieu de travail ou d\’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements pour effectuer des achats de fournitures nécessaires à l\’activité professionnelle.\nDéplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative.</string>
 
     <!-- END -->
 
-
-
-    <string name="reason_courses">Shopping</string>
-    <string name="reason_sport">Sport</string>
-    <string name="reason_rassemblements">Authorised meetings</string>
-    <string name="reason_demarches">Administrative or legal steps</string>
 
     <!-- Attestation types -->
     <string name="attestation_type_confinement_shortname">Confinement</string>
     <string name="attestation_type_confinement">Déplacements sans limitation de distance (Journée / De 6h à 19h)</string>
     <string name="attestation_type_confinement_extra">Valable dans les territoires soumis aux mesures renforcées</string>
-
-    <string name="attestation_type_confinement_dep_shortname">Confinement (Département)</string>
-    <string name="attestation_type_confinement_dep">Déplacements au sein du département de résidence (Journée / De 6h à 19h)</string>
-    <string name="attestation_type_confinement_dep_extra">Valable dans les territoires soumis aux mesures renforcées</string>
-
-    <string name="attestation_type_confinement_loc_shortname">Confinement (10km)</string>
-    <string name="attestation_type_confinement_loc">Déplacements dans la lmite de 10km du domicile (Journée / De 6h à 19h)</string>
-    <string name="attestation_type_confinement_loc_extra">Valable dans les territoires soumis aux mesures renforcées</string>
 
     <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
     <string name="attestation_type_couvrefeu">Couvre-feu (De 19h à 6h)</string>

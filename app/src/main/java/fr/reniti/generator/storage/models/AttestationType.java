@@ -13,43 +13,9 @@ public enum AttestationType {
 
     UNKNOWN("unknown", R.string.attestation_type_unknown, R.string.attestation_type_unknown, R.string.attestation_type_unknown, "", null, null, null, null, null, null, null, 0),
 
-    CONFINEMENT_OTHER("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-20-03-2021.pdf",
 
 
-            /* nom */
-            new PDFPos(111, 516),
-            /* date naissance */
-            new PDFPos(111, 501),
-            /* lieu naissance */
-            new PDFPos(228, 501),
-            /* address */
-            new PDFPos(126, 487),
-            /* bottomcity */
-            new PDFPos(72, 99),
-            /* date sortie */
-            new PDFPos(72, 83),
-            /* heure sortie */
-            new PDFPos(310, 83),
-            60),
-
-    CONFINEMENT_DEP("confinement_dep", R.string.attestation_type_confinement_dep, R.string.attestation_type_confinement_dep_shortname, R.string.attestation_type_confinement_dep_extra, "certificate-20-03-2021.pdf",
-            /* nom */
-            new PDFPos(111, 516),
-            /* date naissance */
-            new PDFPos(111, 501),
-            /* lieu naissance */
-            new PDFPos(228, 501),
-            /* address */
-            new PDFPos(126, 487),
-            /* bottomcity */
-            new PDFPos(72, 99),
-            /* date sortie */
-            new PDFPos(72, 83),
-            /* heure sortie */
-            new PDFPos(310, 83),
-            60),
-
-    CONFINEMENT_LOC("confinement_loc", R.string.attestation_type_confinement_loc, R.string.attestation_type_confinement_loc_shortname, R.string.attestation_type_confinement_loc_extra, "certificate-20-03-2021.pdf",
+    CONFINEMENT("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-04-04-2021.json",
             /* nom */
             new PDFPos(111, 516),
             /* date naissance */
@@ -67,8 +33,8 @@ public enum AttestationType {
             60),
 
 
-    // Updated 21-03-2021
-    COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "certificate-20-03-2021-CF.pdf",
+    // Updated 04-04-2021
+    COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "certificate-04-04-2021-CF.json",
             /* nom */
             new PDFPos(144, 705),
             /* date naissance */
