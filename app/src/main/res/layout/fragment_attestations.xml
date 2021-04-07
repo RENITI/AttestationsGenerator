@@ -14,7 +14,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dip">
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip"
+            android:paddingTop="12dp"
+            >
     <TextView
         android:id="@+id/fragment_attestations_default_title"
         android:layout_width="match_parent"

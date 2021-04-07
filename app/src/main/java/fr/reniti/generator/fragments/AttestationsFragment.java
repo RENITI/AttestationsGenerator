@@ -2,10 +2,14 @@ package fr.reniti.generator.fragments;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Outline;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -58,21 +62,40 @@ public class AttestationsFragment extends Fragment {
             RelativeLayout profilesRoot = (RelativeLayout) fragmentView.findViewById(R.id.fragment_attestations_rootview);
             fragmentView.findViewById(R.id.fragment_attestations_default_title).setVisibility(View.INVISIBLE);
 
+
+
             for(Attestation attestation : attestations)
             {
                 View attestationInfosView = getLayoutInflater().inflate(R.layout.attestation_infos, (ViewGroup) fragmentView, false);
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    attestationInfosView.setOutlineProvider(new ViewOutlineProvider() {
+                        @Override
+                        public void getOutline(View view, Outline outline) {
+                            Rect rect = new Rect(-Utils.dpToPx(8), -Utils.dpToPx(8), view.getWidth()+Utils.dpToPx(8), view.getHeight() + Utils.dpToPx(8));
+                           // outline.setOval(rect);
 
+                            outline.setRect(rect);
+//                            view.setOutlineProvider(this);
+                        }
+                    });
+                    attestationInfosView.setClipToOutline(true);
+                }
+
+                if(attestation.getType() != AttestationType.UNKNOWN) {
+                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(null) + " (" + getString(attestation.getType().getShortName()) + ")");
+                }
 
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_name)).setText(getString(R.string.fragment_attestation_name, attestation.getProfile().getFirstname() + " " + attestation.getProfile().getLastname()));
 
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_date)).setText(attestation.getDatesortie());
                 ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_time)).setText(attestation.getHeuresortie());
 
-                if(attestation.getType() != AttestationType.UNKNOWN) {
-                    ((TextView) attestationInfosView.findViewById(R.id.attestation_infos_motifs_text)).setText(attestation.getReasonsString(null) + " (" + getString(attestation.getType().getShortName()) + ")");
-                }
                 attestationInfosView.setOnClickListener(v -> {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        attestationInfosView.setElevation(3);
+                    }
 
                     Intent intent = new Intent(getActivity(), AttestationViewActivity.class);
                     intent.putExtra("attestation_uuid", attestation.getUuid());
