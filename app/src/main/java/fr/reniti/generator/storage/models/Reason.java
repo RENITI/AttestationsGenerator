@@ -11,7 +11,7 @@ public enum Reason {
     CF_TRAVAIL(R.string.reason_cf_travail, AttestationType.COUVRE_FEU, "travail", R.string.reason_cf_travail_desc, R.drawable.ic_baseline_work_16_orange),
     CF_SANTE(R.string.reason_cf_sante, AttestationType.COUVRE_FEU,  "sante", R.string.reason_cf_sante_desc, R.drawable.ic_baseline_local_hospital_16_orange),
     CF_FAMILLE(R.string.reason_cf_famille, AttestationType.COUVRE_FEU,  "famille", R.string.reason_cf_famille_desc, R.drawable.ic_baseline_family_restroom_16_orange),
-    CF_CONVOCATION(R.string.reason_cf_convocation_demarches, AttestationType.COUVRE_FEU,  "judiciaire", R.string.reason_cf_convocation_demarches_desc, R.drawable.ic_baseline_assignment_16_orange),
+    CF_CONVOCATION(R.string.reason_cf_convocation_demarches, AttestationType.COUVRE_FEU,  "convocation_demarches", R.string.reason_cf_convocation_demarches_desc, R.drawable.ic_baseline_assignment_16_orange),
     CF_ANIMAUX(R.string.reason_cf_animaux, AttestationType.COUVRE_FEU,  "animaux", R.string.reason_cf_animaux_desc, R.drawable.ic_baseline_pets_16_orange),
 
     /* Confinement */
