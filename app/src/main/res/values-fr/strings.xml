@@ -106,7 +106,7 @@
     <!-- Couvre-feu -->
 
     <string name="reason_cf_travail">Activité professionnelle, enseignement et formation, mission d’intérêt général</string>
-    <string name="reason_cf_travail_desc">Déplacements entre le domicile et le lieu de travail ou d\’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements pour effectuer des achats de fournitures nécessaires à l\’activité professionnelle.\nDéplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative.</string>
+    <string name="reason_cf_travail_desc">Déplacements entre le domicile et le lieu de travail ou d\’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements liés à des missions d\'intérêt général sur demande de l\'autorité administrative.</string>
 
     <string name="reason_cf_sante">Santé (consultation et soins)</string>
     <string name="reason_cf_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé.</string>
@@ -115,43 +115,18 @@
     <string name="reason_cf_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants.\nDéplacements des personnes en situation de handicap et de leur accompagnant.</string>
 
     <string name="reason_cf_convocation_demarches">Convocation judiciaire ou administrative, démarches ne pouvant être menées à distance</string>
-    <string name="reason_cf_convocation_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
+    <string name="reason_cf_convocation_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative ou pour se rendre chez un professionnel du droit pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
 
-    <string name="reason_cf_animaux">Animaux de compagnie, le soir et la nuit.</string>
+    <string name="reason_cf_transit">Déplacements liés à des transferts ou transits depuis des gares ou aéroports dans le cadre de déplacements de longue distance</string>
+
+    <string name="reason_cf_animaux">Animaux de compagnie</string>
     <string name="reason_cf_animaux_desc">Déplacements brefs pour les besoins des animaux de compagnie (dans un rayon de 1 kilomètre autour du domicile).</string>
 
-    <!-- Confinement 04/04/2021 -->
-
-    <string name="reason_confinement_sport">Activité physique, de plein air, promenade (dans un rayon de 10 kilomètres autour de votre domicile)</string>
-    <string name="reason_confinement_sport_desc">Déplacements liés à la promenade, à l\’activité physique individuelle, à l\’activité de plein air, aux besoins des animaux de compagnie.</string>
-
-    <string name="reason_confinement_achats_culte_culturel">Achats, établissements culturels ou lieux de culte (au sein de mon département)</string>
-    <string name="reason_confinement_achats_culte_culturel_desc">Déplacements pour effectuer des achats de première nécessité, pour les retraits de commandes, ou pour bénéficier de prestations de service.\nDéplacements pour se rendre dans un établissement culturel ouvert ou un lieu de culte.</string>
-
-    <string name="reason_confinement_demenagement">Déménagement</string>
-    <string name="reason_confinement_demenagement_desc">Déplacements liés à un déménagement résultant d\’un changement de domicile.\nDéplacements indispensables à l\’acquisition ou à la location d\’une résidence principale, ne pouvant être différés.</string>
-
-    <string name="reason_confinement_convocation_demarches">Convocation judiciaire ou administrative, démarches ne pouvant être menées à distance</string>
-    <string name="reason_confinement_convocation_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
-
-    <string name="reason_confinement_famille">Motif familial impérieux, assistance aux personnes vulnérables, garde d’enfants, situation de handicap</string>
-    <string name="reason_confinement_famille_desc">Déplacements pour motif familial impérieux, pour l\’assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants\nDéplacements des personnes en situation de handicap et de leur accompagnant </string>
-
-    <string name="reason_confinement_sante">Santé (consultation et soins)</string>
-    <string name="reason_confinement_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l\’achat de produits de santé.</string>
-
-    <string name="reason_confinement_travail">Activité professionnelle, enseignement et formation, mission d’intérêt général</string>
-    <string name="reason_confinement_travail_desc">Déplacements entre le domicile et le lieu de travail ou d\’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements pour effectuer des achats de fournitures nécessaires à l\’activité professionnelle.\nDéplacements liés à des missions d\’intérêt général sur demande de l\’autorité administrative.</string>
-
-
     <!-- Attestation types -->
-    <string name="attestation_type_confinement_shortname">Confinement</string>
-    <string name="attestation_type_confinement">Déplacements en journée (De 6h à 19h)</string>
-    <string name="attestation_type_confinement_extra">Version du 04/04/2021</string>
 
     <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
     <string name="attestation_type_couvrefeu">Couvre-feu (De 19h à 6h)</string>
-    <string name="attestation_type_couvrefeu_extra">Toute la France\nVersion du 04/04/2021</string>
+    <string name="attestation_type_couvrefeu_extra">Toute la France\nVersion du 03/05/2021</string>
 
     <string name="attestation_type_not_available">Ce type d\'attestation n\'est pas disponible pour le moment</string>
     <string name="attestation_type_unknown">Inconnu</string>

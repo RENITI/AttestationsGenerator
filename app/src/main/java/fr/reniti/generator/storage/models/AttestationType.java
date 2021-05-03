@@ -7,7 +7,8 @@ import fr.reniti.generator.R;
 public enum AttestationType {
 
     UNKNOWN("unknown", R.string.attestation_type_unknown, R.string.attestation_type_unknown, R.string.attestation_type_unknown, ""),
-    CONFINEMENT("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-04-04-2021.json"),
+    /*CONFINEMENT("confinement", R.string.attestation_type_confinement, R.string.attestation_type_confinement_shortname, R.string.attestation_type_confinement_extra, "certificate-04-04-2021.json")*/
+
     COUVRE_FEU("couvre_feu", R.string.attestation_type_couvrefeu, R.string.attestation_type_couvrefeu_shortname, R.string.attestation_type_couvrefeu_extra, "certificate-04-04-2021-CF.json");
 
     @Expose(serialize = false, deserialize = false)

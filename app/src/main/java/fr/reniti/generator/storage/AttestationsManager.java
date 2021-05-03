@@ -32,7 +32,7 @@ public class AttestationsManager {
 
     public AttestationsManager()
     {
-        this(new HashMap<>(), new ArrayList<>(), false, false, false);
+        this(new HashMap<>(), new ArrayList<>(), true, false, false);
     }
 
     public AttestationsManager(HashMap<String, Attestation> attestationsList, ArrayList<Reason> lastReasons, boolean autoDelete, boolean disableDeleteWarning, boolean disableNotification)

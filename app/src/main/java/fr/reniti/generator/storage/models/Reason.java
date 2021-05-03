@@ -12,25 +12,14 @@ public enum Reason {
     CF_SANTE(R.string.reason_cf_sante, AttestationType.COUVRE_FEU,  "sante", R.string.reason_cf_sante_desc, R.drawable.ic_baseline_local_hospital_16_orange),
     CF_FAMILLE(R.string.reason_cf_famille, AttestationType.COUVRE_FEU,  "famille", R.string.reason_cf_famille_desc, R.drawable.ic_baseline_family_restroom_16_orange),
     CF_CONVOCATION(R.string.reason_cf_convocation_demarches, AttestationType.COUVRE_FEU,  "convocation_demarches", R.string.reason_cf_convocation_demarches_desc, R.drawable.ic_baseline_assignment_16_orange),
-    CF_ANIMAUX(R.string.reason_cf_animaux, AttestationType.COUVRE_FEU,  "animaux", R.string.reason_cf_animaux_desc, R.drawable.ic_baseline_pets_16_orange),
-
-    /* Confinement */
-    CONFINEMENT_TRAVAIL(R.string.reason_confinement_travail, AttestationType.CONFINEMENT,  "travail", R.string.reason_confinement_travail_desc, R.drawable.ic_baseline_work_16),
-    CONFINEMENT_SANTE(R.string.reason_confinement_sante, AttestationType.CONFINEMENT, "sante", R.string.reason_confinement_sante_desc, R.drawable.ic_baseline_local_hospital_16),
-    CONFINEMENT_FAMILLE(R.string.reason_confinement_famille, AttestationType.CONFINEMENT, "famille", R.string.reason_confinement_famille_desc, R.drawable.ic_baseline_family_restroom_16),
-    CONFINEMENT_CONVOCATION_DEMARCHE(R.string.reason_confinement_convocation_demarches, AttestationType.CONFINEMENT, "convocation_demarches", R.string.reason_confinement_convocation_demarches_desc, R.drawable.ic_baseline_assignment_16),
-    CONFINEMENT_DEMENAGEMENT(R.string.reason_confinement_demenagement, AttestationType.CONFINEMENT,  "demenagement", R.string.reason_confinement_demenagement_desc, R.drawable.ic_baseline_local_shipping_16),
-    CONFINEMENT_ACHATS_CULTE_CULTUREL(R.string.reason_confinement_achats_culte_culturel, AttestationType.CONFINEMENT,  "achats_culte_culturel", R.string.reason_confinement_achats_culte_culturel_desc, R.drawable.ic_baseline_shopping_cart_16),
-    CONFINEMENT_SPORT(R.string.reason_confinement_sport, AttestationType.CONFINEMENT,  "sport", R.string.reason_confinement_sport_desc, R.drawable.ic_baseline_directions_bike_16);
+    CF_TRANSIT(R.string.reason_cf_transit, AttestationType.COUVRE_FEU, "transit", R.string.reason_cf_transit, R.drawable.ic_baseline_train_16),
+    CF_ANIMAUX(R.string.reason_cf_animaux, AttestationType.COUVRE_FEU,  "animaux", R.string.reason_cf_animaux_desc, R.drawable.ic_baseline_pets_16_orange);
 
     @Expose(serialize = false, deserialize = false)
     private final int displayName;
 
     @Expose(serialize = false, deserialize = false)
     private final AttestationType relatedType;
-
-    //@Expose(serialize = false, deserialize = false)
-    //private final int pdfPosY;
 
     @Expose(serialize = false, deserialize = false)
     private final String id;
@@ -40,9 +29,6 @@ public enum Reason {
 
     @Expose(serialize = false, deserialize = false)
     private final int iconId;
-
-    //@Expose(serialize = false, deserialize = false)
-    //private final int page;
 
     /**
      * Constructor

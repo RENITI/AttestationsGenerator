@@ -29,6 +29,7 @@ import com.tom_roush.pdfbox.pdmodel.font.PDFont;
 import com.tom_roush.pdfbox.pdmodel.font.PDType0Font;
 import com.tom_roush.pdfbox.pdmodel.font.PDType1Font;
 import com.tom_roush.pdfbox.pdmodel.graphics.color.PDDeviceRGB;
+import com.tom_roush.pdfbox.pdmodel.graphics.image.JPEGFactory;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImage;
 import com.tom_roush.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import com.tom_roush.pdfbox.pdmodel.interactive.form.PDAcroForm;
@@ -183,6 +184,12 @@ public class Utils {
                                 case "city":
                                     builder.append(" " + attestation.getProfile().getCity());
                                     break;
+                                case "datesortie":
+                                    builder.append(" " + attestation.getDatesortie());
+                                    break;
+                                case "heuresortie":
+                                    builder.append(" " + attestation.getHeuresortie());
+                                    break;
                                 default: break;
                             }
                         }
@@ -198,6 +205,15 @@ public class Utils {
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();;
             PDImageXObject pdImage;
+
+
+            pdImage = JPEGFactory.createFromStream(document, activity.getAssets().open("RF.jpg"));
+
+            pageContentStream.drawImage(pdImage, 30, page.getMediaBox().getHeight() - 80, 56, 50);
+
+            pdImage = JPEGFactory.createFromStream(document, activity.getAssets().open("TAC.jpg"));
+
+            pageContentStream.drawImage(pdImage, page.getMediaBox().getWidth() - 66, page.getMediaBox().getHeight() - 80, 33, 50);
 
             // QR Code 1
             Bitmap smallQr = attestation.getQRCode(82);
