@@ -131,8 +131,8 @@
 
     <!-- Attestation types -->
     <string name="attestation_type_couvrefeu_shortname">Curfew</string>
-    <string name="attestation_type_couvrefeu">Curfew (From 7PM to 6AM)</string>
-    <string name="attestation_type_couvrefeu_extra">In all departments\nVersion of 05/03/2021</string>
+    <string name="attestation_type_couvrefeu">Curfew (From 9PM to 6AM)</string>
+    <string name="attestation_type_couvrefeu_extra">In all departments\nVersion of 29/05/2021</string>
 
 
     <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>

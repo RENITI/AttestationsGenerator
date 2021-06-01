@@ -125,8 +125,8 @@
     <!-- Attestation types -->
 
     <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
-    <string name="attestation_type_couvrefeu">Couvre-feu (De 19h à 6h)</string>
-    <string name="attestation_type_couvrefeu_extra">Toute la France\nVersion du 03/05/2021</string>
+    <string name="attestation_type_couvrefeu">Couvre-feu (De 21h à 6h)</string>
+    <string name="attestation_type_couvrefeu_extra">Toute la France\nVersion du 29/05/2021</string>
 
     <string name="attestation_type_not_available">Ce type d\'attestation n\'est pas disponible pour le moment</string>
     <string name="attestation_type_unknown">Inconnu</string>
