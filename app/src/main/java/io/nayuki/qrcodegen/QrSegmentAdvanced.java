@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
+
 import io.nayuki.qrcodegen.QrSegment.Mode;
 
 

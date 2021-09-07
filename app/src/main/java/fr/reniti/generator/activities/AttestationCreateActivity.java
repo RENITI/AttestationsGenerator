@@ -1,6 +1,5 @@
 package fr.reniti.generator.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -13,7 +12,6 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,10 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
@@ -33,15 +29,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.widget.CompoundButtonCompat;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Random;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;

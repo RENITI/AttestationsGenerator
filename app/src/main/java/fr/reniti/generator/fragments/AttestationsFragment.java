@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,17 +19,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Logger;
 
+import fr.reniti.generator.R;
 import fr.reniti.generator.activities.AttestationGenerationActivity;
 import fr.reniti.generator.activities.AttestationViewActivity;
-import fr.reniti.generator.MainActivity;
-import fr.reniti.generator.R;
-import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.StorageManager;
+import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.utils.Utils;

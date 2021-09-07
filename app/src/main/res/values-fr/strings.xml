@@ -122,11 +122,40 @@
     <string name="reason_cf_animaux">Animaux de compagnie</string>
     <string name="reason_cf_animaux_desc">Déplacements brefs pour les besoins des animaux de compagnie (dans un rayon de 1 kilomètre autour du domicile).</string>
 
+    <!-- Confinement -->
+
+    <string name="reason_conf_travail">Activité professionnelle, enseignement et formation, mission d’intérêt général</string>
+    <string name="reason_conf_travail_desc">Activité professionnelle, enseignement et formation, mission d’intérêt général\nDéplacements entre le domicile et le lieu de travail ou d’enseignement ou de formation.\nDéplacements professionnels ne pouvant être différés, livraisons.\nDéplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle.\nDéplacements liés à des missions d’intérêt général sur demande de l’autorité administrative.</string>
+
+    <string name="reason_conf_sante">Santé (consultation et soins)</string>
+    <string name="reason_conf_sante_desc">Déplacements pour des consultations, examens, actes de prévention (dont vaccination) et soins ne pouvant être assurés à distance ou pour l’achat de produits de santé.</string>
+
+    <string name="reason_conf_famille">Motif familial impérieux, assistance aux personnes vulnérables, garde d’enfants, situation de handicap</string>
+    <string name="reason_conf_famille_desc">Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou précaires ou pour la garde d’enfants\nDéplacements des personnes en situation de handicap et de leur accompagnant</string>
+
+    <string name="reason_conf_demarches">Convocation judiciaire ou administrative, démarches ne pouvant être menées à distance</string>
+    <string name="reason_conf_demarches_desc">Déplacements pour répondre à une convocation judiciaire ou administrative, pour se rendre dans un service public ou chez un professionnel du droit, pour un acte ou une démarche qui ne peut être réalisé à distance.</string>
+
+    <string name="reason_conf_demenagement">Déménagement</string>
+    <string name="reason_conf_demenagement_desc">Déplacements liés à un déménagement résultant d’un changement de domicile.\nDéplacements indispensables à l’acquisition ou à la location d’une résidence principale, ne pouvant être différés.</string>
+
+    <string name="reason_conf_transit">Déplacements liés à des transferts ou transits depuis des gares ou aéroports dans le cadre de déplacements de longue distance</string>
+
+    <string name="reason_conf_achats">Achats, établissements culturels ou lieux de culte (au sein de mon département)</string>
+    <string name="reason_conf_achats_desc">Déplacements pour effectuer des achats de première nécessité, pour les retraits de commandes, ou pour bénéficier de prestations de service.\nDéplacements pour se rendre dans un établissement culturel ouvert ou un lieu de culte.</string>
+
+    <string name="reason_conf_sport">Activité physique, de plein air, promenade autour de votre domicile (dans un rayon défini par l\'arrêté préfectoral)</string>
+    <string name="reason_conf_sport_desc">Déplacements liés à la promenade, à l’activité physique individuelle, à l’activité de plein air, aux besoins des animaux de compagnie.</string>
+
     <!-- Attestation types -->
 
     <string name="attestation_type_couvrefeu_shortname">Couvre-feu</string>
-    <string name="attestation_type_couvrefeu">Couvre-feu (De 23h à 6h)</string>
-    <string name="attestation_type_couvrefeu_extra">Toute la France\nVersion du 16/06/2021</string>
+    <string name="attestation_type_couvrefeu">Couvre-feu</string>
+    <string name="attestation_type_couvrefeu_extra">Durant les horaires (Selon arrêté préfectoral)</string>
+
+    <string name="attestation_type_confinement_shortname">Confinement</string>
+    <string name="attestation_type_confinement">Confinement</string>
+    <string name="attestation_type_confinement_extra">En dehors des horaires du couvre-feu (Selon Arrêté Préfectoral)</string>
 
     <string name="attestation_type_not_available">Ce type d\'attestation n\'est pas disponible pour le moment</string>
     <string name="attestation_type_unknown">Inconnu</string>

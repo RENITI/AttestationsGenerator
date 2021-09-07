@@ -126,13 +126,40 @@
     <string name="reason_cf_animaux">Pets</string>
     <string name="reason_cf_animaux_desc">Short outings for the needs of pet animals (within a radius of 1 kilometre around the home).</string>
 
-    <!-- END -->
+    <!-- Confinement -->
 
+    <string name="reason_conf_travail">Professional activity, education and training, community service</string>
+    <string name="reason_conf_travail_desc">Professional activity, education and training, community service\nTravel between home and place of work or education or training.\nBusiness trips that cannot be postponed, deliveries.\nTravel to purchase supplies for the business.\nTravel related to missions of general interest at the request of the administrative authority.</string>
+
+    <string name="reason_conf_sante">Health (consultation and care)</string>
+    <string name="reason_conf_sante_desc">Travel for consultations, examinations, preventive procedures (including vaccination) and care that cannot be provided at a distance or for the purchase of health products.</string>
+
+    <string name="reason_conf_famille">Compelling family reasons, assistance to vulnerable persons, childcare, disability</string>
+    <string name="reason_conf_famille_desc">Travel for compelling family reasons, for assistance to vulnerable or precarious people or for childcare\nTravel for people with disabilities and their carers</string>
+
+    <string name="reason_conf_demarches">Judicial or administrative summons, procedures that cannot be carried out remotely</string>
+    <string name="reason_conf_demarches_desc">Travel to respond to a judicial or administrative summons, to visit a public service or a legal professional, for an act or procedure that cannot be carried out at a distance.</string>
+
+    <string name="reason_conf_demenagement">Relocation</string>
+    <string name="reason_conf_demenagement_desc">Travel related to a move resulting from a change of residence.\nTravel essential for the acquisition or rental of a principal residence, which cannot be deferred.</string>
+
+    <string name="reason_conf_transit">Travel related to transfers or transits from stations or airports in the context of long-distance travel</string>
+
+    <string name="reason_conf_achats">Shopping, cultural institutions or places of worship (within my department)</string>
+    <string name="reason_conf_achats_desc">Travel to make essential purchases, to collect orders, or to receive services.\nTravel to an open cultural institution or place of worship.</string>
+
+    <string name="reason_conf_sport">Physical activity, outdoor activities, walks around your home (within a radius defined by the prefectural order)</string>
+    <string name="reason_conf_sport_desc">Travel related to walking, individual physical activity, outdoor activity, pet needs.</string>
 
     <!-- Attestation types -->
+
     <string name="attestation_type_couvrefeu_shortname">Curfew</string>
-    <string name="attestation_type_couvrefeu">Curfew (From 11PM to 6AM)</string>
-    <string name="attestation_type_couvrefeu_extra">In all departments\nVersion of 16/06/2021</string>
+    <string name="attestation_type_couvrefeu">Curfew</string>
+    <string name="attestation_type_couvrefeu_extra">During curfew hours (prefectural decree)</string>
+
+    <string name="attestation_type_confinement_shortname">Lockdown</string>
+    <string name="attestation_type_confinement">Lockdown</string>
+    <string name="attestation_type_confinement_extra">Outside the curfew hours (according to the Prefectural Order)</string>
 
 
     <string name="attestation_type_not_available">This type of certificate is not available at the moment.</string>

@@ -3,9 +3,7 @@ package fr.reniti.generator.listeners;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 public class DateFieldWatcher implements TextWatcher {

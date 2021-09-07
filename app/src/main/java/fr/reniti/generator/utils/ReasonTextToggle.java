@@ -3,7 +3,6 @@ package fr.reniti.generator.utils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 
 import fr.reniti.generator.storage.models.Reason;
 

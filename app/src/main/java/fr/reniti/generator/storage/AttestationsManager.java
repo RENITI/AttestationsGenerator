@@ -6,12 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.storage.models.Attestation;
-import fr.reniti.generator.storage.models.Profile;
 import fr.reniti.generator.storage.models.Reason;
-import fr.reniti.generator.utils.Utils;
 
 public class AttestationsManager {
 

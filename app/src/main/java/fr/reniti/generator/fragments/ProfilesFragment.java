@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import java.util.Collection;
 
-import fr.reniti.generator.MainActivity;
 import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Profile;

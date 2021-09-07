@@ -2,9 +2,7 @@ package fr.reniti.generator.storage;
 
 import com.google.gson.annotations.Expose;
 
-import java.security.acl.LastOwnerException;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.storage.models.AttestationType;
 import fr.reniti.generator.storage.models.Profile;

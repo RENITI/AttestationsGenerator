@@ -9,7 +9,6 @@ import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 import fr.reniti.generator.utils.Utils;
 import io.nayuki.qrcodegen.QrCode;

@@ -1,7 +1,6 @@
 package fr.reniti.generator;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Utils.updateShortcuts(this, false);
-
-
     }
 
     @Override

@@ -20,8 +20,6 @@ import androidx.core.content.FileProvider;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
-import org.spongycastle.asn1.x509.AttCertIssuer;
-
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +29,6 @@ import fr.reniti.generator.R;
 import fr.reniti.generator.storage.StorageManager;
 import fr.reniti.generator.storage.models.Attestation;
 import fr.reniti.generator.storage.models.AttestationType;
-import fr.reniti.generator.utils.Utils;
 
 public class AttestationViewActivity extends AppCompatActivity {
 
